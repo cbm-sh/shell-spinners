@@ -1,25 +1,36 @@
-import loaders from "./loaders";
+import spinners from "./spinners";
 
-// export const getRandomLoader = () => {
-//   const randomIndex = Math.floor(Math.random() * loaders.length);
-//   return loaders.map((loader) => loader)[randomIndex];
-// };
+/**
+ * Initialize a spinner with the specified name.
+ * @param {string} name - ***Required*** - The name of the spinner to initialize.
+ * @param {number} speed - ***Optional*** - The spinner speed (default 80).
+ * @param {number} id - ***Optional*** - The id of the spinner to initialize.
+ * @returns {void}
+ */
 
-const startLoader = (name: string) => {
-  let index = 0;
-  const loader = loaders.find((loader) => loader.name === name);
-
-  if (!loader) {
-    console.error("Loader not found");
+export const initSpinner = (name?: string, id?: number, speed?: number) => {
+  if (!name && !id) {
+    console.error("A name or id argument is required.");
     return;
   }
 
-  const { frames } = loader;
+  const spinner = spinners.find(
+    (spinner) => spinner.name === name || spinner.id === id,
+  );
+
+  if (!spinner) {
+    console.error(
+      "Spinner not found. Please check the name or id and try again.",
+    );
+    return;
+  }
+
+  const { keyframes } = spinner;
+
+  let index = 0;
 
   setInterval(() => {
-    process.stdout.write(`\r${frames[index]}`);
-    index = (index + 1) % frames.length;
-  }, 80);
+    process.stdout.write(`\r${keyframes[index]}`);
+    index = (index + 1) % keyframes.length;
+  }, speed || 80);
 };
-
-startLoader("dots_solid_clockwise_2x3");
