@@ -3,7 +3,7 @@ import spinners from "./spinners";
 /**
  * Initialize a spinner by name or id.
  * @param {string} name - ***Required*** - The name or id of the spinner to initialize.
- * @param {number} speed - ***Optional*** - The spinner speed (default 80).
+ * @param {number} speed - ***Optional*** - The spinner speed, default is 80.
  * @returns {void}
  */
 
@@ -28,3 +28,5 @@ export const initSpinner = (name: string | number, speed?: number) => {
     index = (index + 1) % keyframes.length;
   }, speed || 80);
 };
+
+initSpinner(15, 70);
