@@ -1,21 +1,15 @@
 import spinners from "./spinners";
 
 /**
- * Initialize a spinner with the specified name.
- * @param {string} name - ***Required*** - The name of the spinner to initialize.
+ * Initialize a spinner by name or id.
+ * @param {string} name - ***Required*** - The name or id of the spinner to initialize.
  * @param {number} speed - ***Optional*** - The spinner speed (default 80).
- * @param {number} id - ***Optional*** - The id of the spinner to initialize.
  * @returns {void}
  */
 
-export const initSpinner = (name?: string, id?: number, speed?: number) => {
-  if (!name && !id) {
-    console.error("A name or id argument is required.");
-    return;
-  }
-
+export const initSpinner = (name: string | number, speed?: number) => {
   const spinner = spinners.find(
-    (spinner) => spinner.name === name || spinner.id === id,
+    (spinner) => spinner.name === name || spinner.id === name,
   );
 
   if (!spinner) {
