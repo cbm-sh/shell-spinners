@@ -28,5 +28,3 @@ export const initSpinner = (name: string | number, speed?: number) => {
     index = (index + 1) % keyframes.length;
   }, speed || 80);
 };
-
-initSpinner(15, 70);
