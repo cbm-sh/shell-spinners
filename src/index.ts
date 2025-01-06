@@ -1,4 +1,5 @@
-import allLoaders from "./all-loaders";
+import { allLoaders } from "./all-loaders";
+import { Loader } from "./types";
 
 /**
  * Initialize a loader by name or id.
@@ -7,7 +8,7 @@ import allLoaders from "./all-loaders";
  * @returns {void}
  */
 
-export const initloader = (name: string | number, speed?: number) => {
+const initloader = (name: string | number, speed?: number) => {
   const loader = allLoaders.find(
     (obj) => obj.name === name || obj.id === name,
   );
@@ -28,3 +29,5 @@ export const initloader = (name: string | number, speed?: number) => {
     index = (index + 1) % keyframes.length;
   }, speed || 80);
 };
+
+export { initloader, allLoaders, type Loader };

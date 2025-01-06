@@ -1,6 +1,6 @@
 import type { Loader } from "./types";
 
-const allLoaders: Loader[] = [
+export const allLoaders: Loader[] = [
   {
     id: 1,
     name: "dots_variant_1",
@@ -261,4 +261,4 @@ const allLoaders: Loader[] = [
   },
 ];
 
-export default allLoaders;
+

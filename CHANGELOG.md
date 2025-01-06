@@ -1,5 +1,11 @@
 # cli-loaders
 
+## 0.0.3
+
+### Patch Changes
+
+- Exposing variables, started example app
+
 ## 0.0.2
 
 ### Patch Changes
