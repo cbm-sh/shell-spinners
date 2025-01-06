@@ -8,6 +8,5 @@ module.exports = {
   bracketSpacing: true,
   jsxBracketSameLine: true,
   jsxSingleQuote: true,
-  endOfLine: "lf",
-  plugins: ["prettier-plugin-tailwindcss"],
+  endOfLine: "lf"
 };
