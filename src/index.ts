@@ -1,4 +1,4 @@
-import { allLoaders } from "./all-loaders";
+import allLoaders from "./all-loaders";
 import { Loader } from "./types";
 
 /**
