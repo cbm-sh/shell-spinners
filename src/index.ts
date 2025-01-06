@@ -7,7 +7,6 @@ import allLoaders from "./all-loaders";
  * @returns {void}
  */
 
-
 export const initloader = (name: string | number, speed?: number) => {
   const loader = allLoaders.find(
     (obj) => obj.name === name || obj.id === name,
