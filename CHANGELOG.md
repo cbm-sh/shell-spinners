@@ -1,0 +1,8 @@
+# cli-loaders
+
+## 0.0.2
+
+### Patch Changes
+
+- 52ddd9f: ignore prettier, changesets, npmignore, publish to npm
+- 52ddd9f: change project name

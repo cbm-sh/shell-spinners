@@ -1,6 +1,6 @@
-# CLI Loaders
+# cli-loaders
 
-A collection of CLI loaders for your command-line applications.
+A collection of cli loaders for your command-line applications.
 
 ## Installation
 
@@ -75,4 +75,8 @@ Contributions are welcome! Please open an issue or submit a pull request.
 ## License
 
 This project is licensed under the MIT License.
+
+## Special Thanks
+
+Special thanks to [cli-spinners](https://www.npmjs.com/package/cli-spinners) and [sindresorhus](https://github.com/sindresorhus) for the json file for some of the loaders in this project.
 
