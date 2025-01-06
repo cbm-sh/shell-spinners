@@ -1,5 +1,5 @@
 {
-  "name": "shell-spinners",
+  "name": "cli-loaders",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
@@ -9,9 +9,7 @@
     "start": "node dist/index.js",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "build": "tsup src/index.ts --format cjs,esm --dts --minify",
-    "lint": "tsc",
-    "prepublish": "bun run lint && bun run build",
-    "publish": "changesets version && bun publish"
+    "lint": "tsc"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.11",

@@ -1,6 +1,6 @@
-import type { Spinner } from "./types";
+import type { Loader } from "./types";
 
-const spinners: Spinner[] = [
+const allLoaders: Loader[] = [
   {
     id: 1,
     name: "dots_variant_1",
@@ -261,4 +261,4 @@ const spinners: Spinner[] = [
   },
 ];
 
-export default spinners;
+export default allLoaders;

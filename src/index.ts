@@ -1,25 +1,26 @@
-import spinners from "./spinners";
+import allLoaders from "./all-loaders";
 
 /**
- * Initialize a spinner by name or id.
- * @param {string} name - ***Required*** - The name or id of the spinner to initialize.
- * @param {number} speed - ***Optional*** - The spinner speed, default is 80.
+ * Initialize a loader by name or id.
+ * @param {string} name - ***Required*** - The name or id of the loader to initialize.
+ * @param {number} speed - ***Optional*** - The loader speed, default is 80.
  * @returns {void}
  */
 
-export const initSpinner = (name: string | number, speed?: number) => {
-  const spinner = spinners.find(
-    (spinner) => spinner.name === name || spinner.id === name,
+
+export const initloader = (name: string | number, speed?: number) => {
+  const loader = allLoaders.find(
+    (obj) => obj.name === name || obj.id === name,
   );
 
-  if (!spinner) {
+  if (!loader) {
     console.error(
-      "Spinner not found. Please check the name or id and try again.",
+      "loader not found. Please check the name or id and try again.",
     );
     return;
   }
 
-  const { keyframes } = spinner;
+  const { keyframes } = loader;
 
   let index = 0;
 
