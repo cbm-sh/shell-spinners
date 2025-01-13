@@ -8,7 +8,7 @@ type LoaderProps = {
   speed?: number;
 };
 
-const Loader: React.FC<LoaderProps> = ({ name, speed = 80 }) => {
+export const CliLoader: React.FC<LoaderProps> = ({ name, speed = 80 }) => {
   const [currentFrame, setCurrentFrame] = useState<string>('');
   const loader = allLoaders.find((obj) => obj.name === name || obj.id === name);
 
@@ -36,4 +36,3 @@ const Loader: React.FC<LoaderProps> = ({ name, speed = 80 }) => {
   return <div className='p-6'>{currentFrame}</div>;
 };
 
-export default Loader;
