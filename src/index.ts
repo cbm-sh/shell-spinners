@@ -2,20 +2,18 @@ import allLoaders from "./all-loaders";
 import { Loader } from "./types";
 
 /**
- * Initialize a loader by name or id.
- * @param {string} name - ***Required*** - The name or id of the loader to initialize.
- * @param {number} speed - ***Optional*** - The loader speed, default is 80.
- * @returns {void}
+ * Initialize a loader
+ * @param name - ***Required*** - The name of the loader to initialize.
+ * @param speed - ***Optional*** - The loader speed.
+ * @returns The loader object
  */
 
-const initloader = (name: string | number, speed?: number) => {
-  const loader = allLoaders.find(
-    (obj) => obj.name === name || obj.id === name,
-  );
+const initloader = (name: string, speed?: number) => {
+  const loader = allLoaders.find(obj => obj.name === name);
 
   if (!loader) {
     console.error(
-      "loader not found. Please check the name or id and try again.",
+      `Loader '${name}' not found. Please check the name and try again.`,
     );
     return;
   }

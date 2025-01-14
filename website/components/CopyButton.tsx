@@ -4,10 +4,11 @@ import { CopyIcon, CheckIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
 
 type CopyButtonProps = {
+  className? : string;
   code: string;
 };
 
-const CopyButton: React.FC<CopyButtonProps> = ({ code }) => {
+const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
   const [hasCheckIcon, setHasCheckIcon] = useState(false);
 
   const onCopy = () => {
@@ -22,7 +23,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({ code }) => {
   return (
     <button
       type='button'
-      className='absolute right-3 top-3 cursor-pointer border border-neutral-900 p-2 transition hover:bg-neutral-900 bg-black'
+      className={className ?? 'absolute right-3 top-3 cursor-pointer border border-neutral-900 p-2 transition hover:bg-neutral-900 bg-black'}
       onClick={onCopy}
     >
       {hasCheckIcon ? (
@@ -35,3 +36,4 @@ const CopyButton: React.FC<CopyButtonProps> = ({ code }) => {
 };
 
 export default CopyButton;
+

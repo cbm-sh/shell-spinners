@@ -1,5 +1,11 @@
 # cli-loaders
 
+## 1.0.0
+
+### Major Changes
+
+- Import loaders from cli loaders json, updated website with filtering and previews, more to come!
+
 ## 0.1.0
 
 ### Minor Changes

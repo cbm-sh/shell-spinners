@@ -1,6 +1,5 @@
 export type Loader = {
-  categories: string[];
-  id: number;
+  category: string;
   name: string;
   speed: number;
   keyframes: string[];

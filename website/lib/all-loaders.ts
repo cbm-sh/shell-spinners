@@ -1,6 +1,4 @@
-import type { Loader } from "./types";
-
-const allLoaders: Loader[] = [
+export const ALL_LOADERS = [
 	{
 		category: "Arrows",
 		name: "arrows_variant_1",
@@ -1060,5 +1058,3 @@ const allLoaders: Loader[] = [
 		]
 	}
 ];
-
-export default allLoaders;

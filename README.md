@@ -31,9 +31,6 @@ import { initLoader } from 'cli-loaders';
 
 // Initialize by name
 initLoader('dots_variant_1');
-
-// Initialize by id
-initLoader(1);
 ```
 
 ### Customizing the Speed

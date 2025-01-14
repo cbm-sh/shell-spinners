@@ -8,7 +8,7 @@ type CliLoaderTabsProps = {
 
 export const CliLoaderTabs = ({ tabs, activeTab, setActiveTab }: CliLoaderTabsProps) => {
     return (
-        <div className="font-light flex flex-row w-full max-w-96 py-4 mx-auto justify-between items-center overflow-x-scroll">
+        <div className="px-6 font-light flex flex-row py-4 mx-auto justify-between items-center overflow-x-scroll">
             {tabs.map((tab: string) => (
                 <motion.button
                     type="button"

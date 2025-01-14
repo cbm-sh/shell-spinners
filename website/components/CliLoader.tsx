@@ -22,7 +22,7 @@ export const CliLoader: React.FC<LoaderProps> = ({ speed, keyframes }) => {
   }, [speed]);
 
   return (
-  <div className='absolute flex flex-col justify-center items-center overflow-scroll text-2xl'>{currentFrame}</div>
+  <div className='relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden'>{currentFrame}</div>
   )
 };
 
