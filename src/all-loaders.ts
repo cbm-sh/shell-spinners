@@ -2,23 +2,31 @@ import type { Loader } from "./types";
 
 const allLoaders: Loader[] = [
   {
+    categories: ["All", "Dots"],
     id: 1,
     name: "dots_variant_1",
+    speed: 80,
     keyframes: ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"],
   },
   {
+    categories: ["All", "Dots"],
     id: 2,
     name: "dots_variant_2",
+    speed: 80,
     keyframes: ["⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷"],
   },
   {
+    categories: ["All", "Dots"],
     id: 3,
     name: "dots_variant_3",
+    speed: 80,
     keyframes: ["⠋", "⠙", "⠚", "⠞", "⠖", "⠦", "⠴", "⠲", "⠳", "⠓"],
   },
   {
+    categories: ["All", "Dots"],
     id: 4,
     name: "dots_variant_4",
+    speed: 80,
     keyframes: [
       "⠄",
       "⠆",
@@ -37,8 +45,10 @@ const allLoaders: Loader[] = [
     ],
   },
   {
+    categories: ["All", "Dots"],
     id: 5,
     name: "dots_variant_5",
+    speed: 80,
     keyframes: [
       "⠋",
       "⠙",
@@ -60,8 +70,10 @@ const allLoaders: Loader[] = [
     ],
   },
   {
+    categories: ["All", "Dots"],
     id: 6,
     name: "dots_variant_6",
+    speed: 80,
     keyframes: [
       "⠁",
       "⠉",
@@ -90,8 +102,10 @@ const allLoaders: Loader[] = [
     ],
   },
   {
+    categories: ["All", "Dots"],
     id: 7,
     name: "dots_variant_7",
+    speed: 80,
     keyframes: [
       "⠈",
       "⠉",
@@ -120,8 +134,10 @@ const allLoaders: Loader[] = [
     ],
   },
   {
+    categories: ["All", "Dots"],
     id: 8,
     name: "dots_variant_8",
+    speed: 80,
     keyframes: [
       "⠁",
       "⠁",
@@ -155,23 +171,31 @@ const allLoaders: Loader[] = [
     ],
   },
   {
+    categories: ["All", "Dots"],
     id: 9,
     name: "dots_variant_9",
+    speed: 80,
     keyframes: ["⢹", "⢺", "⢼", "⣸", "⣇", "⡧", "⡗", "⡏"],
   },
   {
+    categories: ["All", "Dots"],
     id: 10,
     name: "dots_variant_10",
+    speed: 80,
     keyframes: ["⢄", "⢂", "⢁", "⡁", "⡈", "⡐", "⡠"],
   },
   {
+    categories: ["All", "Dots"],
     id: 11,
     name: "dots_variant_11",
+    speed: 80,
     keyframes: ["⠁", "⠂", "⠄", "⡀", "⢀", "⠠", "⠐", "⠈"],
   },
   {
+    categories: ["All", "Dots"],
     id: 12,
     name: "dots_variant_12",
+    speed: 80,
     keyframes: [
       "⢀⠀",
       "⡀⠀",
@@ -232,13 +256,17 @@ const allLoaders: Loader[] = [
     ],
   },
   {
+    categories: ["All", "Dots"],
     id: 13,
     name: "dots_variant_13",
+    speed: 80,
     keyframes: ["⣼", "⣹", "⢻", "⠿", "⡟", "⣏", "⣧", "⣶"],
   },
   {
+    categories: ["All", "Dots"],
     id: 14,
     name: "dots_variant_14",
+    speed: 80,
     keyframes: [
       "⠉⠉",
       "⠈⠙",
@@ -255,9 +283,33 @@ const allLoaders: Loader[] = [
     ],
   },
   {
+    categories: ["All", "Dots"],
     id: 15,
     name: "dots_variant_15",
-    keyframes: ["⢎ ", "⠎⠁", "⠊⠑", "⠈⠱", " ⡱", "⢀⡰", "⢄⡠", "⢆⡀"],
+    speed: 80,
+    keyframes: [
+      "⢎ ",
+			"⠎⠁",
+			"⠊⠑",
+			"⠈⠱",
+			" ⡱",
+			"⢀⡰",
+			"⢄⡠",
+			"⢆⡀"],
+  },
+  {
+    categories: ["All", "Lines"],
+    id: 16,
+    name: "lines_variant_1",
+    speed: 130,
+    keyframes: ["-","\\","|","/"],
+  },
+  {
+    categories: ["All", "Lines"],
+    id: 17,
+    name: "lines_variant_2",
+    speed: 100,
+    keyframes: ["-","\\","|","/"],
   },
 ];
 
