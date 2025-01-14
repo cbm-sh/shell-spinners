@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <>
       <section>
-        <div className='bg-gradient-to-b from-neutral-900 to-black py-16 px-6'>
+        <div className='py-16 px-6'>
           <h1 className='mb-8 font-semibold text-neutral-100 text-4xl md:text-5xl'>
             Cli Loaders
           </h1>
