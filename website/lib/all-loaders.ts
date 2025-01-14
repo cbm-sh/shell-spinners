@@ -1,4 +1,4 @@
-export const ALL_LOADERS = [
+const allLoaders = [
 	{
 		category: "Arrows",
 		name: "arrows_variant_1",
@@ -1058,3 +1058,5 @@ export const ALL_LOADERS = [
 		]
 	}
 ];
+
+export default allLoaders;

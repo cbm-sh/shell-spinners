@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { ALL_LOADERS } from '@/lib/all-loaders';
+import allLoaders from '@/lib/all-loaders';
 import { Card } from '@/components/Card';
 import { CliLoaderTabs } from '@/components/CliLoaderTabs';
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,8 +10,8 @@ import { CliLoader } from './CliLoader';
 const ComponentFilter = () => {
     const [activeTab, setActiveTab] = useState('Arrows');
     const filteredLoaders = activeTab === 'All'
-        ? ALL_LOADERS
-        : ALL_LOADERS.filter(({ category }) => category.includes(activeTab));
+        ? allLoaders
+        : allLoaders.filter(({ category }) => category.includes(activeTab));
 
     return (
         <>
