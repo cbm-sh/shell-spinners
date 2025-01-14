@@ -21,6 +21,8 @@ export const CliLoader: React.FC<LoaderProps> = ({ speed, keyframes }) => {
     return () => clearInterval(interval);
   }, [speed]);
 
-  return <>{currentFrame}</>;
+  return (
+  <div className='absolute flex flex-col justify-center items-center overflow-scroll text-2xl'>{currentFrame}</div>
+  )
 };
 
