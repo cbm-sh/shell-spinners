@@ -10,7 +10,7 @@ const Home = () => {
             Cli Loaders
           </h1>
           <p className='text-neutral-300'>
-            Copy and paste into your cli apps.
+            Simply copy and paste into your apps
           </p>
           <div className='mt-12'>
             <pre>

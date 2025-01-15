@@ -44,6 +44,10 @@ import { initLoader } from 'cli-loaders';
 initLoader('dots_variant_1', 100);
 ```
 
+### Upgrading versions
+
+Upgrading versions can be breaking. Double check the [website](https://cliloaders.com) first, to see if a loader has moved or is following a new naming convention. The website will always be updated with the most current version of cli-loaders.
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
