@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import Header from "@/components/Header";
+import { Toaster} from 'sonner';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,13 @@ const RootLayout = ({
         <Header />
           {children}
           <Footer />
+        <Toaster
+          toastOptions={{
+          style: {
+            borderRadius: 0,
+          },
+          className: 'border border-neutral-800/50 bg-neutral-900 text-neutral-50',
+        }} />
         </main>
       </body>
     </html>

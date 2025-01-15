@@ -14,7 +14,7 @@ const Home = () => {
           </p>
           <div className='mt-12'>
             <pre>
-              <code className='w-full bg-neutral-900 border border-neutral-800/30 p-4 rounded-md'>npm install cli-loaders
+              <code className='w-full bg-neutral-900 border border-neutral-800/30 p-4'>npm install cli-loaders
               <CopyButton code='npm install cli-loaders' className='inline-flex pl-2 relative right-0 top-1 cursor-pointer transition'/></code>
           </pre>
           </div>

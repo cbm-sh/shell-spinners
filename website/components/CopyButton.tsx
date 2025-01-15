@@ -1,6 +1,7 @@
 'use client';
 
 import { CopyIcon, CheckIcon } from '@radix-ui/react-icons';
+import { toast } from 'sonner';
 import { useState } from 'react';
 
 type CopyButtonProps = {
@@ -14,7 +15,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
   const onCopy = () => {
     navigator.clipboard.writeText(code);
     setHasCheckIcon(true);
-
+    toast.success(`"${code}" copied!`);
     setTimeout(() => {
       setHasCheckIcon(false);
     }, 1000);

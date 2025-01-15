@@ -1,6 +1,4 @@
-import type { Loader } from "./types";
-
-const allLoaders: Loader[] = [
+const allLoaders = [
 	{
 		category: "Arrows",
 		name: "arrows_variant_1",
@@ -46,7 +44,7 @@ const allLoaders: Loader[] = [
 	},
 	{
 		category: "Bars",
-		name: "bar_variant_1",
+		name: "bars_variant_1",
 		speed: 80,
 		keyframes: [
 			"[    ]",
@@ -69,7 +67,7 @@ const allLoaders: Loader[] = [
 	},
 	{
 		category: "Bars",
-		name: "bar_variant_2",
+		name: "bars_variant_2",
 		speed: 80,
 		keyframes: [
 			"|_●____|",
@@ -86,7 +84,7 @@ const allLoaders: Loader[] = [
 	},
 	{
 		category: "Bars",
-		name: "bar_variant_3",
+		name: "bars_variant_3",
 		speed: 17,
 		keyframes: [
 			"█▁▁▁▁▁▁▁",
@@ -239,39 +237,6 @@ const allLoaders: Loader[] = [
 			"◷",
 			"◶",
 			"◵"
-		]
-	},
-	{
-		category: "Dots",
-		name: "bounce",
-		speed: 120,
-		keyframes: [
-			"⠁",
-			"⠂",
-			"⠄",
-			"⠂"
-		]
-	},
-	{
-		category: "Dots",
-		name: "boxBounce",
-		speed: 120,
-		keyframes: [
-			"▖",
-			"▘",
-			"▝",
-			"▗"
-		]
-	},
-	{
-		category: "Dots",
-		name: "boxBounce2",
-		speed: 100,
-		keyframes: [
-			"▌",
-			"▀",
-			"▐",
-			"▄"
 		]
 	},
 	{
@@ -666,31 +631,31 @@ const allLoaders: Loader[] = [
 	},
 	{
 		category: "Dots",
-		name: "simpleDots",
-		speed: 400,
+		name: "dots_variant_17",
+		speed: 120,
 		keyframes: [
-			".  ",
-			".. ",
-			"..."
-		]
-	},
-	{
-		category: "Dots",
-		name: "simpleDotsScrolling",
-		speed: 200,
-		keyframes: [
-			".  ",
-			".. ",
-			"...",
-			" ..",
-			"  ."
+			"⠁",
+			"⠂",
+			"⠄",
+			"⠂"
 		]
 	},
 	{
 		category: "Emojis",
-		name: "chefskiss",
-		speed: 300,
-		keyframes: ["🫴","🤌","👌"],
+		name: "car",
+		speed: 200,
+		keyframes: [
+			"_______",
+			"______🏎️",
+			"_____🏎️_",
+			"____🏎️__",
+			"___🏎️💨_",
+			"__🏎️💨__",
+			"_🏎️💨___",
+			"🏎️_____",
+			"_______",
+
+		]
 	},
 	{
 		category: "Emojis",
@@ -735,6 +700,12 @@ const allLoaders: Loader[] = [
 	},
 	{
 		category: "Emojis",
+		name: "italian",
+		speed: 200,
+		keyframes: ["🫴","🤌","🤌","🤌","👌"],
+	},
+	{
+		category: "Emojis",
 		name: "monkey",
 		speed: 300,
 		keyframes: [
@@ -742,6 +713,20 @@ const allLoaders: Loader[] = [
 			"🙈 ",
 			"🙉 ",
 			"🙊 "
+		]
+	},{
+		category: "Emojis",
+		name: "pastel",
+		speed: 200,
+		keyframes: [
+			"🔴 ",
+			"🟢 ",
+			"🔵 ",
+			"⚪️ ",
+			"🟤 ",
+			"🟡 ",
+			"🟣 ",
+			"🟠 ",
 		]
 	},
 	{
@@ -784,7 +769,7 @@ const allLoaders: Loader[] = [
 	},
 	{
 		category: "Lines",
-		name: "line_variant_1",
+		name: "lines_variant_1",
 		speed: 130,
 		keyframes: [
 			"-",
@@ -795,7 +780,7 @@ const allLoaders: Loader[] = [
 	},
 	{
 		category: "Lines",
-		name: "line_variant_2",
+		name: "lines_variant_2",
 		speed: 100,
 		keyframes: [
 			"⠂",
@@ -824,8 +809,174 @@ const allLoaders: Loader[] = [
 		]
 	},
 	{
+		category: "Numbers",
+		name: "percent",
+		speed: 50,
+		keyframes: [
+            "000",
+            "001",
+            "002",
+            "003",
+            "004",
+            "005",
+            "006",
+            "007",
+            "008",
+            "009",
+            "010",
+            "011",
+            "012",
+            "013",
+            "014",
+            "015",
+            "016",
+            "017",
+            "018",
+            "019",
+            "020",
+            "021",
+            "022",
+            "023",
+            "024",
+            "025",
+            "026",
+            "027",
+            "028",
+            "029",
+            "030",
+            "031",
+            "032",
+            "033",
+            "034",
+            "035",
+            "036",
+            "037",
+            "038",
+            "039",
+            "040",
+            "041",
+            "042",
+            "043",
+            "044",
+            "045",
+            "046",
+            "047",
+            "048",
+            "049",
+            "050",
+            "051",
+            "052",
+            "053",
+            "054",
+            "055",
+            "056",
+            "057",
+            "058",
+            "059",
+            "060",
+            "061",
+            "062",
+            "063",
+            "064",
+            "065",
+            "066",
+            "067",
+            "068",
+            "069",
+            "070",
+            "071",
+            "072",
+            "073",
+            "074",
+            "075",
+            "076",
+            "077",
+            "078",
+            "079",
+            "080",
+            "081",
+            "082",
+            "083",
+            "084",
+            "085",
+            "086",
+            "087",
+            "088",
+            "089",
+            "090",
+            "091",
+            "092",
+            "093",
+            "094",
+            "095",
+            "096",
+            "097",
+            "098",
+            "099",
+            "100",
+        ]
+	},
+	{
+		category: "Numbers",
+		name: "traverse",
+		speed: 200,
+		keyframes: [
+			"100000",
+			"010000",
+			"001000",
+			"000100",
+			"000010",
+			"000001",
+			"000010",
+			"000100",
+			"001000",
+			"001000",
+			"010000",
+		]
+	},
+	{
+		category: "Numbers",
+		name: "index",
+		speed: 100,
+		keyframes: [
+			"000000",
+			"010000",
+			"012000",
+			"012300",
+			"012340",
+			"012345",
+			"012340",
+			"012300",
+			"012000",
+			"010000",
+			"000000",
+		]
+	},
+	{
+		category: "Numbers",
+		name: "logo",
+		speed: 80,
+		keyframes: [
+			"000000",
+			"V01010",
+			"Ve0101",
+			"Ver010",
+			"Verc01",
+			"Verce0",
+			"Vercel",
+			"Vercel",
+			"Vercel",
+			"Verce0",
+			"Verc01",
+			"Ver010",
+			"Ve0101",
+			"V01010",
+			"010101",
+		]
+	},
+	{
 		category: "Squares",
-		name: "growHorizontal",
+		name: "squares_variant_1",
 		speed: 120,
 		keyframes: [
 			"▏",
@@ -844,7 +995,7 @@ const allLoaders: Loader[] = [
 	},
 	{
 		category: "Squares",
-		name: "growVertical",
+		name: "squares_variant_2",
 		speed: 120,
 		keyframes: [
 			"▁",
@@ -861,7 +1012,29 @@ const allLoaders: Loader[] = [
 	},
 	{
 		category: "Squares",
-		name: "noise",
+		name: "squares_variant_3",
+		speed: 120,
+		keyframes: [
+			"▖",
+			"▘",
+			"▝",
+			"▗"
+		]
+	},
+	{
+		category: "Squares",
+		name: "squares_variant_4",
+		speed: 100,
+		keyframes: [
+			"▌",
+			"▀",
+			"▐",
+			"▄"
+		]
+	},
+	{
+		category: "Squares",
+		name: "squareNoise",
 		speed: 100,
 		keyframes: [
 			"▓",
@@ -882,7 +1055,29 @@ const allLoaders: Loader[] = [
 	},
 	{
 		category: "Squares",
-		name: "triangle",
+		name: "squareDots",
+		speed: 400,
+		keyframes: [
+			".  ",
+			".. ",
+			"..."
+		]
+	},
+	{
+		category: "Squares",
+		name: "squareDots2",
+		speed: 200,
+		keyframes: [
+			".  ",
+			".. ",
+			"...",
+			" ..",
+			"  ."
+		]
+	},
+	{
+		category: "Squares",
+		name: "squareTriangle",
 		speed: 50,
 		keyframes: [
 			"◢",
@@ -940,49 +1135,11 @@ const allLoaders: Loader[] = [
 	},
 	{
 		category: "Togglers",
-		name: "togglers_variant_",
+		name: "togglers_variant_1",
 		speed: 250,
 		keyframes: [
 			"⊶",
 			"⊷"
-		]
-	},
-	{
-		category: "Togglers",
-		name: "togglers_variant_10",
-		speed: 100,
-		keyframes: [
-			"㊂",
-			"㊀",
-			"㊁"
-		]
-	},
-	{
-		category: "Togglers",
-		name: "togglers_variant_11",
-		speed: 50,
-		keyframes: [
-			"⧇",
-			"⧆"
-		]
-	},
-	{
-		category: "Togglers",
-		name: "togglers_variant_12",
-		speed: 120,
-		keyframes: [
-			"☗",
-			"☖"
-		]
-	},
-	{
-		category: "Togglers",
-		name: "togglers_variant_13",
-		speed: 80,
-		keyframes: [
-			"=",
-			"*",
-			"-"
 		]
 	},
 	{
@@ -1028,8 +1185,8 @@ const allLoaders: Loader[] = [
 		name: "togglers_variant_6",
 		speed: 300,
 		keyframes: [
-			"ဝ",
-			"၀"
+			"⃝",
+			"Ⓞ",
 		]
 	},
 	{
@@ -1058,7 +1215,51 @@ const allLoaders: Loader[] = [
 			"◉",
 			"◎"
 		]
-	}
+	},
+	{
+		category: "Togglers",
+		name: "togglers_variant_10",
+		speed: 100,
+		keyframes: [
+			"㊂",
+			"㊀",
+			"㊁"
+		]
+	},
+	{
+		category: "Togglers",
+		name: "togglers_variant_11",
+		speed: 50,
+		keyframes: [
+			"⧇",
+			"⧆"
+		]
+	},
+	{
+		category: "Togglers",
+		name: "togglers_variant_12",
+		speed: 120,
+		keyframes: [
+			"☗",
+			"☖"
+		]
+	},
+	{
+		category: "Togglers",
+		name: "togglers_variant_13",
+		speed: 80,
+		keyframes: [
+			"=",
+			"*",
+			"-"
+		]
+	},
+	{
+		category: "Togglers",
+		name: "togglers_variant_14",
+		speed: 300,
+		keyframes: ['❂','✪']
+	},
 ];
 
 export default allLoaders;
