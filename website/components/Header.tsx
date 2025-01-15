@@ -1,4 +1,4 @@
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
+import { GitHubLogoIcon, IconJarLogoIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -16,6 +16,14 @@ export const Header = () => {
                     className='inline-flex'
                 >
                     <GitHubLogoIcon className='size-6 text-neutral-50 transition-colors hover:text-neutral-400' />
+                </Link>
+                <Link
+                    href='https://buymeacoffee.com/cbmonbmac'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='inline-flex'
+                >
+                    <IconJarLogoIcon className='size-6 text-neutral-50 transition-colors hover:text-neutral-400' />
                 </Link>
             </nav>
         </header>

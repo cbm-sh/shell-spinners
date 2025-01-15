@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CliLoader } from './CliLoader';
 
 const ComponentFilter = () => {
-    const [activeTab, setActiveTab] = useState('Arrows');
+    const [activeTab, setActiveTab] = useState('All');
     const filteredLoaders = activeTab === 'All'
         ? allLoaders
         : allLoaders.filter(({ category }) => category.includes(activeTab));
