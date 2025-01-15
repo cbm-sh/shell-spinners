@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.2",
-    "cli-loaders": "^1.0.0",
     "framer-motion": "^11.18.0",
     "next": "15.1.1",
     "react": "^19.0.0",
