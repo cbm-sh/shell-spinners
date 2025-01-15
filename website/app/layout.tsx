@@ -4,6 +4,57 @@ import "./globals.css";
 import { Footer } from "@/components/Footer";
 import Header from "@/components/Header";
 import { Toaster} from 'sonner';
+import { METADATA } from '@/lib/config';
+
+export const metadata: Metadata = {
+  title: {
+    default: METADATA.name,
+    template: `%s - ${METADATA.name}`,
+  },
+  metadataBase: new URL(METADATA.url),
+  description: METADATA.description,
+  keywords: [
+    "Next.js v15 ui snippets",
+    "Next.js 15 snippets",
+    "Tailwind CSS v4 snippets",
+    "Tailwind v4 snippets",
+  ],
+  authors: [
+    {
+      name: METADATA.name,
+      url: METADATA.url,
+    },
+  ],
+  creator: METADATA.name,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: METADATA.url,
+    title: METADATA.name,
+    description: METADATA.description,
+    siteName: METADATA.name,
+    images: [
+      {
+        url: METADATA.ogImage,
+        width: 1200,
+        height: 630,
+        alt: METADATA.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: METADATA.name,
+    description: METADATA.description,
+    images: [METADATA.ogImage],
+    creator: METADATA.handles.twitter,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/icon.png",
+    apple: "/apple-touch-icon.png",
+  },
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,11 +65,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-export const metadata: Metadata = {
-  title: "cli-loaders",
-  description: "A collection of CLI loaders for your projects",
-};
 
 const RootLayout = ({
   children,

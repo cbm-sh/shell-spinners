@@ -1,3 +1,5 @@
+<p><a href="https://cliloaders.com"><img style='border-radius: 12px;filter: drop-shadow(0px 9px 10px #888888);' src="https://repository-images.githubusercontent.com/912560031/de9f3f22-c3a1-4a4d-92f0-4042688be63c" alt="Cli Loaders Repo Github Banner" /></a></p>
+
 # cli-loaders
 
 A collection of cli loaders for your command-line applications.
