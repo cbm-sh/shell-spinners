@@ -24,7 +24,7 @@ import { initLoader } from 'cli-loaders';
 
 ### Initializing a Loader
 
-You can initialize a loader by its name or id:
+You can initialize any loader by its name.
 
 ```typescript
 import { initLoader } from 'cli-loaders';
