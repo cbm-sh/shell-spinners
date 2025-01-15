@@ -1,5 +1,11 @@
 # cli-loaders
 
+## 1.1.0
+
+### Minor Changes
+
+- 0bf987b: Added new components!
+
 ## 1.0.1
 
 ### Patch Changes
