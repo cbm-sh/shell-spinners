@@ -44,27 +44,6 @@ import { initLoader } from 'cli-loaders';
 initLoader('dots_variant_1', 100);
 ```
 
-## Available Loaders
-
-Here are the available loaders you can use:
-
-- `dots_variant_1`
-- `dots_variant_2`
-- `dots_variant_3`
-- `dots_variant_4`
-- `dots_variant_5`
-- `dots_variant_6`
-- `dots_variant_7`
-- `dots_variant_8`
-- `dots_variant_9`
-- `dots_variant_10`
-- `dots_variant_11`
-- `dots_variant_12`
-- `dots_variant_13`
-- `dots_variant_14`
-- `dots_variant_15`
-- and counting 👌
-
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
