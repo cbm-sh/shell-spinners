@@ -1,5 +1,11 @@
 # cli-loaders
 
+## 1.0.1
+
+### Patch Changes
+
+- rename material to bar_variant_3
+
 ## 1.0.0
 
 ### Major Changes

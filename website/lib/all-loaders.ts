@@ -84,7 +84,7 @@ const allLoaders = [
 	},
 	{
 		category: "Bars",
-		name: "material",
+		name: "bar_variant_3",
 		speed: 17,
 		keyframes: [
 			"█▁▁▁▁▁▁▁",
