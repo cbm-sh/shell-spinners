@@ -59,7 +59,7 @@ import { initCustomLoader } from 'cli-loaders';
 Then use it with your own speed and keyframe arguments:
 
 ```typescript
-initCustomLoader(100, ['😀', '😃', '😄', '😁', '😆']);
+initCustomLoader(100, ["⠋","⠙","⠹","⠸","⠼","⠴","⠦","⠧","⠇","⠏"]);
 ```
 
 ### Upgrading versions
