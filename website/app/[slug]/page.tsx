@@ -56,7 +56,7 @@ const ComponentPage = async ({
   import { initCustomLoader } from 'cli-loaders';
 
   initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
-  // Example: initCustomLoader(100, ['😀', '😃', '😄', '😁', '😆']);`;
+  // Example: initCustomLoader(100, ["⠋","⠙","⠹","⠸","⠼","⠴","⠦","⠧","⠇","⠏"]);`;
   return (
     <div className='p-6 space-y-6 min-h-screen'>
       <div className='flex flex-row justify-between items-center'>
