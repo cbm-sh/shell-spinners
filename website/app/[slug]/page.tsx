@@ -27,9 +27,10 @@ const ComponentPage = async ({
   }
 
   const standardCliCode = `
-
+  // Import the loader initializer
   import { initLoader } from 'cli-loaders';
 
+  // Start the loader
   initLoader('${loader.name}', ${loader.speed});`;
 
   const customCliCode = `
