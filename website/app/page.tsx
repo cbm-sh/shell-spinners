@@ -1,7 +1,6 @@
 import CliLoaderFilter from '@/components/CliLoaderFilter';
 import CopyButton from '@/components/CopyButton';
 import FlipWords from '@/components/FlipWords';
-import { CATEGORIES } from '@/lib/config';
 
 const Home = () => {
   return (
@@ -9,7 +8,7 @@ const Home = () => {
       <section>
         <div className='py-16 px-6'>
           <h1 className='mb-8 font-semibold text-neutral-100 text-4xl md:text-5xl'>
-          Cli<FlipWords words={CATEGORIES} />
+          Cli<FlipWords words={['Loaders', 'Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers']} />
           </h1>
           <p className='text-neutral-300'>
           A collection of copy and paste CLI loaders

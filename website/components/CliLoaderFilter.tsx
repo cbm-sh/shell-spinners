@@ -6,7 +6,6 @@ import { Card } from '@/components/Card';
 import { CliLoaderTabs } from '@/components/CliLoaderTabs';
 import { motion, AnimatePresence } from "framer-motion";
 import { CliLoader } from './CliLoader';
-import { CATEGORIES } from '@/lib/config';
 
 const ComponentFilter = () => {
     const [activeTab, setActiveTab] = useState('All');
@@ -16,7 +15,7 @@ const ComponentFilter = () => {
 
     return (
         <>
-            <CliLoaderTabs tabs={CATEGORIES} activeTab={activeTab} setActiveTab={setActiveTab} />
+            <CliLoaderTabs tabs={['All', 'Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers']} activeTab={activeTab} setActiveTab={setActiveTab} />
             <div className='min-h-dvh w-full p-6 border border-y-neutral-900 border-x-0'>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3'>
             <AnimatePresence>
