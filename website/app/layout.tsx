@@ -76,7 +76,7 @@ const RootLayout = ({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl mx-auto border border-x-neutral-900 border-y-0 overflow-scroll`}>
+        className={`${geistSans.variable} ${geistMono.variable} bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl mx-auto border border-x-neutral-800 border-y-0 overflow-scroll`}>
         <main>
         <Header />
           {children}
@@ -86,7 +86,7 @@ const RootLayout = ({
           style: {
             borderRadius: 0,
           },
-          className: 'border border-neutral-800/50 bg-neutral-900 text-neutral-50',
+          className: 'border border-neutral-800 bg-black text-neutral-50',
         }} />
         </main>
         <SpeedInsights />

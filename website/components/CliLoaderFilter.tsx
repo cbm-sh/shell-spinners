@@ -16,7 +16,7 @@ const ComponentFilter = () => {
     return (
         <>
             <CliLoaderTabs tabs={['All', 'Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers']} activeTab={activeTab} setActiveTab={setActiveTab} />
-            <div className='min-h-dvh w-full p-6 border border-y-neutral-900 border-x-0'>
+            <div className='min-h-dvh w-full p-6 border border-y-neutral-800 border-x-0'>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3'>
             <AnimatePresence>
                 {filteredLoaders.map((loader) => (

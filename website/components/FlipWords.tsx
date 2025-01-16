@@ -56,7 +56,7 @@ const FlipWords = ({
                     scale: 2,
                     position: "absolute",
                 }}
-                className="z-10 inline-block relative text-left text-neutral-900 dark:text-neutral-100 px-2"
+                className="z-10 inline-block relative text-left text-neutral-100 px-2"
                 key={currentWord}
             >
                 {/* edit suggested by Sajal: https://x.com/DewanganSajal */}
