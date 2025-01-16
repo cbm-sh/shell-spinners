@@ -15,7 +15,8 @@
     "next": "15.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sonner": "^1.7.1"
+    "sonner": "^1.7.1",
+    "cli-loaders": "link:cli-loaders"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

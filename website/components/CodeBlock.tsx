@@ -5,7 +5,7 @@ import githubDark from '@/lib/theme.json';
 type CodeBlockProps = {
   code: string;
   lang: string;
-  title?: string;
+  title: string;
 };
 
 Code.theme = githubDark as unknown as Record<string, string>;
@@ -13,14 +13,10 @@ Code.theme = githubDark as unknown as Record<string, string>;
 const CodeBlock: React.FC<CodeBlockProps> = ({ code, lang, title }) => {
   return (
     <div className='relative border border-neutral-900'>
-      {title && (
         <div className='absolute left-4 top-4'>
           <p className='text-sm text-neutral-400'>{title}</p>
         </div>
-      )}
-      <div className='absolute right-2 top-2 z-10'>
-        <CopyButton code={code} />
-      </div>
+      <CopyButton code={code} />
       <Code code={code} lang={lang} />
     </div>
   );

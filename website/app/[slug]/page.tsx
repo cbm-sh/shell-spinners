@@ -1,11 +1,11 @@
 import CodeBlock from '@/components/CodeBlock';
-import allLoaders from '@/lib/all-loaders';
+import {ALL_LOADERS} from 'cli-loaders';
 import { ComponentPlayground } from '@/components/ComponentPlayground';
 import { BackButton } from '@/components/BackButton';
 import { CliLoader } from '@/components/CliLoader';
 
 export async function generateStaticParams() {
-  return allLoaders.map(({ name }) => ({
+  return ALL_LOADERS.map(({ name }) => ({
     slug: name,
   }));
 }
@@ -18,7 +18,7 @@ const ComponentPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const param = await params;
-  const loader = allLoaders.find(
+  const loader = ALL_LOADERS.find(
     ({ name }) => name === param.slug,
   );
 
@@ -26,35 +26,29 @@ const ComponentPage = async ({
     return <div>Loader not found</div>;
   }
 
-const manualCliCode = `
+  const standardCliCode = `
 
-const loaderExample = () => {
-  // Copied keyframes
-  const keyframes = [${loader.keyframes.flatMap(l => `"${l}",`).join('')}];
-  const speed = 100;
-  let index = 0;
+  import { initLoader } from 'cli-loaders';
 
-  const interval = setInterval(() => {
-    // Clear the console
-    console.clear();
+  initLoader('${loader.name}', ${loader.speed});`;
 
-    // Print the current keyframe
-    console.log(keyframes[index]);
+  const manualCliCode = `
 
-    // Increment the index
-    index = (index + 1) % keyframes.length;
-  }, speed);
-
-  // Clear the interval after 5 seconds
-  setTimeout(() => {
-    clearInterval(interval);
-  }, 5000);
-
-};
-
-loaderExample();
-`;
-
+  const initLoader = () => {
+    // Set keyframes
+    const keyframes = [${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}];
+    // Set speed in milliseconds
+    const speed = ${loader.speed};
+    // Start at the first keyframe
+    let index = 0;
+    // Set interval to change keyframes
+    setInterval(() => {
+      process.stdout.write("\\r" + keyframes[index]);
+      index = (index + 1) % keyframes.length;
+    }, speed);
+  };
+    // Start the loader
+    initLoader();`;
   return (
     <div className='p-6 space-y-6 min-h-screen'>
       <div className='flex flex-row justify-between items-center'>
@@ -67,8 +61,9 @@ loaderExample();
         <ComponentPlayground>
           <CliLoader keyframes={loader.keyframes} speed={loader.speed} />
         </ComponentPlayground>
-        <div className='mt-6'>
-          <CodeBlock code={manualCliCode} lang='ts' title='Cli Loader Example'/>
+        <div className='mt-6 space-y-6'>
+          <CodeBlock code={standardCliCode} lang='ts' title='Standard Initialization'/>
+          <CodeBlock code={manualCliCode} lang='ts' title='Manual Initialization'/>
         </div>
       </div>
     </div>
