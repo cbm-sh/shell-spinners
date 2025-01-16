@@ -43,6 +43,18 @@ const ALL_LOADERS = [
 		]
 	},
 	{
+        category: "Arrows",
+        name: "arrows_variant_4",
+        speed: 100,
+        keyframes: ['⇐', '⇑', '⇒', '⇓']
+    },
+	{
+        category: "Arrows",
+        name: "arrows_variant_5",
+        speed: 100,
+        keyframes: ['↑', '→', '↓', '←']
+    },
+	{
 		category: "Bars",
 		name: "bars_variant_1",
 		speed: 80,
@@ -167,6 +179,18 @@ const ALL_LOADERS = [
             "▁▁▁▁▁▁▁▁",
             "▁▁▁▁▁▁▁▁"
         ]
+    },
+	{
+        category: "Bars",
+        name: "bars_variant_4",
+        speed: 100,
+        keyframes: ['|█████|','|████|', '|███|', '|██|', '|█|', '||', '|█|','|██|','|███|','|████|','|█████|']
+    },
+		{
+        category: "Bars",
+        name: "bars_variant_5",
+        speed: 100,
+        keyframes: ['|█||||', '||█|||', '|||█||', '||||█|', '||||█|', '|||█||', '||█|||', '|█||||']
     },
 	{
 		category: "Circles",
@@ -1263,4 +1287,3 @@ const ALL_LOADERS = [
 ];
 
 export default ALL_LOADERS;
-

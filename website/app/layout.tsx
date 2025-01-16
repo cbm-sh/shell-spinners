@@ -5,7 +5,8 @@ import { Footer } from "@/components/Footer";
 import Header from "@/components/Header";
 import { Toaster} from 'sonner';
 import { METADATA } from '@/lib/config';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: {
@@ -89,6 +90,7 @@ const RootLayout = ({
         }} />
         </main>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
