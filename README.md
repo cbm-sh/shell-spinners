@@ -4,6 +4,8 @@
 
 A collection of cli loaders for your command-line applications.
 
+Visit the [website](https://cliloaders.com) to see all loaders!
+
 ## Installation
 
 To install the package, use npm or yarn:

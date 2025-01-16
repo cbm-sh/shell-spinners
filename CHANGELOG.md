@@ -1,5 +1,11 @@
 # cli-loaders
 
+## 2.0.2
+
+### Patch Changes
+
+- Readme update
+
 ## 2.0.1
 
 ### Patch Changes
