@@ -1,5 +1,11 @@
 # cli-loaders
 
+## 2.0.3
+
+### Patch Changes
+
+- new loaders added! arrowsv4, arrowsv5, barsv4, barsv5
+
 ## 2.0.2
 
 ### Patch Changes
