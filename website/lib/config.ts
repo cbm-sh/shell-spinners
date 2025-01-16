@@ -1,4 +1,4 @@
-export const CATEGORIES = ['Loaders', 'Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers'];
+export const CATEGORIES = ['Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers'];
 export const METADATA = {
     name: 'cli-loaders',
     url: 'https://cliloaders.com/',
