@@ -1,4 +1,3 @@
-
 /**
  * Initialize a custom loader
  * @param speed - ***Required*** - The loader speed

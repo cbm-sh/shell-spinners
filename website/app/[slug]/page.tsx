@@ -1,5 +1,5 @@
 import CodeBlock from '@/components/CodeBlock';
-import {ALL_LOADERS} from 'cli-loaders';
+import ALL_LOADERS from '@/lib/all-loaders';
 import { ComponentPlayground } from '@/components/ComponentPlayground';
 import { BackButton } from '@/components/BackButton';
 import { CliLoader } from '@/components/CliLoader';
@@ -32,7 +32,7 @@ const ComponentPage = async ({
 
   initLoader('${loader.name}', ${loader.speed});`;
 
-  const manualCliCode = `
+  const zeroDependencyCliCode = `
 
   const initLoader = () => {
     // Set keyframes
@@ -49,6 +49,14 @@ const ComponentPage = async ({
   };
     // Start the loader
     initLoader();`;
+
+  const customCliCode = `
+
+  // Import the custom loader initializer
+  import { initCustomLoader } from 'cli-loaders';
+
+  initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
+  // Example: initCustomLoader(100, ['😀', '😃', '😄', '😁', '😆']);`;
   return (
     <div className='p-6 space-y-6 min-h-screen'>
       <div className='flex flex-row justify-between items-center'>
@@ -63,7 +71,8 @@ const ComponentPage = async ({
         </ComponentPlayground>
         <div className='mt-6 space-y-6'>
           <CodeBlock code={standardCliCode} lang='ts' title='Standard Initialization'/>
-          <CodeBlock code={manualCliCode} lang='ts' title='Manual Initialization'/>
+          <CodeBlock code={customCliCode} lang='ts' title='Custom Initialization' isV2/>
+          <CodeBlock code={zeroDependencyCliCode} lang='ts' title='Zero Dependency Initialization'/>
         </div>
       </div>
     </div>
