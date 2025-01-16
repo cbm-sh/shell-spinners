@@ -15,7 +15,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
   const onCopy = () => {
     navigator.clipboard.writeText(code);
     setHasCheckIcon(true);
-    toast.success(`"${code}" copied!`);
+    toast.success('Code copied to clipboard 👨‍💻');
     setTimeout(() => {
       setHasCheckIcon(false);
     }, 1000);
