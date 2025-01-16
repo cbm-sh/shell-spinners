@@ -27,10 +27,19 @@ const ComponentPage = async ({
   }
 
   const standardCliCode = `
-
+  // Import the loader initializer
   import { initLoader } from 'cli-loaders';
 
+  // Start the loader
   initLoader('${loader.name}', ${loader.speed});`;
+
+  const customCliCode = `
+
+  // Import the custom loader initializer
+  import { initCustomLoader } from 'cli-loaders';
+
+  initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
+  // Example: initCustomLoader(100, [CUSTOMIZATION_HERE, ${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('')} OR CUSTOMIZATION_HERE]);`;
 
   const zeroDependencyCliCode = `
 
@@ -50,13 +59,49 @@ const ComponentPage = async ({
     // Start the loader
     initLoader();`;
 
-  const customCliCode = `
+  const nextJsComponentCode = `
+  "use client";
 
-  // Import the custom loader initializer
-  import { initCustomLoader } from 'cli-loaders';
+  import React, { useEffect, useState } from 'react';
 
-  initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
-  // Example: initCustomLoader(100, ["⠋","⠙","⠹","⠸","⠼","⠴","⠦","⠧","⠇","⠏"]);`;
+  type LoaderComponentProps = {
+    speed: number;
+    keyframes: string[];
+  };
+
+  export const LoaderComponent: React.FC<LoaderComponentProps> = ({ speed, keyframes }) => {
+    const [currentFrame, setCurrentFrame] = useState(keyframes[0]);
+
+    useEffect(() => {
+      let index = 0;
+
+      const interval = setInterval(() => {
+        setCurrentFrame(keyframes[index]);
+        index = (index + 1) % keyframes.length;
+      }, speed);
+
+      return () => clearInterval(interval);
+    }, [keyframes, speed]);
+
+    return (
+    <div className='relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden'>{currentFrame}</div>
+    )
+  }
+  `;
+
+  const nextJsComponentCodeUsage = `
+
+  import { LoaderComponent } from '@/components/LoaderComponent';
+
+  export default function Page() {
+    const keyframes = [${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}];
+    const speed = ${loader.speed};
+
+    return <LoaderComponent keyframes={keyframes} speed={speed} />
+
+  }
+  `;
+
   return (
     <div className='p-6 space-y-6 min-h-screen'>
       <div className='flex flex-row justify-between items-center'>
@@ -70,9 +115,13 @@ const ComponentPage = async ({
           <CliLoader keyframes={loader.keyframes} speed={loader.speed} />
         </ComponentPlayground>
         <div className='mt-6 space-y-6'>
+        <h1 className='text-md font-light text-neutral-400'>Examples</h1>
           <CodeBlock code={standardCliCode} lang='ts' title='Standard Initialization'/>
           <CodeBlock code={customCliCode} lang='ts' title='Custom Initialization' isV2/>
           <CodeBlock code={zeroDependencyCliCode} lang='ts' title='Zero Dependency Initialization'/>
+          <p className='text-sm font-light text-neutral-400'>Usage in Next.js</p>
+          <CodeBlock code={nextJsComponentCode} lang='tsx' title='components/LoaderComponent.tsx'/>
+          <CodeBlock code={nextJsComponentCodeUsage} lang='tsx' title='page.tsx'/>
         </div>
       </div>
     </div>
