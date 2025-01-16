@@ -7,6 +7,7 @@ type CardProps = {
 };
 
 export const Card: React.FC<CardProps> = ({
+    children,
     slug,
     name,
 }) => {
@@ -16,6 +17,7 @@ export const Card: React.FC<CardProps> = ({
                 {name}
             </div>
             <CodeViewButton slug={slug} />
+            {children}
         </div>
     );
 };
