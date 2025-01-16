@@ -8,17 +8,19 @@ A collection of cli loaders for your command-line applications.
 
 To install the package, use npm or yarn:
 
-```sh
+```bash
 npm install cli-loaders
 # or
 yarn add cli-loaders
+# or
+bun install cli-loaders
 ```
 
 ## Usage
 
-### Importing the Loaders
+### Importing Loaders
 
-You can import the loaders and use them in your project:
+Import the loader initializer
 
 ```typescript
 import { initLoader } from 'cli-loaders';
@@ -26,7 +28,7 @@ import { initLoader } from 'cli-loaders';
 
 ### Initializing a Loader
 
-You can initialize any loader by its name.
+You can initialize any loader by its name using `initLoader`
 
 ```typescript
 import { initLoader } from 'cli-loaders';
@@ -44,6 +46,20 @@ import { initLoader } from 'cli-loaders';
 
 // Initialize with custom speed
 initLoader('dots_variant_1', 100);
+```
+
+### Customizing everything
+
+New to v2.0+, you can import a custom loader initializer, `initCustomLoader`
+
+```typescript
+import { initCustomLoader } from 'cli-loaders';
+```
+
+Then use it with your own speed and keyframe arguments:
+
+```typescript
+initCustomLoader(100, ['😀', '😃', '😄', '😁', '😆']);
 ```
 
 ### Upgrading versions
