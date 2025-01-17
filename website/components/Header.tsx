@@ -15,7 +15,7 @@ export const Header = () => (
                     rel='noopener noreferrer'
                     className='inline-flex'
                 >
-                    <GitHubLogoIcon className='size-6 text-neutral-50 transition-colors hover:text-neutral-200' />
+                    <GitHubLogoIcon className='size-6 text-neutral-50' />
                 </Link>
                 <Link
                     href='https://x.com/cbmonx'
@@ -23,7 +23,7 @@ export const Header = () => (
                     rel='noopener noreferrer'
                     className='inline-flex'
                 >
-                    <XLogoIcon className='size-6 text-neutral-50 transition-colors hover:text-neutral-400' />
+                    <XLogoIcon className='size-6 text-neutral-50' />
                 </Link>
                 <Link
                     href='https://buymeacoffee.com/cbmonbmac'
