@@ -3,6 +3,7 @@ import ALL_LOADERS from '@/lib/all-loaders';
 import { ComponentPlayground } from '@/components/ComponentPlayground';
 import { BackButton } from '@/components/BackButton';
 import { CliLoader } from '@/components/CliLoader';
+import { Share } from '@/components/Share';
 
 export async function generateStaticParams() {
   return ALL_LOADERS.map(({ name }) => ({
@@ -122,7 +123,14 @@ const ComponentPage = async ({
           <p className='text-sm font-light text-neutral-400'>Usage in Next.js</p>
           <CodeBlock code={nextJsComponentCode} lang='tsx' title='components/LoaderComponent.tsx'/>
           <CodeBlock code={nextJsComponentCodeUsage} lang='tsx' title='page.tsx'/>
-        </div>
+        <h1 className='text-center text-md font-light text-neutral-400'>Share Loader</h1>
+        <Share
+        className='flex justify-center'
+          title={loader.category}
+          url={`https://cliloaders.com/${loader.name}`}
+          description='Check out this CLI loader!'
+          />
+      </div>
       </div>
     </div>
   );

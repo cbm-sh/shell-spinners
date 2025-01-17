@@ -27,4 +27,3 @@ export const CliLoaderTabs = ({ tabs, activeTab, setActiveTab }: CliLoaderTabsPr
         </div>
     );
 };
-
