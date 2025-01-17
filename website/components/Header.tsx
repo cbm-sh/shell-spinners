@@ -15,7 +15,7 @@ export const Header = () => (
                     rel='noopener noreferrer'
                     className='inline-flex'
                 >
-                    <GitHubLogoIcon className='size-6 text-neutral-50 transition-colors hover:text-neutral-400' />
+                    <GitHubLogoIcon className='size-6 text-neutral-50 transition-colors hover:text-neutral-200' />
                 </Link>
                 <Link
                     href='https://x.com/cbmonx'

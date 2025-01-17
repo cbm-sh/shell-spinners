@@ -7,6 +7,7 @@ import { Toaster} from 'sonner';
 import { METADATA } from '@/lib/config';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import { TopBar } from "@/components/TopBar";
 
 export const metadata: Metadata = {
   title: {
@@ -78,6 +79,7 @@ const RootLayout = ({
       <body
       className={`${geistSans.variable} ${geistMono.variable} bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl mx-auto border border-x-neutral-800 border-y-0 overflow-x-hidden`}>
       <Header />
+      <TopBar />
       <main>
         {children}
       </main>
