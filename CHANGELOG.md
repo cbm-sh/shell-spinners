@@ -1,5 +1,11 @@
 # cli-loaders
 
+## 2.0.4
+
+### Patch Changes
+
+- Update package.json with more metadata for npm
+
 ## 2.0.3
 
 ### Patch Changes

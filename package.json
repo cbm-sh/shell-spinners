@@ -1,10 +1,45 @@
 {
   "name": "cli-loaders",
-  "version": "2.0.3",
+  "description": "A collection of loaders for your cli apps",
+  "version": "2.0.4",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "author": {
+    "name": "Christian Martinez",
+    "url": "http://christianbmartinez.com"
+  },
+  "keywords": [
+    "cli",
+    "loaders",
+    "cli-loaders",
+    "cli-spinners",
+    "cli-progress-bars",
+    "cli-animations",
+    "cli-loading-indicators",
+    "cli-spinner",
+    "cli-progress-bar",
+    "cli-loading-indicator",
+    "spinners",
+    "progress-bars",
+    "animations",
+    "loading-indicators",
+    "spinner",
+    "progress-bar",
+    "loading-indicator",
+    "page-loaders",
+    "nextjs loaders"
+  ],
+  "funding": {
+    "type": "individual",
+    "url": "https://buymeacoffee.com/cbmonbmac"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbmongithub/cli-loaders.git"
+  },
+  "homepage": "https://cliloaders.com",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
