@@ -17,9 +17,6 @@ export const Card: React.FC<CardProps> = ({
             <div className='absolute left-4 top-4 text-sm text-neutral-50'>
                 {name}
             </div>
-            {/* TODO: HeartButton component?
-            <HeartButton />
-            */}
             <CodeViewButton slug={slug} />
             {children}
         </div>
