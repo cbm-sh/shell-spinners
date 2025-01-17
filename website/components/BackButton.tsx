@@ -7,7 +7,7 @@ export const BackButton = () => {
             <button
                 type="button"
                 aria-label="Back to homepage"
-                className='cursor-pointer border border-neutral-900 bg-transparent p-2 transition hover:bg-neutral-900'
+                className='cursor-pointer border border-neutral-800 bg-transparent p-2 transition hover:bg-neutral-900'
             >
                 <ArrowLeftIcon className='size-4 text-neutral-50' />
             </button>

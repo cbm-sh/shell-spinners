@@ -5,9 +5,10 @@ import React, { useEffect, useState } from 'react';
 type LoaderProps = {
   speed: number;
   keyframes: string[];
+  className?: string;
 };
 
-export const CliLoader: React.FC<LoaderProps> = ({ speed, keyframes }) => {
+export const CliLoader: React.FC<LoaderProps> = ({ speed, keyframes, className }) => {
   const [currentFrame, setCurrentFrame] = useState(keyframes[0]);
   const [colorIndex, setColorIndex] = useState(0);
   const colors = [
@@ -34,7 +35,7 @@ export const CliLoader: React.FC<LoaderProps> = ({ speed, keyframes }) => {
   }, []);
 
   return (
-  <div style={{ color: colors[colorIndex] }} className='relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden'>{currentFrame}</div>
+  <div style={{ color: colors[colorIndex] }} className={className ?? 'relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden'}>{currentFrame}</div>
   )
 };
 
