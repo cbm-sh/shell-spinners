@@ -1,6 +1,5 @@
 import CliLoaderFilter from '@/components/CliLoaderFilter';
 import CopyButton from '@/components/CopyButton';
-import FlipWords from '@/components/FlipWords';
 
 const Home = () => {
   return (
@@ -8,15 +7,15 @@ const Home = () => {
       <section>
         <div className='py-16 px-6'>
         <div className='absolute w-full h-48 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
-          <h1 className='mb-8 font-semibold text-neutral-100 text-4xl md:text-5xl'>
-          Cli<FlipWords words={['Loaders', 'Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers']} />
+          <h1 className='text-balance relative z-50 font-semibold text-neutral-100 text-4xl md:text-5xl text-center'>
+          Cli Loaders
           </h1>
-          <p className='text-neutral-300'>
-          A collection of copy and paste CLI loaders
+          <p className='relative z-50 text-neutral-200 text-center pt-6'>
+          A collection of animated CLI loaders for your projects.
           </p>
-          <div className='mt-12'>
+          <div className='pt-12 text-center relative z-50'>
             <pre>
-              <code className='w-full border border-neutral-800 p-4'>npm install cli-loaders
+              <code className='w-full border bg-black border-neutral-800 p-4'>npm install cli-loaders
               <CopyButton code='npm install cli-loaders' className='inline-flex pl-2 relative right-0 top-1 cursor-pointer transition'/></code>
           </pre>
           </div>
