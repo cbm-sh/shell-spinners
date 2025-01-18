@@ -4,7 +4,7 @@ import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Toaster} from 'sonner';
-import { METADATA } from '@/lib/config';
+import { METADATA } from '@/lib/metadata';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { TopBar } from "@/components/TopBar";
