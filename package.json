@@ -1,6 +1,6 @@
 {
   "name": "cli-loaders",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "author": {
     "name": "Christian Martinez",
     "url": "http://christianbmartinez.com"
@@ -14,14 +14,8 @@
     "@changesets/cli": "^2.27.11",
     "@types/bun": "^1.1.14",
     "@types/node": "^22.10.5",
-    "@types/react": "^19.0.7",
-    "react": "^19.0.0",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2"
-  },
-  "optionalDependencies": {
-    "@types/react": "^19.0.7",
-    "react": "^19.0.0"
   },
   "description": "A collection of loaders for your cli apps",
   "funding": {
