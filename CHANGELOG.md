@@ -1,5 +1,11 @@
 # cli-loaders
 
+## 2.1.0
+
+### Minor Changes
+
+- Next js component now available! New 🚚 loader added in emojis
+
 ## 2.0.4
 
 ### Patch Changes

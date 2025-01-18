@@ -9,13 +9,13 @@ type CopyButtonProps = {
   code: string;
 };
 
-const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
+export const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
   const [hasCheckIcon, setHasCheckIcon] = useState(false);
 
   const onCopy = () => {
     navigator.clipboard.writeText(code);
     setHasCheckIcon(true);
-    toast.success('Code copied to clipboard 👨‍💻');
+    toast.success(`'${code}' copied to clipboard 👨‍💻`);
     setTimeout(() => {
       setHasCheckIcon(false);
     }, 1000);
@@ -36,5 +36,4 @@ const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
   );
 };
 
-export default CopyButton;
 

@@ -1,5 +1,5 @@
 import { Code } from 'bright';
-import CopyButton from './CopyButton';
+import { CopyButton } from './CopyButton';
 import githubDark from '@/lib/theme.json';
 
 type CodeBlockProps = {
@@ -11,8 +11,7 @@ type CodeBlockProps = {
 
 Code.theme = githubDark as unknown as Record<string, string>;
 
-const CodeBlock: React.FC<CodeBlockProps> = ({ code, lang, title, isV2 }) => {
-  return (
+export const CodeBlock: React.FC<CodeBlockProps> = ({ code, lang, title, isV2 }) => (
     <div className='relative border border-neutral-800'>
         <div className='absolute left-4 top-4'>
           <p className='text-sm text-neutral-400'>{title}
@@ -23,6 +22,3 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ code, lang, title, isV2 }) => {
       <Code code={code} lang={lang} />
     </div>
   );
-};
-
-export default CodeBlock;

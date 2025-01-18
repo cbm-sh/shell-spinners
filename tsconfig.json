@@ -7,7 +7,8 @@
     "strict": true,
     "skipLibCheck": true,
     "noUncheckedIndexedAccess": true,
-    "noEmit": true
+    "noEmit": true,
+    "jsx": "preserve",
   },
   "exclude": ["node_modules", "website"]
 }

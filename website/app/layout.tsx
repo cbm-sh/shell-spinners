@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
-import Header from "@/components/Header";
+import { Header } from "@/components/Header";
 import { Toaster} from 'sonner';
 import { METADATA } from '@/lib/config';
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -73,8 +73,7 @@ const RootLayout = ({
   children,
 }: {
   children: React.ReactNode;
-}) => {
-  return (
+}) => (
     <html lang="en" suppressHydrationWarning>
       <body
       className={`${geistSans.variable} ${geistMono.variable} bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl mx-auto border border-x-neutral-800 border-y-0 overflow-x-hidden`}>
@@ -96,6 +95,5 @@ const RootLayout = ({
       </body>
     </html>
   );
-}
 
 export default RootLayout;
