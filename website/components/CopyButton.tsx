@@ -9,7 +9,7 @@ type CopyButtonProps = {
   code: string;
 };
 
-const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
+export const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
   const [hasCheckIcon, setHasCheckIcon] = useState(false);
 
   const onCopy = () => {
@@ -36,5 +36,4 @@ const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
   );
 };
 
-export default CopyButton;
 

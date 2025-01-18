@@ -1,15 +1,15 @@
-import CodeBlock from '@/components/CodeBlock';
+import { CodeBlock } from '@/components/CodeBlock';
 import ALL_LOADERS from '@/lib/all-loaders';
 import { ComponentPlayground } from '@/components/ComponentPlayground';
 import { BackButton } from '@/components/BackButton';
 import { CliLoader } from '@/components/CliLoader';
 import { Share } from '@/components/Share';
 
-export async function generateStaticParams() {
-  return ALL_LOADERS.map(({ name }) => ({
+export const generateStaticParams = async () => (
+  ALL_LOADERS.map(({ name }) => ({
     slug: name,
-  }));
-}
+  }))
+);
 
 export const dynamicParams = false;
 
