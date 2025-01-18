@@ -1,5 +1,12 @@
 # cli-loaders
 
+## 2.1.1
+
+### Patch Changes
+
+- b1542dd: Added a copy keyframes component for site, unstable cli loader to test in production environments'
+- Remove unstable react component, optional deps.
+
 ## 2.1.0
 
 ### Minor Changes
