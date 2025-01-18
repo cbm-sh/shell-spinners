@@ -1,5 +1,11 @@
 # cli-loaders
 
+## 2.1.2
+
+### Patch Changes
+
+- UnstableCliLoader added for testing purposes and subject to change.
+
 ## 2.1.1
 
 ### Patch Changes

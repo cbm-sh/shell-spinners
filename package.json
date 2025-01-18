@@ -1,15 +1,34 @@
 {
   "name": "cli-loaders",
-  "description": "A collection of loaders for your cli apps",
-  "version": "2.1.1",
-  "license": "MIT",
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "2.1.2",
   "author": {
     "name": "Christian Martinez",
     "url": "http://christianbmartinez.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbmongithub/cli-loaders.git"
+  },
+  "main": "dist/index.js",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.11",
+    "@types/bun": "^1.1.14",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.7",
+    "react": "^19.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "optionalDependencies": {
+    "@types/react": "^19.0.7",
+    "react": "^19.0.0"
+  },
+  "description": "A collection of loaders for your cli apps",
+  "funding": {
+    "type": "individual",
+    "url": "https://buymeacoffee.com/cbmonbmac"
+  },
+  "homepage": "https://cliloaders.com",
   "keywords": [
     "cli",
     "loaders",
@@ -31,15 +50,7 @@
     "page-loaders",
     "nextjs loaders"
   ],
-  "funding": {
-    "type": "individual",
-    "url": "https://buymeacoffee.com/cbmonbmac"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cbmongithub/cli-loaders.git"
-  },
-  "homepage": "https://cliloaders.com",
+  "license": "MIT",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
@@ -47,11 +58,6 @@
     "lint": "tsc",
     "test": "bun run src/init-custom-loader.test.ts"
   },
-  "devDependencies": {
-    "@changesets/cli": "^2.27.11",
-    "@types/bun": "^1.1.14",
-    "@types/node": "^22.10.5",
-    "tsup": "^8.3.5",
-    "typescript": "^5.7.2"
-  }
+  "type": "module",
+  "types": "dist/index.d.ts"
 }
