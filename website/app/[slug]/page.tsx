@@ -43,7 +43,6 @@ const ComponentPage = async ({
   // Example: initCustomLoader(100, [${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('')}]);`;
 
   const zeroDependencyCliCode = `
-
   const initLoader = () => {
     // Set keyframes
     const keyframes = [${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}];
@@ -60,60 +59,82 @@ const ComponentPage = async ({
     // Start the loader
     initLoader();`;
 
+  const ohMyZshPluginUsage = `
+  function start_loader() {
+    local keyframes=(${loader.keyframes.flatMap((keyframe) => `"${keyframe}" `).join('').slice(0, -1)}) # Keyframes for the loader
+    local speed=0.08 # // Speed at which the keyframes change
+    local pid=$1 # PID of the process to wait for
+
+    while kill -0 "$pid" 2>/dev/null; do
+      for frame in "\${keyframes[@]}"; do
+        printf "\\r%s %s" "$frame"
+        sleep $speed
+      done
+    done
+
+    # Clear the loader after the process completes
+    printf "\\r%s\\n" "Done!"
+  }
+
+  function custom_loader() {
+    # Example of using the loader with a background task
+    (sleep 5) &  # Simulate a long-running task in the background
+    start_loader $! # Call the loader with the PID of the background process
+  }`;
+
   const nextJsComponentCode = `
+  "use client";
 
-"use client";
+  import React, { useEffect, useState } from 'react';
 
-import React, { useEffect, useState } from 'react';
+  // Define the props for the LoaderComponent
+  type LoaderComponentProps = {
+    speed: number; // Speed at which the keyframes change
+    keyframes: string[]; // Array of keyframes to display
+    className?: string; // Optional CSS class for styling
+  };
 
-// Define the props for the LoaderComponent
-type LoaderComponentProps = {
-  speed: number; // Speed at which the keyframes change
-  keyframes: string[]; // Array of keyframes to display
-  className?: string; // Optional CSS class for styling
-};
+  // Define the LoaderComponent as a functional React component
+  export const LoaderComponent: React.FC<LoaderComponentProps> = ({ speed, keyframes, className }) => {
+    // Initialize state to keep track of the current frame
+    const [currentFrame, setCurrentFrame] = useState(keyframes[0]);
 
-// Define the LoaderComponent as a functional React component
-export const LoaderComponent: React.FC<LoaderComponentProps> = ({ speed, keyframes, className }) => {
-  // Initialize state to keep track of the current frame
-  const [currentFrame, setCurrentFrame] = useState(keyframes[0]);
+    // useEffect hook to handle the interval for changing frames
+    useEffect(() => {
+      let index = 0;
 
-  // useEffect hook to handle the interval for changing frames
-  useEffect(() => {
-    let index = 0;
+      // Set up an interval to update the current frame at the specified speed
+      const interval = setInterval(() => {
+        setCurrentFrame(keyframes[index]);
+        index = (index + 1) % keyframes.length; // Loop back to the start when reaching the end
+      }, speed);
 
-    // Set up an interval to update the current frame at the specified speed
-    const interval = setInterval(() => {
-      setCurrentFrame(keyframes[index]);
-      index = (index + 1) % keyframes.length; // Loop back to the start when reaching the end
-    }, speed);
+      // Clean up the interval when the component is unmounted or dependencies change
+      return () => clearInterval(interval);
+    }, [keyframes, speed]);
 
-    // Clean up the interval when the component is unmounted or dependencies change
-    return () => clearInterval(interval);
-  }, [keyframes, speed]);
+    // Render the current frame inside a div with the optional className
+    return (
+      <div className={className}>{currentFrame}</div>
+    );
+  };`;
 
-  // Render the current frame inside a div with the optional className
-  return (
-    <div className={className}>{currentFrame}</div>
+  // Example usage of the LoaderComponent in a Next.js page
+  const nextJsComponentCodeUsage = `
+  // import the LoaderComponent
+  import { LoaderComponent } from "@/components/LoaderComponent";
+
+  // Define the Page component
+  const Page = () => (
+    // Render the LoaderComponent with the specified props
+    <LoaderComponent
+      speed={${loader.speed}} // Speed at which the keyframes change
+      keyframes={[${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}]} // Array of keyframes to display
+      className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden" // CSS class for styling
+    />
   );
-};`;
 
-// Example usage of the LoaderComponent in a Next.js page
-const nextJsComponentCodeUsage = `
-// import the LoaderComponent
-import { LoaderComponent } from "@/components/LoaderComponent";
-
-// Define the Page component
-const Page = () => (
-  // Render the LoaderComponent with the specified props
-  <LoaderComponent
-    speed={${loader.speed}} // Speed at which the keyframes change
-    keyframes={[${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}]} // Array of keyframes to display
-    className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden" // CSS class for styling
-  />
-);
-
-export default Page;`;
+  export default Page;`;
 
   return (
     <div className='p-6 space-y-6 min-h-screen'>
@@ -128,21 +149,23 @@ export default Page;`;
           <CliLoader keyframes={loader.keyframes} speed={loader.speed} />
         </ComponentPlayground>
         <div className='mt-6 space-y-6'>
-        <h1 className='text-md font-light text-neutral-400'>Examples</h1>
-          <CodeBlock code={standardCliCode} lang='ts' title='Standard Initialization'/>
-          <CodeBlock code={customCliCode} lang='ts' title='Custom Initialization' isV2/>
-          <CodeBlock code={zeroDependencyCliCode} lang='ts' title='Zero Dependency Initialization'/>
+          <h1 className='text-md font-light text-neutral-400'>Examples</h1>
+          <CodeBlock code={standardCliCode} lang='ts' title='Standard' />
+          <CodeBlock code={customCliCode} lang='ts' title='Custom' isV2 />
+          <CodeBlock code={zeroDependencyCliCode} lang='ts' title='Zero Dependency' />
+          <p className='text-sm font-light text-neutral-400'>Usage in Oh My Zsh</p>
+          <CodeBlock code={ohMyZshPluginUsage} lang='shell' title='loader.plugin.zsh' />
           <p className='text-sm font-light text-neutral-400'>Usage in Next.js</p>
-          <CodeBlock code={nextJsComponentCode} lang='tsx' title='components/LoaderComponent.tsx'/>
-          <CodeBlock code={nextJsComponentCodeUsage} lang='tsx' title='page.tsx'/>
-        <h1 className='text-center text-md font-light text-neutral-400'>Share Loader</h1>
-        <Share
-        className='flex justify-center'
-          title={loader.category}
-          url={`https://cliloaders.com/${loader.name}`}
-          description='Check out this CLI loader!'
+          <CodeBlock code={nextJsComponentCode} lang='tsx' title='components/LoaderComponent.tsx' />
+          <CodeBlock code={nextJsComponentCodeUsage} lang='tsx' title='page.tsx' />
+          <h1 className='text-center text-md font-light text-neutral-400'>Share this Loader</h1>
+          <Share
+            className='flex justify-center'
+            title={loader.category}
+            url={`https://cliloaders.com/${loader.name}`}
+            description='Check out this CLI loader!'
           />
-      </div>
+        </div>
       </div>
     </div>
   );

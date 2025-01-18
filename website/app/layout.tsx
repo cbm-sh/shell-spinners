@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     shortcut: "/icon.png",
     apple: "/apple-touch-icon.png",
   },
-}
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
