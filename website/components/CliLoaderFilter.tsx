@@ -27,7 +27,7 @@ const ComponentFilter = () => {
                     exit={{ y: -10, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                     >
-                        <Card key={loader.name} slug={loader.name} name={loader.name}>
+                        <Card keyframes={loader.keyframes} key={loader.name} slug={loader.name} name={loader.name}>
                           <CliLoader speed={loader.speed} keyframes={loader.keyframes} />
                           </Card>
                     </motion.div>
