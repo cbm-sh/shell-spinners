@@ -1,7 +1,7 @@
 {
   "name": "cli-loaders",
   "description": "A collection of loaders for your cli apps",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
@@ -51,6 +51,10 @@
     "@changesets/cli": "^2.27.11",
     "@types/bun": "^1.1.14",
     "@types/node": "^22.10.5",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2"
   }
