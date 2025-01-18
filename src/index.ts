@@ -5,5 +5,5 @@ import initCustomLoader from "./init-custom-loader";
 export {
     ALL_LOADERS,
     initLoader,
-    initCustomLoader
+    initCustomLoader,
     };

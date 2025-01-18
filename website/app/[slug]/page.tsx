@@ -61,47 +61,59 @@ const ComponentPage = async ({
     initLoader();`;
 
   const nextJsComponentCode = `
-  "use client";
 
-  import React, { useEffect, useState } from 'react';
+"use client";
 
-  type LoaderComponentProps = {
-    speed: number;
-    keyframes: string[];
-  };
+import React, { useEffect, useState } from 'react';
 
-  export const LoaderComponent: React.FC<LoaderComponentProps> = ({ speed, keyframes }) => {
-    const [currentFrame, setCurrentFrame] = useState(keyframes[0]);
+// Define the props for the LoaderComponent
+type LoaderComponentProps = {
+  speed: number; // Speed at which the keyframes change
+  keyframes: string[]; // Array of keyframes to display
+  className?: string; // Optional CSS class for styling
+};
 
-    useEffect(() => {
-      let index = 0;
+// Define the LoaderComponent as a functional React component
+export const LoaderComponent: React.FC<LoaderComponentProps> = ({ speed, keyframes, className }) => {
+  // Initialize state to keep track of the current frame
+  const [currentFrame, setCurrentFrame] = useState(keyframes[0]);
 
-      const interval = setInterval(() => {
-        setCurrentFrame(keyframes[index]);
-        index = (index + 1) % keyframes.length;
-      }, speed);
+  // useEffect hook to handle the interval for changing frames
+  useEffect(() => {
+    let index = 0;
 
-      return () => clearInterval(interval);
-    }, [keyframes, speed]);
+    // Set up an interval to update the current frame at the specified speed
+    const interval = setInterval(() => {
+      setCurrentFrame(keyframes[index]);
+      index = (index + 1) % keyframes.length; // Loop back to the start when reaching the end
+    }, speed);
 
-    return (
-    <div className='relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden'>{currentFrame}</div>
-    )
-  }
-  `;
+    // Clean up the interval when the component is unmounted or dependencies change
+    return () => clearInterval(interval);
+  }, [keyframes, speed]);
 
-  const nextJsComponentCodeUsage = `
+  // Render the current frame inside a div with the optional className
+  return (
+    <div className={className}>{currentFrame}</div>
+  );
+};`;
 
-  import { LoaderComponent } from '@/components/LoaderComponent';
+// Example usage of the LoaderComponent in a Next.js page
+const nextJsComponentCodeUsage = `
+// import the LoaderComponent
+import { LoaderComponent } from "@/components/LoaderComponent";
 
-  export default function Page() {
-    const keyframes = [${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}];
-    const speed = ${loader.speed};
+// Define the Page component
+const Page = () => (
+  // Render the LoaderComponent with the specified props
+  <LoaderComponent
+    speed={${loader.speed}} // Speed at which the keyframes change
+    keyframes={[${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}]} // Array of keyframes to display
+    className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden" // CSS class for styling
+  />
+);
 
-    return <LoaderComponent keyframes={keyframes} speed={speed} />
-
-  }
-  `;
+export default Page;`;
 
   return (
     <div className='p-6 space-y-6 min-h-screen'>

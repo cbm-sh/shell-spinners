@@ -1,5 +1,23 @@
 # cli-loaders
 
+## 2.1.4
+
+### Patch Changes
+
+- rm UnstableCliLoader
+
+## 2.1.3
+
+### Patch Changes
+
+- Import and export UnstableCliLoader
+
+## 2.1.2
+
+### Patch Changes
+
+- UnstableCliLoader added for testing purposes and subject to change.
+
 ## 2.1.1
 
 ### Patch Changes
