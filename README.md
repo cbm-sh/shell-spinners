@@ -4,7 +4,7 @@
 
 A collection of cli loaders for your command-line applications.
 
-Visit the [website](https://cliloaders.com) to see all loaders!
+Visit the [website](https://cliloaders.com) to see all loaders, copy keyframes, and more!
 
 ## Installation
 
