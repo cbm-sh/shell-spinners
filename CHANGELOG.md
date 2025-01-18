@@ -1,5 +1,11 @@
 # cli-loaders
 
+## 2.1.3
+
+### Patch Changes
+
+- Import and export UnstableCliLoader
+
 ## 2.1.2
 
 ### Patch Changes

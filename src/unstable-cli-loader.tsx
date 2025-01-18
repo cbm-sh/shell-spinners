@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export type UnstableCliLoaderProps = {
+type UnstableCliLoaderProps = {
   speed: number;
   keyframes: string[];
   className?: string;
