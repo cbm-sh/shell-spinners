@@ -40,7 +40,7 @@ const ComponentPage = async ({
   import { initCustomLoader } from 'cli-loaders';
 
   initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
-  // Example: initCustomLoader(100, [${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('')}]);`;
+  // Example: initCustomLoader(100, [${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}]);`;
 
   const zeroDependencyCliCode = `
   const initLoader = () => {
