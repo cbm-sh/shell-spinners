@@ -2,14 +2,14 @@
 
 import { CheckIcon, CopyIcon, LayersIcon } from '@radix-ui/react-icons';
 import { toast } from 'sonner';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 type CopyKeyframesButtonProps = {
   className? : string;
   keyframes: string[];
 };
 
-export const CopyKeyframesButton: React.FC<CopyKeyframesButtonProps> = ({ keyframes }) => {
+const CopyKeyframesButton: React.FC<CopyKeyframesButtonProps> = ({ keyframes }) => {
   const [hasCheckIcon, setHasCheckIcon] = useState(false);
 
   const onCopy = () => {
@@ -41,5 +41,7 @@ export const CopyKeyframesButton: React.FC<CopyKeyframesButtonProps> = ({ keyfra
      </button>
   );
 };
+
+export default memo(CopyKeyframesButton);
 
 

@@ -1,14 +1,15 @@
-import ALL_LOADERS from "./all-loaders";
+import allLoaders from "./all-loaders";
 
 /**
  * Initialize a loader
  * @param name - ***Required*** - The name of the loader to initialize
  * @param speed - ***Optional*** - The loader speed
  * @returns The loader object
+ * @see {@link https://cliloaders.com} for different loaders
  */
 
 const initLoader = (name: string, speed?: number) => {
-  const loader = ALL_LOADERS.find(obj => obj.name === name);
+  const loader = allLoaders.find(obj => obj.name === name);
 
   if (!loader) {
     console.error(
@@ -18,6 +19,20 @@ const initLoader = (name: string, speed?: number) => {
   }
 
   const { keyframes } = loader;
+
+  if (speed && speed < 0) {
+    console.error(
+      `Speed must be a positive number. Please check the speed and try again.`,
+    );
+    return;
+  }
+
+  if (!keyframes) {
+    console.error(
+      `Keyframes not found for loader '${name}'. Please check the keyframes and try again.`,
+    );
+    return;
+  }
 
   let index = 0;
 

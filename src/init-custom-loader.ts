@@ -3,6 +3,7 @@
  * @param speed - ***Required*** - The loader speed
  * @param keyframes - ***Required*** - The keyframes for your loader
  * @returns The loader object
+ * @see {@link https://cliloaders.com} for keyframes and customizations
  */
 
 const initCustomLoader = (speed: number, keyframes: string[]) => {

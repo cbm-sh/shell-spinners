@@ -28,16 +28,16 @@ export const Share = ({
         subject={`Check out this cli ${title.toLocaleLowerCase()} loader I found on cliloaders!`}
         aria-label="Share loader by email button"
       >
-        <div className="mr-3 cursor-pointer rounded-full hover:bg-gray-600">
-          <AiFillMail className="size-4 text-white" />
+        <div className="cursor-pointer ml-3 border border-neutral-800 p-2 hover:bg-neutral-900 transition-colors">
+          <AiFillMail className="size-4 text-neutral-300" />
         </div>
       </EmailShareButton>
       <FacebookShareButton
         url={url}
         aria-label="Share loader through facebook button"
       >
-        <div className="mr-3 cursor-pointer rounded-full hover:bg-gray-600">
-          <FaFacebook className="size-4 text-white" />
+        <div className="cursor-pointer ml-3 border border-neutral-800 p-2 hover:bg-neutral-900 transition-colors">
+          <FaFacebook className="size-4 text-neutral-300" />
         </div>
       </FacebookShareButton>
       <LinkedinShareButton
@@ -47,8 +47,8 @@ export const Share = ({
         source={url}
         aria-label="Share loader through linkedin button"
       >
-        <div className="mr-3 cursor-pointer rounded-full hover:bg-gray-600">
-          <FaLinkedin className="size-4 text-white" />
+        <div className="cursor-pointer ml-3 border border-neutral-800 p-2 hover:bg-neutral-900 transition-colors">
+          <FaLinkedin className="size-4 text-neutral-300" />
         </div>
       </LinkedinShareButton>
       <RedditShareButton
@@ -56,8 +56,8 @@ export const Share = ({
         title={title}
         aria-label="Share loader through reddit button"
       >
-        <div className="mr-3 cursor-pointer rounded-full hover:bg-gray-600">
-          <FaReddit className="size-4 text-white" />
+        <div className="cursor-pointer ml-3 border border-neutral-800 p-2 hover:bg-neutral-900 transition-colors">
+          <FaReddit className="size-4 text-neutral-300" />
         </div>
       </RedditShareButton>
       <TwitterShareButton
@@ -65,12 +65,12 @@ export const Share = ({
         title={`Check out this ${title.toLocaleLowerCase()} loader!`}
         aria-label="Share loader through twitter button"
       >
-        <div className="mr-3 cursor-pointer rounded-full hover:bg-gray-600">
+        <div className="cursor-pointer ml-3 border border-neutral-800 p-2 hover:bg-neutral-900 transition-colors">
           <svg
             viewBox="0 0 64 64"
             width="64"
             height="64"
-            className="size-[0.95rem] group flex-none fill-neutral-200 transition group-hover:fill-neutral-300"
+            className="size-4 group flex-none fill-neutral-300 transition group-hover:fill-neutral-900"
             role="img"
             aria-labelledby="xIconTitle"
           >

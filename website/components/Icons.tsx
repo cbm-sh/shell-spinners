@@ -28,10 +28,9 @@ export const XLogoIcon = (props: IconProps) => (
 
 export const BMACLogoIcon = (props: IconProps) => (
     <svg
-      width="20px"
-      height="28px"
-      viewBox="0 0 884 1279"
-      className='size-6 text-neutral-50 transition-colors hover:text-neutral-400'
+    width="16px"
+    height="24px"
+    viewBox="0 0 884 1279"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
