@@ -1,6 +1,5 @@
 "use client";
 
-import CLI_LOADERS from '@/lib/cli-loaders';
 import { memo, useEffect, useState } from 'react';
 
 type LoaderProps = {
@@ -30,12 +29,14 @@ const CliLoaderRenderer: React.FC<LoaderProps> = ({ speed, keyframes, className 
   );
 };
 
-export const CliLoader = CLI_LOADERS.map(({ speed, keyframes, category }) => ({
-  name: CLI_LOADERS.filter(({ name }) => name === name)[0].name,
-  speed: speed,
-  keyframes: keyframes,
-  category: category,
-  component: memo(() => <CliLoaderRenderer speed={speed} keyframes={keyframes} />),
-}));
+CliLoaderRenderer.displayName = 'CliLoaderRenderer';
+
+// export const CliLoader = CLI_LOADERS.map(({ speed, keyframes, category }) => ({
+//   name: CLI_LOADERS.filter(({ name }) => name === name)[0].name,
+//   speed: speed,
+//   keyframes: keyframes,
+//   category: category,
+//   component: memo(() => <CliLoaderRenderer speed={speed} keyframes={keyframes} />),
+// }));
 
 export default memo(CliLoaderRenderer);
