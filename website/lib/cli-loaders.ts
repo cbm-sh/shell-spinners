@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 type InitCliLoaderProps = {
     category: string;
     name: string;
@@ -7,7 +9,8 @@ type InitCliLoaderProps = {
 
 const initCliLoader = (category:string, name:string, speed:number, keyframes:string[]) => ({ category, name, speed, keyframes } satisfies InitCliLoaderProps);
 
-const CLI_LOADERS = [
+const CLI_LOADERS = cache(() => {
+const LOADERS_LIST = [
 initCliLoader("Arrows", "arrows_1", 100, ["←", "↖", "↑", "↗", "→", "↘", "↓", "↙"]),
 initCliLoader("Arrows", "arrows_2", 80, ["⬆️ ", "↗️ ", "➡️ ", "↘️ ", "⬇️ ", "↙️ ", "⬅️ ", "↖️ "]),
 initCliLoader("Arrows", "arrows_3", 120, ["▹▹▹▹▹", "▸▹▹▹▹", "▹▸▹▹▹", "▹▹▸▹▹", "▹▹▹▸▹", "▹▹▹▹▸"]),
@@ -87,5 +90,7 @@ initCliLoader("Togglers", "togglers_12", 120, ["☗", "☖"]),
 initCliLoader("Togglers", "togglers_13", 80, ["=", "*", "-"]),
 initCliLoader("Togglers", "togglers_14", 300, ['❂','✪']),
 ];
+return LOADERS_LIST;
+});
 
 export default CLI_LOADERS;
