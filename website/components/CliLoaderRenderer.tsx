@@ -31,12 +31,4 @@ const CliLoaderRenderer: React.FC<LoaderProps> = ({ speed, keyframes, className 
 
 CliLoaderRenderer.displayName = 'CliLoaderRenderer';
 
-// export const CliLoader = CLI_LOADERS.map(({ speed, keyframes, category }) => ({
-//   name: CLI_LOADERS.filter(({ name }) => name === name)[0].name,
-//   speed: speed,
-//   keyframes: keyframes,
-//   category: category,
-//   component: memo(() => <CliLoaderRenderer speed={speed} keyframes={keyframes} />),
-// }));
-
 export default memo(CliLoaderRenderer);

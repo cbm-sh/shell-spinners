@@ -33,19 +33,18 @@ const ChangelogPage = () => {
                 <div className="p-6 flex flex-col justify-center items-center gap-6">
                     <h1 className='text-md font-light text-neutral-400'>Latest Updates</h1>
                     {changelog.map((version, versionIndex) => (
-                        <div key={versionIndex} className='min-h-48 w-full flex flex-col items-center justify-center border border-neutral-800 bg-black h-auto py-6'>
+                        <div key={versionIndex} className='min-h-96 w-full flex flex-col items-center justify-center border overflow-y-scroll border-neutral-800 bg-black h-auto py-6'>
                             <div className='relative flex flex-col justify-center items-center p-6 text-sm text-neutral-50'>
                                 <h2 className="text-sm text-white">
                                     {version.version === highestVersion.version ? <span className='w-auto relative bg-blue-600 border border-blue-500 px-0.5 py-0 ml-[4px] mt-[4px] h-auto text-xs inline-flex'>v{version.version} - Latest</span> : <span className='w-auto relative bg-rose-600 border border-rose-500 px-0.5 py-0 ml-[4px] h-auto text-xs inline-flex'>v{version.version} - Previous</span>
                                     }
                                 </h2>
                                 {version.changes.map((change, changeIndex) => (
-                                    <div key={changeIndex} className="min-h-fill min-w-full flex flex-col justify-center items-center">
+                                    <div key={changeIndex} className="min-h-fill w-96 flex flex-col justify-center items-center overflow-y-scroll">
                                         <h3 className="p-6 text-lg font-semibold">{change.type}</h3>
-                                        <ul className="list-inside">
+                                        <ul className="flex flex-col justify-center items-start text-left text-neutral-300">
                                             {change.details.map((_detail, detailIndex) => (
                                                 <li key={detailIndex}> - {_detail}</li>
-
                                             ))}
                                         </ul>
                                     </div>

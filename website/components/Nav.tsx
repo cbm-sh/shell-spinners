@@ -3,6 +3,8 @@ import { CodeIcon } from "@radix-ui/react-icons";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+const cliLoaders = CLI_LOADERS().map((loaders) => loaders);
+
 const UL_VARIANTS = {
     open: {
         transition: { staggerChildren: 0.01, delayChildren: 0.01 },
@@ -34,10 +36,10 @@ export const Nav = ({ isOpen, onToggle }: { isOpen: boolean, onToggle: () => voi
         <nav className='flex gap-x-4 md:gap-x-6'>
             <div className='absolute z-50 top-20 right-[50%] flex flex-col items-center justify-center text-neutral-50 max-w-5xl'>
                 <motion.ul
-                    className={`fixed bg-black max-w-5xl w-full ${isOpen ? 'top-[76px]' : 'top-[100%]'} z-50 min-h-screen h-auto overflow-y-scroll grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 duration-1000 ease-in-out bg-black`}
+                    className={`fixed bg-black max-w-5xl w-full ${isOpen ? 'top-[76px]' : 'top-[100%]'} z-50 min-h-screen h-auto overflow-y-scroll grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 duration-[1250ms] ease-in-out bg-black`}
                     variants={UL_VARIANTS}
                     animate={isOpen ? 'open' : 'closed'}>
-                    {CLI_LOADERS.map((loader, i) => (
+                    {cliLoaders.map((loader, i) => (
                         <Link
                             key={`${loader.name}_${i}`} href={`/${loader.name}`} role='link' onClick={onToggle} aria-label={`cli-loaders | ${loader.name}`}>
                             <motion.li className='size-full border border-neutral-800 hover:bg-neutral-900 hover:border-neutral-700 cursor-pointer flex items-center justify-center' key={`${loader.name}_${i}`} onClick={onToggle} variants={LI_VARIANTS} whileHover={{ scale: 0.95 }} whileTap={{ scale: 0.93 }}>

@@ -10,8 +10,8 @@ import CliLoaderRenderer from './CliLoaderRenderer';
 const ComponentFilter = () => {
     const [activeTab, setActiveTab] = useState('All');
     const filteredLoaders = activeTab === 'All'
-        ? CLI_LOADERS
-        : CLI_LOADERS.filter(({ category }) => category.includes(activeTab));
+        ? CLI_LOADERS()
+        : CLI_LOADERS().filter(({ category }) => category.includes(activeTab));
 
     return (
         <>

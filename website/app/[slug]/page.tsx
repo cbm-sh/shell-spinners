@@ -6,7 +6,7 @@ import { Share } from '@/components/Share';
 import LOADER_JOKES from '@/lib/loader-jokes';
 import CliLoader from '@/components/CliLoaderRenderer';
 
-const cliLoader = CLI_LOADERS.map((loader) => loader);
+const cliLoader = CLI_LOADERS().map((loader) => loader);
 
 export const generateStaticParams = async () => (
   cliLoader.map(({ name }) => ({
