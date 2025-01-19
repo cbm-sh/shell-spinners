@@ -1,9 +1,11 @@
-import ALL_LOADERS from "./all-loaders";
+import allLoaders from "./all-loaders";
+import cliLoaders from "./cli-loaders";
 import initLoader from "./init-loader";
 import initCustomLoader from "./init-custom-loader";
 
 export {
-    ALL_LOADERS,
+    allLoaders,
+    cliLoaders,
     initLoader,
     initCustomLoader,
     };

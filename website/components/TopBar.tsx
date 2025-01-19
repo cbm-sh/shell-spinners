@@ -1,4 +1,5 @@
-import { CliLoader } from "./CliLoader";
+import Link from "next/link";
+import CliLoader from "./CliLoaderRenderer";
 
 export const TopBar = () => {
     const keyframes = [
@@ -73,8 +74,13 @@ export const TopBar = () => {
         '',
     ];
     return (
-    <div className="flex flex-row justify-center items-center bg-black border border-b-neutral-800 border-x-0 border-t-0 text-neutral-200 text-sm text-center py-2 px-6">
-        <span><CliLoader className="inline-flex text-sm" speed={100} keyframes={keyframes}/></span>
-    </div>
+        <div aria-label="V2 Now Available" className="flex flex-row justify-center items-center bg-black border border-y-neutral-800 border-x-0 text-neutral-200 text-sm text-center py-2 px-6">
+            <Link href="/changelog">
+                <span>
+                    <CliLoader className="inline-flex text-sm" speed={100} keyframes={keyframes} />
+                </span>
+            </Link>
+        </div>
     );
+
 };

@@ -1,12 +1,15 @@
 import { CodeBlock } from '@/components/CodeBlock';
-import ALL_LOADERS from '@/lib/all-loaders';
+import CLI_LOADERS from '@/lib/cli-loaders';
 import { ComponentPlayground } from '@/components/ComponentPlayground';
 import { BackButton } from '@/components/BackButton';
-import { CliLoader } from '@/components/CliLoader';
 import { Share } from '@/components/Share';
+import LOADER_JOKES from '@/lib/loader-jokes';
+import CliLoader from '@/components/CliLoaderRenderer';
+
+const cliLoader = CLI_LOADERS.map((loader) => loader);
 
 export const generateStaticParams = async () => (
-  ALL_LOADERS.map(({ name }) => ({
+  cliLoader.map(({ name }) => ({
     slug: name,
   }))
 );
@@ -19,7 +22,7 @@ const ComponentPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const param = await params;
-  const loader = ALL_LOADERS.find(
+  const loader = cliLoader.find(
     ({ name }) => name === param.slug,
   );
 
@@ -27,12 +30,16 @@ const ComponentPage = async ({
     return <div>Loader not found</div>;
   }
 
+  const { name, keyframes, speed, category } = loader;
+
+  const joke = LOADER_JOKES(name, category);
+
   const standardCliCode = `
   // Import the loader initializer
   import { initLoader } from 'cli-loaders';
 
   // Start the loader
-  initLoader('${loader.name}', ${loader.speed});`;
+  initLoader('${name}', ${speed});`;
 
   const customCliCode = `
 
@@ -40,14 +47,14 @@ const ComponentPage = async ({
   import { initCustomLoader } from 'cli-loaders';
 
   initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
-  // Example: initCustomLoader(100, [${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}]);`;
+  // Example: initCustomLoader(100, [${keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}]);`;
 
   const zeroDependencyCliCode = `
   const initLoader = () => {
     // Set keyframes
-    const keyframes = [${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}];
+    const keyframes = [${keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}];
     // Set speed in milliseconds
-    const speed = ${loader.speed};
+    const speed = ${speed};
     // Start at the first keyframe
     let index = 0;
     // Set interval to change keyframes
@@ -61,7 +68,7 @@ const ComponentPage = async ({
 
   const ohMyZshPluginUsage = `
   function start_loader() {
-    local keyframes=(${loader.keyframes.flatMap((keyframe) => `"${keyframe}" `).join('').slice(0, -1)}) # Keyframes for the loader
+    local keyframes=(${keyframes.flatMap((keyframe) => `"${keyframe}" `).join('').slice(0, -1)}) # Keyframes for the loader
     local speed=0.08 # // Speed at which the keyframes change
     local pid=$1 # PID of the process to wait for
 
@@ -128,8 +135,8 @@ const ComponentPage = async ({
   const Page = () => (
     // Render the LoaderComponent with the specified props
     <LoaderComponent
-      speed={${loader.speed}} // Speed at which the keyframes change
-      keyframes={[${loader.keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}]} // Array of keyframes to display
+      speed={${speed}} // Speed at which the keyframes change
+      keyframes={[${keyframes.flatMap((keyframe) => `"${keyframe}",`).join('').slice(0, -1)}]} // Array of keyframes to display
       className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden" // CSS class for styling
     />
   );
@@ -137,16 +144,38 @@ const ComponentPage = async ({
   export default Page;`;
 
   return (
-    <div className='p-6 space-y-6 min-h-screen'>
-      <div className='flex flex-row justify-between items-center'>
+    <>
+      <section>
+        <div className='py-12 px-6'>
+          <div className='absolute w-full max-w-5xl min-h-48 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
+          <h1 className='text-balance relative z-40 font-semibold text-neutral-100 text-4xl md:text-5xl text-center'>
+            {name} loader
+          </h1>
+          <p className='relative z-40 text-neutral-300 text-center py-6'>
+            {joke[Math.floor(Math.random() * joke.length)]}
+          </p>
+        </div>
+      </section>
+      <section>
+        <div className='px-6 pb-0 min-h-full'>
+          <div className='flex flex-row justify-between items-center'>
         <BackButton />
-        <h1 className='text-md font-light text-neutral-400'>
-          {loader.name}
-        </h1>
-      </div>
-      <div className='w-full'>
+            <Share
+              className='flex justify-end items-end'
+              title={category as string}
+              url={`https://cliloaders.com/${name}`}
+              description={`It's an awesome ${category?.toLocaleLowerCase()} loader!`}
+            />
+          </div>
+        </div>
+      </section>
+      <section className='w-full p-6'>
         <ComponentPlayground>
-          <CliLoader keyframes={loader.keyframes} speed={loader.speed} />
+          <CliLoader
+            speed={speed}
+            keyframes={keyframes}
+            category={category}
+          />
         </ComponentPlayground>
         <div className='mt-6 space-y-6'>
           <h1 className='text-md font-light text-neutral-400'>Examples</h1>
@@ -158,16 +187,9 @@ const ComponentPage = async ({
           <p className='text-sm font-light text-neutral-400'>Usage in Next.js</p>
           <CodeBlock code={nextJsComponentCode} lang='tsx' title='components/LoaderComponent.tsx' />
           <CodeBlock code={nextJsComponentCodeUsage} lang='tsx' title='page.tsx' />
-          <h1 className='text-center text-md font-light text-neutral-400'>Share this Loader</h1>
-          <Share
-            className='flex justify-center'
-            title={loader.category}
-            url={`https://cliloaders.com/${loader.name}`}
-            description='Check out this CLI loader!'
-          />
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 

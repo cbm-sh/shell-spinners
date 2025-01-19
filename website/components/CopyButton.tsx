@@ -1,15 +1,16 @@
 'use client';
 
 import { CopyIcon, CheckIcon } from '@radix-ui/react-icons';
-import { toast } from 'sonner';
+import { memo } from 'react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 type CopyButtonProps = {
   className? : string;
   code: string;
 };
 
-export const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
+const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
   const [hasCheckIcon, setHasCheckIcon] = useState(false);
 
   const onCopy = () => {
@@ -36,4 +37,5 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ code, className }) => {
   );
 };
 
+export default memo(CopyButton)
 

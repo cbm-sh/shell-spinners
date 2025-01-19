@@ -1,5 +1,5 @@
 import { CodeViewButton } from './CodeViewButton';
-import { CopyKeyframesButton } from './CopyKeyframesButton';
+import CopyKeyframesButton from './CopyKeyframesButton';
 
 type CardProps = {
     children: React.ReactNode;

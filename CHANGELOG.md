@@ -1,5 +1,48 @@
 # cli-loaders
 
+## 2.2.0
+
+### Minor Changes
+
+- Website
+
+  Added animated menu showing all loader links in a grid
+  Added animation for grid, buttons, links in grid
+  loader name changes - View changelog or website for more
+  Footer updated with new links
+  Various aria updates
+  Changelog page added to site
+  Function to parse changelog added
+  Github sponsors button added
+  Moved icons to Footer
+  Added dynamic header to each page
+  Custom dynamic sentences for every page visit
+  Moved share component towards top of component view
+  Changed padding for buttons in component view
+  Re styled buttons for sharing
+  TopBar now links to Changelog page
+  Footer links are temporary, but icons are hidden on small screens
+  Memoization and lazy loading techniques and more performance optimizations to come
+  Back button on changelog page
+
+  Package
+
+  Loader "logo" renamed to "vercel"
+  VARIANT LOADER NAMES deleted. Exampe: arrows_variant_1 is now simply just arrows_1, without the variant keyword.
+  circle is now circle_1
+  circleHalves is now circle_2
+  circleQuarters is now circle_3
+  balloon is now balloon_1
+  balloon2 is now balloon_2
+  squareNoise is now squares_5
+  squareCorners is now squares_6
+  squareDots is now squares_7
+  squareDots2 is now squares_8
+  squareTriangle is now squares_9
+  updated jsdoc comments
+  re wrote the loaders file, saving 13kb unminified. Not tested yet
+  Added basic logic for invalid speed values
+
 ## 2.1.4
 
 ### Patch Changes

@@ -6,6 +6,12 @@ A collection of cli loaders for your command-line applications.
 
 Visit the [website](https://cliloaders.com) to see all loaders, copy keyframes, and more!
 
+
+> **⚠️ VARIANT LOADER NAMES CHANGED IN v2.1.5+:** Any loader name with `variant` in it has been deleted in favor of a cleaner, simplistic loader name convention.
+
+**Example:** If you were using `arrows_variant_1` prior to v2.1.5, the loader name will now simply be `arrows_1`. This change only applies to variants. View the [website](https://cliloaders.com) for the latest updates or to view the [changelog](https://cliloaders.com/changelog).
+
+
 ## Installation
 
 To install the package, use npm or yarn:
