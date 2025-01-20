@@ -1,12 +1,13 @@
 import { CodeBlock } from '@/components/CodeBlock';
 import { ComponentPlayground } from '@/components/ComponentPlayground';
 import { BackButton } from '@/components/BackButton';
-import { Share } from '@/components/Share';
-import CliLoader from '@/components/CliLoaderRenderer';
 import getCliLoaders from '@/lib/get-cli-loaders';
 import getLoaderJokes from '@/lib/get-loader-jokes';
 import getCodeUsage from '@/lib/get-code-usage';
-import { title } from 'process';
+import dynamic from 'next/dynamic';
+
+const Share = dynamic(() => import('@/components/Share').then((mod) => mod.Share), { ssr: true });
+const CliRenderer = dynamic(() => import('@/components/CliLoaderRenderer').then((mod) => mod.default), { ssr: true });
 
 export const generateStaticParams = async () => (
   getCliLoaders().map(({ name }) => ({
@@ -71,7 +72,7 @@ const ComponentPage = async ({
       </section>
       <section className='w-full p-6'>
         <ComponentPlayground>
-          <CliLoader
+          <CliRenderer
             speed={speed}
             keyframes={keyframes}
             category={category}
