@@ -7,7 +7,7 @@ type CliLoaderTabsProps = {
     setActiveTab: (tab: string) => void;
 };
 
-const CliLoaderTabs = ({ tabs, activeTab, setActiveTab }: CliLoaderTabsProps) => (
+const CliLoaderTabs = memo(({ tabs, activeTab, setActiveTab }: CliLoaderTabsProps) => (
         <div className="px-6 font-light flex flex-row py-4 mx-auto justify-between items-center overflow-x-scroll">
             {tabs.map((tab: string) => (
                 <motion.button
@@ -25,6 +25,8 @@ const CliLoaderTabs = ({ tabs, activeTab, setActiveTab }: CliLoaderTabsProps) =>
                 </motion.button>
             ))}
         </div>
-    );
+));
 
-export default memo(CliLoaderTabs);
+export default CliLoaderTabs;
+
+
