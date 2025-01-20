@@ -1,11 +1,12 @@
-import { cache } from "react";
+import { memoize } from 'lodash';
 
 type JokeCategories = {
   [key: string]: string[];
 };
 
-const LOADER_JOKES = cache((name: string, category: string) => {
-  const CATEGORIES: JokeCategories = {
+const getLoaderJokes = memoize((name: string, category: string) => {
+  console.log('getLoaderJokes called!');
+  const jokeCategories: JokeCategories = {
     Arrows: [
       `Why did ${name} cross the road? To point you in the right direction!`,
       `What do you call an arrow that tells jokes? A pun-derful pointer!`,
@@ -68,9 +69,9 @@ const LOADER_JOKES = cache((name: string, category: string) => {
     ],
   };
 
-  return CATEGORIES[category as keyof typeof CATEGORIES] || [
+  return jokeCategories[category as keyof typeof jokeCategories] || [
     `Why did ${name} get promoted? It was the ${category.toLocaleLowerCase()} teachers pet!`,
   ];
 });
 
-export default LOADER_JOKES;
+export default getLoaderJokes;

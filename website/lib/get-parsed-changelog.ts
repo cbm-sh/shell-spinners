@@ -2,7 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { cache } from "react";
 
-export const parseChangeLog = cache(() => {
+type ChangeLogProps = {
+  version: string;
+  changes: { type: string; details: string[] }[];
+};
+
+const getParsedChangeLog = cache((): ChangeLogProps[] => {
 const changelogPath = path.join(process.cwd(), "..", "CHANGELOG.md");
   const changelogContent = fs.readFileSync(changelogPath, "utf-8");
   const changelogLines = changelogContent.split("\n");
@@ -22,6 +27,9 @@ const changelogPath = path.join(process.cwd(), "..", "CHANGELOG.md");
   }
 
   return changelog;
+
 });
+
+export default getParsedChangeLog;
 
 

@@ -10,13 +10,13 @@ type CodeBlockProps = {
 };
 
 export const CodeBlock: React.FC<CodeBlockProps> = ({ code, lang, title, isV2 }) => (
-    <div className='relative border border-neutral-800'>
-        <div className='absolute left-4 top-4'>
-          <p className='text-sm text-neutral-400'>{title}
+  <div className='relative flex border border-neutral-800 p-2'>
+    <div className='absolute left-0 top-0 p-4'>
+      <p className='text-sm text-neutral-400'>{title}
         {isV2 && (<span className='absolute bg-blue-600 border border-blue-500 inline-flex w-auto px-0.5 py-0 ml-[4px] h-auto text-xs text-white'>v2.0+</span>)}
             </p>
         </div>
       <CopyButton code={code} />
-    <Code theme={githubDark as unknown as Record<string, string>} code={code} lang={lang} />
+    <Code style={{ fontSize: '0.95rem', paddingTop: '2rem', paddingBottom: '1rem' }} theme={githubDark as unknown as Record<string, string>} code={code} lang={lang} />
     </div>
   );
