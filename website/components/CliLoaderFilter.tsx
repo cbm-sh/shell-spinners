@@ -2,7 +2,7 @@
 
 import { memo, useState } from 'react';
 import { Card } from '@/components/Card';
-import { CliLoaderTabs } from '@/components/CliLoaderTabs';
+import CliLoaderTabs from '@/components/CliLoaderTabs';
 import { motion, AnimatePresence } from "framer-motion";
 import CliLoaderRenderer from './CliLoaderRenderer';
 import getCliLoaders from '@/lib/get-cli-loaders';
