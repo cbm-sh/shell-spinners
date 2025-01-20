@@ -4,14 +4,15 @@ import { memo, useState } from 'react';
 import { Card } from '@/components/Card';
 import { CliLoaderTabs } from '@/components/CliLoaderTabs';
 import { motion, AnimatePresence } from "framer-motion";
-import CLI_LOADERS from '@/lib/cli-loaders';
 import CliLoaderRenderer from './CliLoaderRenderer';
+import getCliLoaders from '@/lib/get-cli-loaders';
 
 const ComponentFilter = () => {
+    console.log('ComponentFilter called!');
     const [activeTab, setActiveTab] = useState('All');
     const filteredLoaders = activeTab === 'All'
-        ? CLI_LOADERS()
-        : CLI_LOADERS().filter(({ category }) => category.includes(activeTab));
+        ? getCliLoaders()
+        : getCliLoaders().filter(({ category }) => category.includes(activeTab));
 
     return (
         <>

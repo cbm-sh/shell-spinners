@@ -1,9 +1,9 @@
 import { BackButton } from '@/components/BackButton';
-import { parseChangeLog } from '@/lib/parse-changelog';
+import getParsedChangeLog from '@/lib/get-parsed-changelog';
 import { useMemo } from 'react';
 
 const ChangelogPage = () => {
-    const changelog = useMemo(() => parseChangeLog(), []);
+    const changelog = useMemo(() => getParsedChangeLog(), []);
 
     const highestVersion = useMemo(() => changelog.reduce((prev, current) => {
         return prev.version > current.version ? prev : current;

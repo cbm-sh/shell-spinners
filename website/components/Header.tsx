@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -35,18 +35,20 @@ export const Header = () => {
         }, 750);
     };
 
-    // useEffect(() => {
-    //     const body = document.querySelector('body');
-    //     const nav = document.querySelector('nav');
+    useEffect(() => {
+        const body = document.querySelector('body');
+        const nav = document.querySelector('nav');
 
-    //     if (isOpen) {
-    //         body.style.overflow = 'hidden';
-    //         nav.style.overflowY = 'scroll';
-    //     } else {
-    //         body.style.overflow = 'auto';
-    //         nav.style.overflowY = 'hidden';
-    //     }
-    // }, [isOpen]);
+        if (!body || !nav) return;
+
+        if (isOpen) {
+            body.style.overflowY = 'hidden';
+            nav.style.overflowY = 'scroll';
+        } else {
+            body.style.overflowY = 'auto';
+            nav.style.overflowY = 'hidden';
+        }
+    }, [isOpen]);
 
     return (
         <header className='flex p-6 h-20 items-center justify-between'>

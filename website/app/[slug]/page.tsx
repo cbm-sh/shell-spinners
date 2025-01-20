@@ -1,15 +1,13 @@
 import { CodeBlock } from '@/components/CodeBlock';
-import CLI_LOADERS from '@/lib/cli-loaders';
 import { ComponentPlayground } from '@/components/ComponentPlayground';
 import { BackButton } from '@/components/BackButton';
 import { Share } from '@/components/Share';
-import LOADER_JOKES from '@/lib/loader-jokes';
 import CliLoader from '@/components/CliLoaderRenderer';
-
-const cliLoader = CLI_LOADERS().map((loader) => loader);
+import getCliLoaders from '@/lib/get-cli-loaders';
+import getLoaderJokes from '@/lib/get-loader-jokes';
 
 export const generateStaticParams = async () => (
-  cliLoader.map(({ name }) => ({
+  getCliLoaders().map(({ name }) => ({
     slug: name,
   }))
 );
@@ -22,7 +20,7 @@ const ComponentPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const param = await params;
-  const loader = cliLoader.find(
+  const loader = getCliLoaders().find(
     ({ name }) => name === param.slug,
   );
 
@@ -32,7 +30,7 @@ const ComponentPage = async ({
 
   const { name, keyframes, speed, category } = loader;
 
-  const joke = LOADER_JOKES(name, category);
+  const loaderJokes = getLoaderJokes(name, category);
 
   const standardCliCode = `
   // Import the loader initializer
@@ -152,7 +150,7 @@ const ComponentPage = async ({
             {name} loader
           </h1>
           <p className='relative z-40 text-neutral-300 text-center py-6'>
-            {joke[Math.floor(Math.random() * joke.length)]}
+            {loaderJokes[Math.floor(Math.random() * loaderJokes.length)]}
           </p>
         </div>
       </section>
@@ -161,7 +159,7 @@ const ComponentPage = async ({
           <div className='flex flex-row justify-between items-center'>
         <BackButton />
             <Share
-              className='flex justify-end items-end'
+              className='z-40 flex justify-end items-end'
               title={category as string}
               url={`https://cliloaders.com/${name}`}
               description={`It's an awesome ${category?.toLocaleLowerCase()} loader!`}
