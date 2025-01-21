@@ -71,3 +71,4 @@ export const getJokes = memoizer((name: string, category: string): string => {
 
 	return jokes[Math.floor(Math.random() * jokes.length)];
 });
+

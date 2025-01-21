@@ -6,7 +6,7 @@ export const isKeyframes = (code: string | string[]): code is string[] => Array.
 // Check if the code is an npm command
 export const isNpm = (code: string): boolean => code.startsWith('npm');
 
-// Check if the code is a custom code
+// Check if the code is a code snippet
 export const isCode = (code: string): boolean => !isNpm(code) && !isKeyframes(code);
 
 // Create a class name from an array of strings
@@ -27,6 +27,3 @@ export const memoizer = <T extends (...args: any[]) => any>(fn: T) => {
 	memoizerFn.cache = cache;
 	return memoizerFn;
 };
-
-// Get the cache from a memoized function
-export const getCache = <T extends (...args: any[]) => any>(memoizerFn: T & { cache: Map<string, any> }) => memoizerFn?.cache;
