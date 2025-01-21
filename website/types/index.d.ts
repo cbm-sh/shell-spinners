@@ -1,7 +1,7 @@
 export type AnimatedIconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	icons: IconComponents;
 	className?: string;
-	buttonVariant: 'code' | 'keyframes' | 'code-view' | 'back' | 'npm';
+	buttonVariant: 'backButton' | 'copyKeyframesButton' | 'copyCodeButton' | 'codeViewButton' | 'copyNpmButton'
 };
 
 export type CardProps = {
@@ -22,7 +22,7 @@ export type ChangeLogProps = {
 	changes: { type: string; details: string[] }[];
 };
 
-export type CliLoaderCategories =
+export type LoaderCategories =
 	| 'Arrows'
 	| 'Bars'
 	| 'Circles'
@@ -34,28 +34,23 @@ export type CliLoaderCategories =
 	| 'Symbols'
 	| 'Togglers';
 
-export type CliLoaderFilterProps = {
+export type FilterProps = {
 	category: string;
-	onFilterChange: (filteredLoaders: CliLoaderProps[]) => void;
+	onFilterChange: (filteredLoaders: Props[]) => void;
 };
 
-export type CliLoaderProps = {
-	category: CliLoaderCategories;
-	name: string;
+export type RendererProps = {
+	category?: LoaderCategories;
+	name?: string;
 	speed: number;
 	keyframes: string[];
+	className?: string;
 };
 
-export type CliLoaderTabsProps = {
+export type TabsProps = {
 	tabs: string[];
 	activeTab: string;
 	setActiveTab: (tab: string) => void;
-};
-
-export type CodeBlockProps = {
-	code: string | string[];
-	title: string;
-	isV2?: boolean;
 };
 
 export type CopyButtonProps = {
@@ -75,13 +70,13 @@ export type IconComponents = {
 export type IconProps = React.SVGProps<SVGSVGElement>;
 
 export type JokeCategories = {
-	[key in CliLoaderCategories]: string[];
+	[key in Categories]: string[];
 };
 
 export type LoaderProps = {
+	category?: LoaderCategories;
+	name: string;
 	speed: number;
 	keyframes: string[];
-	className?: string;
-	category?: string;
 };
 

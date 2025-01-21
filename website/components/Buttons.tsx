@@ -1,7 +1,7 @@
 'use client';
 
-import { useCopyCode } from "@/hooks/use-copy-code";
-import { cx, generateCnPositionForButton, isKeyframes, isNpm } from "@/lib/utils";
+import { useCopy } from "@/hooks/use-copy";
+import { cl, isKeyframes, isNpm } from "@/lib/utils";
 import type { AnimatedIconButtonProps, CopyCodeButtonProps } from "@/types";
 import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, CodeIcon, CopyIcon, HomeIcon, LayersIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
@@ -11,11 +11,7 @@ export const AnimatedIconButton: React.FC<AnimatedIconButtonProps> = memo(({ ico
   console.log(`AnimatedIconButton called for ${buttonVariant}!`),
   <button
     type="button"
-      className={cx(
-        className,
-        generateCnPositionForButton(buttonVariant),
-      'inline-flex cursor-pointer items-center justify-center p-2 overflow-hidden font-medium text-neutral-50 transition duration-300 ease-out border border-neutral-800 group',
-    )}
+      className={cl(buttonVariant) ?? className}
     {...props}>
     <span
       className="absolute inset-0 flex items-center justify-center size-full text-neutral-50 transition duration-300 -translate-x-full bg-neutral-900 group-hover:translate-x-0 ease">
@@ -36,7 +32,7 @@ export const BackButton = memo(() => (
     <AnimatedIconButton
       icons={{ default: <ArrowLeftIcon />, hover: <HomeIcon className="size-4 text-neutral-50" /> }}
       aria-label="Back to Home"
-      buttonVariant="back"
+        buttonVariant="backButton"
     />
   </Link>
 ));
@@ -49,7 +45,7 @@ export const CodeViewButton = memo(({ slug }: { slug: string }) => (
     <AnimatedIconButton
       icons={{ default: <ArrowRightIcon />, hover: <CodeIcon className="size-4 text-neutral-50" /> }}
       aria-label="Go to Code View"
-      buttonVariant="code-view"
+        buttonVariant="codeViewButton"
     />
   </Link>
 ));
@@ -58,20 +54,26 @@ CodeViewButton.displayName = 'CodeViewButton';
 
 export const CopyCodeButton: React.FC<CopyCodeButtonProps> = memo(({ code }) => {
   console.log('CopyCodeButton called!');
-  const { onCopy, isChecked } = useCopyCode(code);
+  const { onCopy, isChecked } = useCopy(code);
 
   const icons = useMemo(() => ({
     default: isChecked ? <CheckIcon className='size-4' /> : <CopyIcon className='size-4' />,
     hover: isChecked ? <CheckIcon className='size-4' /> : <LayersIcon className='size-4' />
   }), [isChecked]);
 
-  const buttonVariant = useMemo(() => isKeyframes(code) ? 'keyframes' : isNpm(code) ? 'npm' : 'code', [code]);
+  const buttonVariant = useMemo(() => {
+    if (isKeyframes(code)) return 'copyKeyframesButton';
+    if (isNpm(code)) return 'copyNpmButton';
+    return 'copyCodeButton';
+  }, [code]);
+
   console.log(`Button Variant ${buttonVariant} Loaded`);
 
   return (
     <AnimatedIconButton
       icons={icons}
       onClick={onCopy}
+      aria-label={"Copy Code"}
       buttonVariant={buttonVariant}
     />
   );

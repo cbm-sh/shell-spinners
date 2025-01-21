@@ -1,10 +1,10 @@
 import { BackButton } from '@/components/Buttons';
-import getParsedChangeLog from '@/lib/get-parsed-changelog';
-import { useMemo } from 'react';
+import { getChangeLog } from '@/lib/get-changelog';
 import { type ChangeLogProps } from '@/types';
+import { useMemo } from 'react';
 
 const ChangelogPage = () => {
-    const changelog: ChangeLogProps[] = useMemo(() => getParsedChangeLog(), []);
+    const changelog: ChangeLogProps[] = useMemo(() => getChangeLog(), []);
 
     const highestVersion = useMemo(() => changelog.reduce((prev, current) => {
         return prev.version > current.version ? prev : current;

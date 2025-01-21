@@ -1,24 +1,26 @@
 
-import { CustomExample, NextJsComponentExample, NextJsExample, OhMyZshExample, StandardExample, ZeroDependencyExample } from '@/components/CodeExamples';
-import { ComponentView } from '@/components/ComponentView';
-import getCliLoaders from '@/lib/get-cli-loaders';
-import getLoaderJokes from '@/lib/get-loader-jokes';
-import { type CliLoaderProps } from '@/types';
-import dynamic from 'next/dynamic';
+import { BackButton } from '@/components/Buttons';
+import { CustomExample, NextJsComponentExample, NextJsExample, OhMyZshExample, StandardExample, ZeroDependencyExample } from '@/components/Examples';
+import { Renderer } from '@/components/Renderer';
+import { Share } from '@/components/Share';
+import { View } from '@/components/View';
+import { getJokes } from '@/lib/get-jokes';
+import { getLoaders } from '@/lib/get-loaders';
+import type { LoaderProps } from '@/types';
 
 export const generateStaticParams = async () => (
-  getCliLoaders().map(({ name }: { name: string }) => ({
+  getLoaders().map(({ name }: { name: string }) => ({
     slug: name,
   }))
 );
 
-const ComponentViewPage = async ({
+const ViewPage = async ({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) => {
   const param = await params;
-  const loader: CliLoaderProps | undefined = getCliLoaders().find(
+  const loader: LoaderProps | undefined = getLoaders().find(
     ({ name }: { name: string }) => name === param.slug,
   );
 
@@ -28,9 +30,9 @@ const ComponentViewPage = async ({
 
   const { name, keyframes, speed, category } = loader;
 
-  const DynamicBackButton = dynamic(() => import('@/components/Buttons').then((mod) => mod.BackButton), { ssr: true });
-  const DynamicShare = dynamic(() => import('@/components/Share').then((mod) => mod.Share), { ssr: true });
-  const DynamicCliLoaderRenderer = dynamic(() => import('@/components/CliLoaderRenderer').then((mod) => mod.CliLoaderRenderer), { ssr: true });
+  if (!CustomExample || !NextJsComponentExample || !NextJsExample || !OhMyZshExample || !StandardExample || !ZeroDependencyExample) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -41,45 +43,45 @@ const ComponentViewPage = async ({
             {name} loader
           </h1>
           <p className='relative z-40 text-neutral-300 text-center py-6'>
-            {getLoaderJokes(name, category)}
+            {getJokes(name as string, category as string)}
           </p>
         </div>
       </section>
       <section>
         <div className='px-6 pb-0 min-h-full'>
           <div className='flex flex-row justify-between items-center'>
-            <DynamicBackButton />
-            <DynamicShare
+            <BackButton />
+            <Share
               className='z-40 flex justify-end items-end'
               title={category as string}
               url={`https://cliloaders.com/${name}`}
-              description={`It's an awesome ${category.toLocaleLowerCase()} loader!`}
+              description={`It's an awesome ${category?.toLocaleLowerCase()} loader!`}
             />
           </div>
         </div>
       </section>
       <section className='w-full p-6'>
-        <ComponentView>
-          <DynamicCliLoaderRenderer
+        <View>
+          <Renderer
             speed={speed}
             keyframes={keyframes}
             category={category}
           />
-        </ComponentView>
+        </View>
         <div className='mt-6 space-y-6'>
           <h1 className='text-md font-light text-neutral-400'>Examples</h1>
           <StandardExample name={name} speed={speed} />
-          <CustomExample name={name} speed={speed} keyframes={keyframes} />
-          <ZeroDependencyExample name={name} speed={speed} />
+          <CustomExample keyframes={keyframes} />
+          <ZeroDependencyExample speed={speed} keyframes={keyframes} />
           <p className='text-sm font-light text-neutral-400'>Usage in Oh My Zsh</p>
-          <OhMyZshExample name={name} speed={speed} />
+          <OhMyZshExample speed={speed} keyframes={keyframes} />
           <p className='text-sm font-light text-neutral-400'>Usage in Next.js</p>
-          <NextJsExample name={name} speed={speed} />
-          <NextJsComponentExample name={name} speed={speed} keyframes={keyframes} />
+          <NextJsExample />
+          <NextJsComponentExample speed={speed} keyframes={keyframes} />
         </div>
       </section>
     </>
   );
 };
 
-export default ComponentViewPage;
+export default ViewPage;

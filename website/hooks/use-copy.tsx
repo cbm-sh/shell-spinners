@@ -2,7 +2,7 @@ import { isKeyframes } from "@/lib/utils";
 import { useState } from "react";
 import { toast } from "sonner";
 
-export const useCopyCode = (code: string | string[]) => {
+export const useCopy = (code: string | string[]) => {
     const [isChecked, setIsChecked] = useState(false);
     const codeString = isKeyframes(code) ? `[${code?.map(keyframe => `'${keyframe}'`).join(',\n')}]` : code;
 

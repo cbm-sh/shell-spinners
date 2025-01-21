@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { cache } from "react";
 
-const getParsedChangeLog = cache((): ChangeLogProps[] => {
+export const getChangeLog = cache((): ChangeLogProps[] => {
 	const changelogPath = path.join(process.cwd(), '..', 'CHANGELOG.md');
 	const changelogContent = fs.readFileSync(changelogPath, 'utf-8');
 	const changelogLines = changelogContent.split('\n');
@@ -30,6 +30,5 @@ const getParsedChangeLog = cache((): ChangeLogProps[] => {
 	return changelog;
 });
 
-export default getParsedChangeLog;
 
 

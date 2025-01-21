@@ -1,14 +1,11 @@
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { TopBar } from "@/components/TopBar";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
-import { Geist } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
-
-const DynamicAnalytics = dynamic(() => import("@vercel/analytics/react").then((mod) => mod.Analytics));
-const DynamicSpeedInsights = dynamic(() => import("@vercel/speed-insights/next").then((mod) => mod.SpeedInsights));
-const DynamicFooter = dynamic(() => import("@/components/Footer").then((mod) => mod.Footer));
-const DynamicToaster = dynamic(() => import("sonner").then((mod) => mod.Toaster));
 
 export const metadata: Metadata = {
   title: {
@@ -76,12 +73,6 @@ export const metadata: Metadata = {
   },
 };
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  weight: ["300", "400", "600", "700", "900"],
-});
-
 const RootLayout = ({
   children,
 }: {
@@ -89,22 +80,22 @@ const RootLayout = ({
 }) => (
     <html lang="en" suppressHydrationWarning>
       <body
-      className={`${geistSans.variable} bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl mx-auto border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen`}>
+      className='bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl mx-auto border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen'>
       <Header />
       <TopBar />
       <main>
         {children}
       </main>
-      <DynamicFooter />
-      <DynamicToaster
+      <Footer />
+      <Toaster
         toastOptions={{
         style: {
           borderRadius: 0,
         },
         className: 'border border-neutral-800 bg-black text-neutral-50',
         }} />
-      <DynamicSpeedInsights />
-      <DynamicAnalytics />
+      <SpeedInsights />
+      <Analytics />
       </body>
     </html>
   );

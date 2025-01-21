@@ -1,6 +1,6 @@
 import { memoize } from '@/lib/utils';
 
-const getLoaderJokes = memoize((name: string, category: string): string => {
+export const getJokes = memoize((name: string, category: string): string => {
 	const jokeCategories: Record<string, string[]> = {
 		Arrows: [
 			`Why did ${name} cross the road? To point you in the right direction!`,
@@ -70,5 +70,3 @@ const getLoaderJokes = memoize((name: string, category: string): string => {
 
 	return jokes[Math.floor(Math.random() * jokes.length)];
 });
-
-export default getLoaderJokes;

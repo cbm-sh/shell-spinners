@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CliLoaderRenderer } from "./CliLoaderRenderer";
+import { Renderer } from "./Renderer";
 
 export const TopBar = () => {
     console.log('TopBar called!');
@@ -8,10 +8,12 @@ export const TopBar = () => {
         <div aria-label="V2 Now Available" className="flex flex-row justify-center items-center bg-black border border-y-neutral-800 border-x-0 text-neutral-200 text-sm text-center py-2 px-6">
             <Link href="/changelog">
                 <span>
-                    <CliLoaderRenderer
+                    <Renderer
                         className="inline-flex text-sm"
                         speed={100}
-                        keyframes={keyframes} />
+                        keyframes={keyframes}
+                        category={"Arrows"}
+                        name={""} />
                 </span>
             </Link>
         </div>

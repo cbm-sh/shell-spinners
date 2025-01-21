@@ -1,7 +1,7 @@
 "use client";
 
-import { useIsLoaded } from '@/hooks/use-is-loaded';
-import { useMenuToggle } from '@/hooks/use-menu-toggle';
+import { useLoaded } from '@/hooks/use-loaded';
+import { useToggle } from '@/hooks/use-toggle';
 import { GitHubLogoIcon, HeartIcon } from '@radix-ui/react-icons';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
@@ -27,8 +27,8 @@ const Nav = dynamic(() => import('@/components/Nav').then((mod) => mod.Nav), { s
 export const Header = memo(() => {
     console.log('Header called!');
     const [animation, setAnimation] = useState('closed');
-    const [isLoaded] = useIsLoaded();
-    const [isVisible, toggleIsVisible] = useMenuToggle(false);
+    const [isLoaded] = useLoaded();
+    const [isVisible, toggleIsVisible] = useToggle(false);
 
     const handleMenuToggle = useCallback(() => {
         toggleIsVisible();
@@ -40,10 +40,15 @@ export const Header = memo(() => {
 
     useEffect(() => {
         const bodyClass = document.querySelector('body')?.classList;
+        if (bodyClass) {
+            if (isVisible) {
+                bodyClass.add('overflow-hidden');
+            }
 
-        if (!bodyClass) return;
-
-        isVisible ? bodyClass.add('overflow-hidden') : bodyClass.remove('overflow-hidden');
+            return () => {
+                bodyClass.remove('overflow-hidden');
+            };
+        }
 
     }, [isVisible]);
 

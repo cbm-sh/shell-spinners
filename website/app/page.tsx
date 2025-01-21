@@ -1,5 +1,5 @@
 import { CopyCodeButton } from '@/components/Buttons';
-import { CliLoaderFilter } from '@/components/CliLoaderFilter';
+import { Filter } from '@/components/Filter';
 
 const HomePage = () => {
   return (
@@ -23,7 +23,7 @@ const HomePage = () => {
         </div>
       </section>
       <section className='bg-black border border-x-0 border-t-neutral-800 border-b-0'>
-        <CliLoaderFilter />
+        <Filter />
       </section>
     </>);
 };

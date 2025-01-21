@@ -1,5 +1,5 @@
-import getCliLoaders from "@/lib/get-cli-loaders";
-import type { CliLoaderProps } from "@/types";
+import { getLoaders } from "@/lib/get-loaders";
+import type { LoaderProps } from "@/types";
 import { CodeIcon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
@@ -55,7 +55,7 @@ export const Nav = memo(({ isOpen, onToggle }: { isOpen: boolean, onToggle: () =
                     initial='closed'
                         animate={isOpen ? 'open' : 'closed'}
                         onAnimationComplete={() => setIsAnimating(false)}>
-                        {getCliLoaders().map((loader: CliLoaderProps, i: number) => (
+                        {getLoaders().map((loader: LoaderProps, i: number) => (
                         <Link
                             key={`${loader.name}_${i}`} href={`/${loader.name}`} role='link' onClick={handleToggle} aria-label={`cli-loaders | ${loader.name}`}>
                             <motion.li className='size-full border border-neutral-800 hover:bg-neutral-900 hover:border-neutral-700 cursor-pointer flex items-center justify-center' key={`${loader.name}_${i}`} onClick={handleToggle} variants={LI_VARIANTS} whileHover={{ scale: 0.95 }} whileTap={{ scale: 0.93 }}>
