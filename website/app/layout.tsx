@@ -1,14 +1,11 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { Toaster } from 'sonner';
 import { TopBar } from "@/components/TopBar";
-import dynamic from "next/dynamic";
-
-const Analytics = dynamic(() => import("@vercel/analytics/react").then((mod) => mod.Analytics));
-const SpeedInsights = dynamic(() => import("@vercel/speed-insights/next").then((mod) => mod.SpeedInsights));
-const Footer = dynamic(() => import("@/components/Footer").then((mod) => mod.Footer));
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
+import { Toaster } from "sonner";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
@@ -76,16 +73,6 @@ export const metadata: Metadata = {
   },
 };
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 const RootLayout = ({
   children,
 }: {
@@ -93,7 +80,7 @@ const RootLayout = ({
 }) => (
     <html lang="en" suppressHydrationWarning>
       <body
-      className={`${geistSans.variable} ${geistMono.variable} bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl mx-auto border scroll-smooth border-x-neutral-800 border-y-0 overflow-x-hidden min-h-screen`}>
+      className='bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl mx-auto border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen'>
       <Header />
       <TopBar />
       <main>

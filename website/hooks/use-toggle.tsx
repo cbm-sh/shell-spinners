@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export const useMenuToggle = (initialState: boolean) => {
+export const useToggle = (initialState: boolean) => {
     const [isVisible, setIsVisible] = useState(initialState);
 
     const toggleIsVisible = () => setIsVisible((prev) => !prev);

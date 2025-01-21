@@ -22,6 +22,10 @@ export default {
 				'18': 'repeat(18, minmax(0, 1fr))',
 				'20': 'repeat(20, minmax(0, 1fr))',
 			},
+			fontSize: {
+				'2xs': '.625rem',
+				'3xs': '.5rem',
+			},
 		},
 	},
 	plugins: [],
