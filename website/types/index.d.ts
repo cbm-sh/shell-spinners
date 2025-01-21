@@ -1,7 +1,10 @@
-export type AnimatedIconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-	icons: IconComponents;
-	className?: string;
-	buttonVariant: 'backButton' | 'copyKeyframesButton' | 'copyCodeButton' | 'codeViewButton' | 'copyNpmButton'
+export type AnimatedButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+	icons: {
+		default: React.ReactElement<SVGElement>;
+		hover: React.ReactElement<SVGElement>;
+		clicked?: React.ReactElement<SVGElement>;
+	};
+	className: string;
 };
 
 export type CardProps = {
@@ -64,7 +67,8 @@ export type CopyCodeButtonProps = {
 
 export type IconComponents = {
 	default: React.ReactElement<SVGElement>;
-	hover?: React.ReactElement<SVGElement>;
+	hovered: React.ReactElement<SVGElement>;
+	clicked?: React.ReactElement<SVGElement>;
 };
 
 export type IconProps = React.SVGProps<SVGSVGElement>;

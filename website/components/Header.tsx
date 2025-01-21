@@ -117,8 +117,8 @@ export const Header = memo(() => {
                         className='outline-none'
                         aria-hidden='false'
                         tabIndex={5}
-                        width='24'
-                        height='24'
+                        width='18'
+                        height='18'
                         viewBox='0 0 24 24'>
                         <motion.path
                             stroke='#FFFFFF'

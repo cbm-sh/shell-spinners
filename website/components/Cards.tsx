@@ -32,12 +32,12 @@ export const ExampleCard: React.FC<ExampleCardProps> = memo(({
 }) => {
     console.log('ExampleCard called!');
     return (
-        <div className='relative p-4 w-full max-w-5xl h-auto flex flex-col items-start justify-center border border-neutral-800 bg-black'>
+        <div className='relative p-4 w-full max-w-5xl h-auto flex flex-col items-start overflow-x-scroll justify-center border border-neutral-800 bg-black'>
             <div className='absolute left-4 top-4 text-sm text-neutral-50'>
                 {title}{isV2 && (<span className='absolute bg-blue-600 border border-blue-500 inline-flex w-auto px-0.5 py-0 ml-[4px] h-auto text-xs text-white'>v2.0+</span>)}
             </div>
             <div>
-                <pre className='flex flex-col justify-center items-start pt-10 pb-5 overflow-x-auto font-mono'>
+                <pre className='flex flex-col justify-center items-start pt-10 pb-5 font-mono'>
                     <code className="relative text-zinc-300">
                         {code}
                     </code>

@@ -39,7 +39,7 @@ const ViewPage = async ({
       <section>
         <div className='py-12 px-6'>
           <div className='absolute w-full max-w-5xl min-h-48 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
-          <h1 className='text-balance relative z-40 font-semibold text-neutral-100 text-4xl md:text-5xl text-center'>
+          <h1 className='text-balance relative z-40 font-semibold text-neutral-300 text-4xl md:text-5xl text-center'>
             {name} loader
           </h1>
           <p className='relative z-40 text-neutral-300 text-center py-6'>
