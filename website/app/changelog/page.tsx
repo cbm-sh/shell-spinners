@@ -1,5 +1,6 @@
-import { BackButton } from '@/components/BackButton';
+import { BackButton } from '@/components/Buttons';
 import getParsedChangeLog from '@/lib/get-parsed-changelog';
+import { details } from 'framer-motion/client';
 import { useMemo } from 'react';
 
 const ChangelogPage = () => {
@@ -39,11 +40,11 @@ const ChangelogPage = () => {
                                     {version.version === highestVersion.version ? <span className='w-auto relative bg-blue-600 border border-blue-500 px-0.5 py-0 ml-[4px] mt-[4px] h-auto text-xs inline-flex'>v{version.version} - Latest</span> : <span className='w-auto relative bg-rose-600 border border-rose-500 px-0.5 py-0 ml-[4px] h-auto text-xs inline-flex'>v{version.version} - Previous</span>
                                     }
                                 </h2>
-                                {version.changes.map((change, changeIndex) => (
+                                {version.changes.map(({ type, details }, changeIndex) => (
                                     <div key={changeIndex} className="min-h-fill w-96 flex flex-col justify-center items-center overflow-y-scroll">
-                                        <h3 className="p-6 text-lg font-semibold">{change.type}</h3>
+                                        <h3 className="p-6 text-lg font-semibold">{type}</h3>
                                         <ul className="flex flex-col justify-center items-start text-left text-neutral-300">
-                                            {change.details.map((_detail, detailIndex) => (
+                                            {details.map((_detail, detailIndex) => (
                                                 <li key={detailIndex}> - {_detail}</li>
                                             ))}
                                         </ul>

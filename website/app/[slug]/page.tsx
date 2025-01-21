@@ -1,16 +1,16 @@
 import { CodeBlock } from '@/components/CodeBlock';
 import { ComponentPlayground } from '@/components/ComponentPlayground';
-import { BackButton } from '@/components/BackButton';
+import { BackButton } from '@/components/Buttons';
 import getCliLoaders from '@/lib/get-cli-loaders';
 import getLoaderJokes from '@/lib/get-loader-jokes';
 import getCodeUsage from '@/lib/get-code-usage';
 import dynamic from 'next/dynamic';
 
-const Share = dynamic(() => import('@/components/Share').then((mod) => mod.Share), { ssr: true });
+const Share = dynamic(() => import('@/components/Share').then((mod) => mod.default), { ssr: true });
 const CliRenderer = dynamic(() => import('@/components/CliLoaderRenderer').then((mod) => mod.default), { ssr: true });
 
 export const generateStaticParams = async () => (
-  getCliLoaders().map(({ name }) => ({
+  getCliLoaders().map(({ name }: { name: string }) => ({
     slug: name,
   }))
 );
@@ -24,7 +24,7 @@ const ComponentPage = async ({
 }) => {
   const param = await params;
   const loader = getCliLoaders().find(
-    ({ name }) => name === param.slug,
+    ({ name }: { name: string }) => name === param.slug,
   );
 
   if (!loader) {
@@ -33,16 +33,20 @@ const ComponentPage = async ({
 
   const { name, keyframes, speed, category } = loader;
 
-  const loaderJokes = getLoaderJokes(name, category);
+  const joke = getLoaderJokes(name, category);
 
-  const codeUsages = getCodeUsage(name, speed, keyframes);
+  const code = getCodeUsage(name, speed, keyframes);
 
-  const standardCliCode = codeUsages.find((code) => code.title === 'Standard CLI Usage');
-  const customCliCode = codeUsages.find((code) => code.title === 'Custom CLI Usage');
-  const zeroDependencyCliCode = codeUsages.find((code) => code.title === 'Zero Dependency Usage');
-  const ohMyZshPluginUsage = codeUsages.find((code) => code.title === 'Oh My Zsh Plugin Usage');
-  const nextJsComponentCode = codeUsages.find((code) => code.title === 'Usage in Next.js');
-  const nextJsComponentCodeUsage = codeUsages.find((code) => code.title === 'Next.js Component Code Usage');
+  const standard = code.find((example) => example.title === 'Standard CLI Usage');
+  const custom = code.find((example) => example.title === 'Custom CLI Usage');
+  const zeroDependency = code.find((example) => example.title === 'Zero Dependency Usage');
+  const ohMyZsh = code.find((example) => example.title === 'Oh My Zsh Plugin Usage');
+  const nextJs = code.find((example) => example.title === 'Usage in Next.js');
+  const nextJsUsage = code.find((example) => example.title === 'Next.js Component Code Usage');
+
+  if (!standard || !custom || !zeroDependency || !ohMyZsh || !nextJs || !nextJsUsage) {
+    return <div>Code not found</div>;
+  }
 
   return (
     <>
@@ -53,7 +57,7 @@ const ComponentPage = async ({
             {name} loader
           </h1>
           <p className='relative z-40 text-neutral-300 text-center py-6'>
-            {loaderJokes[Math.floor(Math.random() * loaderJokes.length)]}
+            {joke}
           </p>
         </div>
       </section>
@@ -80,14 +84,14 @@ const ComponentPage = async ({
         </ComponentPlayground>
         <div className='mt-6 space-y-6'>
           <h1 className='text-md font-light text-neutral-400'>Examples</h1>
-          <CodeBlock code={standardCliCode?.code!} lang='ts' title={standardCliCode?.title!} />
-          <CodeBlock code={customCliCode?.code!} lang='ts' title={customCliCode?.title!} isV2 />
-          <CodeBlock code={zeroDependencyCliCode?.code!} lang='ts' title={zeroDependencyCliCode?.title!} />
+          <CodeBlock code={standard.code} lang='ts' title={standard.title} />
+          <CodeBlock code={custom.code} lang='ts' title={custom.title} isV2 />
+          <CodeBlock code={zeroDependency.code} lang='ts' title={zeroDependency.title} />
           <p className='text-sm font-light text-neutral-400'>Usage in Oh My Zsh</p>
-          <CodeBlock code={ohMyZshPluginUsage?.code!} lang='shell' title={ohMyZshPluginUsage?.title!} />
+          <CodeBlock code={ohMyZsh.code} lang='shell' title={ohMyZsh.title} />
           <p className='text-sm font-light text-neutral-400'>Usage in Next.js</p>
-          <CodeBlock code={nextJsComponentCode?.code!} lang='tsx' title={nextJsComponentCode?.title!} />
-          <CodeBlock code={nextJsComponentCodeUsage?.code!} lang='tsx' title={nextJsComponentCodeUsage?.title!} />
+          <CodeBlock code={nextJs.code} lang='tsx' title={nextJs.title} />
+          <CodeBlock code={nextJsUsage.code} lang='tsx' title={nextJsUsage.title} />
         </div>
       </section>
     </>

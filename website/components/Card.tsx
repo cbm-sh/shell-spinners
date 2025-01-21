@@ -1,12 +1,4 @@
-import { CodeViewButton } from './CodeViewButton';
-import CopyKeyframesButton from './CopyKeyframesButton';
-
-type CardProps = {
-    children: React.ReactNode;
-    keyframes: string[];
-    slug: string;
-    name: string;
-};
+import { CodeViewButton, CopyCodeButton } from './Buttons';
 
 export const Card: React.FC<CardProps> = ({
     children,
@@ -21,7 +13,7 @@ export const Card: React.FC<CardProps> = ({
             <div className='absolute left-4 top-4 text-sm text-neutral-50'>
                 {name}
             </div>
-            <CopyKeyframesButton keyframes={keyframes} />
+            <CopyCodeButton code={keyframes} />
             <CodeViewButton slug={slug} />
             {children}
         </div>

@@ -1,5 +1,5 @@
 import CliLoaderFilter from '@/components/CliLoaderFilter';
-import CopyButton from '@/components/CopyButton';
+import { CopyCodeButton } from '@/components/Buttons';
 
 const Home = () => (
     <>
@@ -15,7 +15,8 @@ const Home = () => (
         <div className='pt-2 text-center relative z-40'>
             <pre>
               <code className='w-full border bg-black border-neutral-800 p-4'>npm install cli-loaders
-              <CopyButton code='npm install cli-loaders' className='p-2 inline-flex ml-2 relative -right-2 top-1 cursor-pointer transition border border-neutral-800 hover:bg-neutral-900'/></code>
+              <CopyCodeButton code={'npm install cli-loaders'} />
+            </code>
           </pre>
           </div>
         </div>

@@ -1,11 +1,9 @@
-type IconProps = React.SVGProps<SVGSVGElement>
-
 export const XLogoIcon = (props: IconProps) => (
     <svg
     viewBox='0 0 64 64'
     width='64'
     height='64'
-    className='size-[0.95rem] group flex-none fill-neutral-200 transition group-hover:fill-neutral-300'
+    className='size-[0.95rem] group flex-none fill-neutral-200 transition duration-300 group-hover:fill-neutral-300'
     role='img'
     aria-labelledby='xIconTitle'
     {...props}

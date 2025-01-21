@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { AiFillMail } from "react-icons/ai";
 import { FaFacebook, FaLinkedin, FaReddit } from "react-icons/fa";
 import {
@@ -10,7 +11,7 @@ import {
   TwitterShareButton,
 } from "react-share";
 
-export const Share = ({
+const Share = ({
   className,
   title,
   url,
@@ -21,6 +22,7 @@ export const Share = ({
   url: string;
   description: string;
 }) => {
+  console.log("Share called!");
   return (
     <div className={className}>
       <EmailShareButton
@@ -70,7 +72,7 @@ export const Share = ({
             viewBox="0 0 64 64"
             width="64"
             height="64"
-            className="size-4 group flex-none fill-neutral-300 transition group-hover:fill-neutral-900"
+            className="size-4 group flex-none fill-neutral-300 transition-colors group-hover:fill-neutral-900"
             role="img"
             aria-labelledby="xIconTitle"
           >
@@ -93,3 +95,7 @@ export const Share = ({
     </div>
   );
 };
+
+Share.displayName = "Share";
+
+export default memo(Share);

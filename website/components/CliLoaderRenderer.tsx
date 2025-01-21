@@ -2,13 +2,6 @@
 
 import { memo, useEffect, useState } from 'react';
 
-type LoaderProps = {
-  speed: number;
-  keyframes: string[];
-  className?: string;
-  category?: string;
-};
-
 const CliLoaderRenderer: React.FC<LoaderProps> = ({ speed, keyframes, className }) => {
   const [currentFrame, setCurrentFrame] = useState(keyframes[0]);
 

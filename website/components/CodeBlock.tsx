@@ -1,13 +1,4 @@
-import { Code } from 'bright';
-import CopyButton from './CopyButton';
-import githubDark from '@/lib/theme.json';
-
-type CodeBlockProps = {
-  code: string;
-  lang: string;
-  title: string;
-  isV2?: boolean;
-};
+import { CopyCodeButton } from './Buttons';
 
 export const CodeBlock: React.FC<CodeBlockProps> = ({ code, lang, title, isV2 }) => (
   <div className='relative flex border border-neutral-800 p-2'>
@@ -16,7 +7,11 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({ code, lang, title, isV2 })
         {isV2 && (<span className='absolute bg-blue-600 border border-blue-500 inline-flex w-auto px-0.5 py-0 ml-[4px] h-auto text-xs text-white'>v2.0+</span>)}
             </p>
         </div>
-      <CopyButton code={code} />
-    <Code style={{ fontSize: '0.95rem', paddingTop: '2rem', paddingBottom: '1rem' }} theme={githubDark as unknown as Record<string, string>} code={code} lang={lang} />
+    <CopyCodeButton code={code} />
+    <pre className="pt-12 pr-6 pl-2 pb-6 overflow-x-auto font-mono">
+      <code className="text-sm text-neutral-300">
+        {code}
+      </code>
+    </pre>
     </div>
   );

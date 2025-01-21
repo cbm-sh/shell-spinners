@@ -1,14 +1,8 @@
 import { motion } from "framer-motion";
 import { memo } from "react";
 
-type CliLoaderTabsProps = {
-    tabs: string[];
-    activeTab: string;
-    setActiveTab: (tab: string) => void;
-};
-
 const CliLoaderTabs = memo(({ tabs, activeTab, setActiveTab }: CliLoaderTabsProps) => (
-        <div className="px-6 font-light flex flex-row py-4 mx-auto justify-between items-center overflow-x-scroll">
+    <div className="z-40 px-6 font-light flex flex-row py-4 mx-auto justify-between items-center overflow-x-scroll">
             {tabs.map((tab: string) => (
                 <motion.button
                     type="button"
@@ -26,6 +20,8 @@ const CliLoaderTabs = memo(({ tabs, activeTab, setActiveTab }: CliLoaderTabsProp
             ))}
         </div>
 ));
+
+CliLoaderTabs.displayName = 'CliLoaderTabs';
 
 export default CliLoaderTabs;
 

@@ -1,9 +1,4 @@
-import { memoize } from 'lodash';
-
-type CodeUsage = {
-	title: string;
-	code: (args: { name?: string; speed?: number; keyframes?: string[] }) => string;
-};
+import { memoize } from '@/lib/utils';
 
 const codeUsages: Record<string, CodeUsage> = {
 	standardCLI: {
@@ -70,7 +65,7 @@ function custom_loader() {
 	},
 	nextJS: {
 		title: 'Usage in Next.js',
-		code: ({ speed, keyframes }) =>
+		code: () =>
 			`"use client";
 
 import React, { useEffect, useState } from 'react';
@@ -116,11 +111,17 @@ export default Page;`,
 	},
 };
 
-const getCodeUsage = memoize((name: string, speed: number, keyframes: string[]) => {
-	return Object.values(codeUsages).map((usage) => ({
-		title: usage.title,
-		code: usage.code({ name, speed, keyframes }).toWellFormed(),
-	}));
-});
+const getCodeUsage = memoize(
+	(
+		name: CliLoaderProps['name'],
+		speed: CliLoaderProps['speed'],
+		keyframes: CliLoaderProps['keyframes'],
+	) => {
+		return Object.values(codeUsages).map((usage) => ({
+			title: usage.title,
+			code: usage.code({ name, speed, keyframes }),
+		}));
+	},
+);
 
 export default getCodeUsage;

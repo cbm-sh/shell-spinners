@@ -1,19 +1,15 @@
-import { memoize } from 'lodash';
+import { memoize } from '@/lib/utils';
 
-type CliLoaderCategories = 'Arrows' | 'Bars' | 'Circles' | 'Dots' | 'Emojis' | 'Lines' | 'Numbers' | 'Squares' | 'Symbols' | 'Togglers';
-
-type CliLoaderProps = {
-    category: CliLoaderCategories;
-    name: string;
-    speed: number;
-    keyframes: string[];
-}
-
-const cliLoader = (category: CliLoaderCategories, name: string, speed: number, keyframes: string[]) => ({ category, name, speed, keyframes } satisfies CliLoaderProps);
+const cliLoader = (
+	category: CliLoaderCategories,
+	name: string,
+	speed: number,
+	keyframes: string[],
+): CliLoaderProps => ({ category, name, speed, keyframes });
 
 const getCliLoaders = memoize((): CliLoaderProps[] => {
     console.log('getCliLoaders called!');
-    const loaders = [
+    const cliLoaders = [
      cliLoader("Arrows", "arrows_1", 100, ["←", "↖", "↑", "↗", "→", "↘", "↓", "↙"]),
      cliLoader("Arrows", "arrows_2", 80, ["⬆️ ", "↗️ ", "➡️ ", "↘️ ", "⬇️ ", "↙️ ", "⬅️ ", "↖️ "]),
      cliLoader("Arrows", "arrows_3", 120, ["▹▹▹▹▹", "▸▹▹▹▹", "▹▸▹▹▹", "▹▹▸▹▹", "▹▹▹▸▹", "▹▹▹▹▸"]),
@@ -93,9 +89,9 @@ const getCliLoaders = memoize((): CliLoaderProps[] => {
      cliLoader("Togglers", "togglers_13", 80, ["=", "*", "-"]),
      cliLoader("Togglers", "togglers_14", 300, ['❂','✪']),
 ];
-return loaders;
+return cliLoaders as CliLoaderProps[];
 });
 
-export default getCliLoaders;
 
+export default getCliLoaders;
 
