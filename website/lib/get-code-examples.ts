@@ -1,30 +1,28 @@
 import { memoize } from '@/lib/utils';
 
-const codeUsages: Record<string, CodeUsage> = {
-	standardCLI: {
-		title: 'Standard CLI Usage',
-		code: ({ name, speed }) =>
-			`// Import the loader initializer
+export const standardExample = memoize(({ name, speed }: { name: string; speed: number }) => ({
+    title: 'Standard CLI Example',
+    code: `// Import the loader initializer
 import { initLoader } from 'cli-loaders';
 
 // Start the loader
 initLoader('${name}', ${speed});`,
-	},
-	customCLI: {
-		title: 'Custom CLI Usage',
-		code: ({ keyframes }) =>
-			`// Import the custom loader initializer
+}));
+
+export const customExample = memoize(({ keyframes }: { keyframes: string[] }) => ({
+    title: 'Custom CLI Example',
+    code: `// Import the custom loader initializer
 import { initCustomLoader } from 'cli-loaders';
 
 initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
-// Example: initCustomLoader(100, [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]);`,
-	},
-	zeroDependency: {
-		title: 'Zero Dependency Usage',
-		code: ({ speed, keyframes }) =>
-			`const initLoader = () => {
+// Example: initCustomLoader(100, [${keyframes.map((keyframe) => `"${keyframe}"`).join(', ')}]);`,
+}));
+
+export const zeroDependencyExample = memoize(({ speed, keyframes }: { speed: number; keyframes: string[] }) => ({
+    title: 'Zero Dependency Example',
+    code: `const initLoader = () => {
     // Set keyframes
-    const keyframes = [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}];
+    const keyframes = [${keyframes.map((keyframe) => `"${keyframe}"`).join(', ')}];
     // Set speed in milliseconds
     const speed = ${speed};
     // Start at the first keyframe
@@ -37,12 +35,12 @@ initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
 };
 // Start the loader
 initLoader();`,
-	},
-	ohMyZsh: {
-		title: 'Oh My Zsh Plugin Usage',
-		code: ({ keyframes }) =>
-			`function start_loader() {
-    local keyframes=(${keyframes?.map((keyframe) => `"${keyframe}"`).join(' ')}) # Keyframes for the loader
+}));
+
+export const ohMyZshExample = memoize(({ keyframes }: { keyframes: string[] }) => ({
+    title: 'Oh My Zsh Plugin Example',
+    code: `function start_loader() {
+    local keyframes=(${keyframes.map((keyframe) => `"${keyframe}"`).join(' ')}) # Keyframes for the loader
     local speed=0.08 # Speed at which the keyframes change
     local pid=$1 # PID of the process to wait for
 
@@ -62,11 +60,11 @@ function custom_loader() {
     (sleep 5) &  # Simulate a long-running task in the background
     start_loader $! # Call the loader with the PID of the background process
 }`,
-	},
-	nextJS: {
-		title: 'Usage in Next.js',
-		code: () =>
-			`"use client";
+}));
+
+export const nextJsExample = memoize(() => ({
+    title: 'Example in Next.js',
+    code: `"use client";
 
 import React, { useEffect, useState } from 'react';
 
@@ -93,35 +91,19 @@ export const LoaderComponent: React.FC<LoaderComponentProps> = ({ speed, keyfram
         <div className={className}>{currentFrame}</div>
     );
 };`,
-	},
-	nextJSComponent: {
-		title: 'Next.js Component Code Usage',
-		code: ({ speed, keyframes }) =>
-			`import { LoaderComponent } from "@/components/LoaderComponent";
+}));
+
+export const nextJsComponentExample = memoize(({ speed, keyframes }: { speed: number; keyframes: string[] }) => ({
+    title: 'Next.js Component Code Example',
+    code: `import { LoaderComponent } from "@/components/LoaderComponent";
 
 const Page = () => (
     <LoaderComponent
         speed={${speed}}
-        keyframes={[${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]}
+        keyframes={[${keyframes.map((keyframe) => `"${keyframe}"`).join(', ')}]}
         className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden"
     />
 );
 
 export default Page;`,
-	},
-};
-
-const getCodeUsage = memoize(
-	(
-		name: CliLoaderProps['name'],
-		speed: CliLoaderProps['speed'],
-		keyframes: CliLoaderProps['keyframes'],
-	) => {
-		return Object.values(codeUsages).map((usage) => ({
-			title: usage.title,
-			code: usage.code({ name, speed, keyframes }),
-		}));
-	},
-);
-
-export default getCodeUsage;
+}));

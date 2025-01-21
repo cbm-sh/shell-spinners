@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 export const Footer = () => (
+    console.log('Footer called!'),
     <footer className="p-6 flex h-20 items-center justify-between text-center border border-t-neutral-800 border-b-0 border-x-0">
         <Link href="/changelog" className="text-neutral-400 hover:text-neutral-500 transition-colors duration-300" aria-label="Cli Loaders Changelog" aria-hidden="false" role='link' >
             Changelog
@@ -11,3 +12,5 @@ export const Footer = () => (
         <p className="inline-flex items-center gap-2 text-neutral-400">&copy; 2025 cli-loaders</p>
     </footer >
 );
+
+Footer.displayName = 'Footer';

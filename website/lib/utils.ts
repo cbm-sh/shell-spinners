@@ -1,11 +1,13 @@
-export const isKeyframes = (code: string | string[]): code is string[] =>
-	Array.isArray(code);
+// Check if the code is an array of keyframes
+export const isKeyframes = (code: string | string[]): code is string[] => Array.isArray(code);
 
+// Check if the code is an npm command
 export const isNpm = (code: string): boolean => code.startsWith('npm');
 
-export const cx = (...classes: (string | undefined)[]): string =>
-	classes.filter(Boolean).join(' ');
+// Concatenate class names
+export const cx = (...classes: (string | undefined)[]): string => classes.filter(Boolean).join(' ');
 
+// Memoize a function to cache its results
 export const memoize = <T extends (...args: any[]) => any>(fn: T) => {
 	const cache = new Map<string, ReturnType<T>>();
 
@@ -23,6 +25,7 @@ export const memoize = <T extends (...args: any[]) => any>(fn: T) => {
 	};
 };
 
+// Generate class names for button positions based on variant
 export const generateCnPositionForButton = (buttonVariant: string): string => {
 	switch (buttonVariant) {
 		case 'back':

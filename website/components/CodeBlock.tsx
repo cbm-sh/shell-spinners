@@ -1,6 +1,9 @@
+import type { CodeBlockProps } from '@/types';
+import { memo } from 'react';
 import { CopyCodeButton } from './Buttons';
 
-export const CodeBlock: React.FC<CodeBlockProps> = ({ code, lang, title, isV2 }) => (
+export const CodeBlock: React.FC<CodeBlockProps> = memo(({ code, title, isV2 }) => (
+  console.log('CodeBlock called!'),
   <div className='relative flex border border-neutral-800 p-2'>
     <div className='absolute left-0 top-0 p-4'>
       <p className='text-sm text-neutral-400'>{title}
@@ -14,4 +17,6 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({ code, lang, title, isV2 })
       </code>
     </pre>
     </div>
-  );
+));
+
+CodeBlock.displayName = 'CodeBlock';

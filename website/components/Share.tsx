@@ -1,6 +1,5 @@
 "use client";
 
-import { memo } from "react";
 import { AiFillMail } from "react-icons/ai";
 import { FaFacebook, FaLinkedin, FaReddit } from "react-icons/fa";
 import {
@@ -11,7 +10,7 @@ import {
   TwitterShareButton,
 } from "react-share";
 
-const Share = ({
+export const Share = ({
   className,
   title,
   url,
@@ -97,5 +96,3 @@ const Share = ({
 };
 
 Share.displayName = "Share";
-
-export default memo(Share);

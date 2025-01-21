@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:dev": "next build NODE_ENV=development",
     "start": "next start",
     "lint": "next lint"
   },

@@ -1,7 +1,8 @@
-import CliLoaderFilter from '@/components/CliLoaderFilter';
 import { CopyCodeButton } from '@/components/Buttons';
+import { CliLoaderFilter } from '@/components/CliLoaderFilter';
 
-const Home = () => (
+const HomePage = () => {
+  return (
     <>
       <section>
       <div className='py-12 px-6'>
@@ -24,7 +25,7 @@ const Home = () => (
       <section className='bg-black border border-x-0 border-t-neutral-800 border-b-0'>
         <CliLoaderFilter />
       </section>
-    </>
-  );
+    </>);
+};
 
-export default Home;
+export default HomePage;

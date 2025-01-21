@@ -1,10 +1,10 @@
 import { BackButton } from '@/components/Buttons';
 import getParsedChangeLog from '@/lib/get-parsed-changelog';
-import { details } from 'framer-motion/client';
 import { useMemo } from 'react';
+import { type ChangeLogProps } from '@/types';
 
 const ChangelogPage = () => {
-    const changelog = useMemo(() => getParsedChangeLog(), []);
+    const changelog: ChangeLogProps[] = useMemo(() => getParsedChangeLog(), []);
 
     const highestVersion = useMemo(() => changelog.reduce((prev, current) => {
         return prev.version > current.version ? prev : current;
@@ -54,7 +54,7 @@ const ChangelogPage = () => {
                         </div>
                     ))}
                 </div>
-            </section >
+            </section>
         </>
     );
 };

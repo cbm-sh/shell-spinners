@@ -1,6 +1,8 @@
+import type { CardProps } from '@/types';
+import { memo } from 'react';
 import { CodeViewButton, CopyCodeButton } from './Buttons';
 
-export const Card: React.FC<CardProps> = ({
+export const Card: React.FC<CardProps> = memo(({
     children,
     keyframes,
     slug,
@@ -18,4 +20,4 @@ export const Card: React.FC<CardProps> = ({
             {children}
         </div>
     )
-};
+});

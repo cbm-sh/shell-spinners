@@ -1,8 +1,9 @@
 import getCliLoaders from "@/lib/get-cli-loaders";
+import type { CliLoaderProps } from "@/types";
 import { CodeIcon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 const UL_VARIANTS = {
     open: {
@@ -30,7 +31,8 @@ const LI_VARIANTS = {
     },
 }
 
-export const Nav = ({ isOpen, onToggle }: { isOpen: boolean, onToggle: () => void }) => {
+export const Nav = memo(({ isOpen, onToggle }: { isOpen: boolean, onToggle: () => void }) => {
+    console.log('Nav called!');
     const [isAnimating, setIsAnimating] = useState(false);
 
     const handleToggle = () => {
@@ -46,7 +48,7 @@ export const Nav = ({ isOpen, onToggle }: { isOpen: boolean, onToggle: () => voi
         <AnimatePresence initial={false}>
             <motion.nav className='flex items-center justify-center gap-4'>
                 <motion.div className='fixed z-50 top-20 right-[50%] flex flex-col items-center justify-center text-neutral-50 max-w-5xl'>
-                <motion.ul
+                    <motion.menu
                         className={isOpen ? `fixed top-[119px] text-black max-w-5xl w-full z-50 min-h-screen h-auto overflow-y-scroll grid grid-cols-6 xs:grid-cols-5 sm:grid-cols-7 md:grid-cols-10 lg:grid-cols-9 xl:grid-cols-10 xs:grid-rows-16 sm:grid-rows-12 md:grid-rows-10 lg:grid-rows-10 xl:grid-rows-11 duration-1000 ease-in-out bg-black` :
                             `fixed top-[-100%] text-black max-w-5xl w-full z-50 min-h-screen h-auto overflow-y-scroll grid grid-cols-6 xs:grid-cols-5 sm:grid-cols-7 md:grid-cols-10 lg:grid-cols-9 xl:grid-cols-10 xs:grid-rows-16 sm:grid-rows-12 md:grid-rows-10 lg:grid-rows-10 xl:grid-rows-11 duration-1000 ease-in-out bg-black`}
                     variants={UL_VARIANTS}
@@ -69,9 +71,11 @@ export const Nav = ({ isOpen, onToggle }: { isOpen: boolean, onToggle: () => voi
                             </motion.li>
                         </Link>
                     ))}
-                </motion.ul>
+                    </motion.menu>
                 </motion.div>
             </motion.nav>
         </AnimatePresence>
     );
-};
+});
+
+Nav.displayName = 'Nav';

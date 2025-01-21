@@ -1,13 +1,10 @@
-import { CodeBlock } from '@/components/CodeBlock';
-import { ComponentPlayground } from '@/components/ComponentPlayground';
-import { BackButton } from '@/components/Buttons';
+
+import { CustomExample, NextJsComponentExample, NextJsExample, OhMyZshExample, StandardExample, ZeroDependencyExample } from '@/components/CodeExamples';
+import { ComponentView } from '@/components/ComponentView';
 import getCliLoaders from '@/lib/get-cli-loaders';
 import getLoaderJokes from '@/lib/get-loader-jokes';
-import getCodeUsage from '@/lib/get-code-usage';
+import { type CliLoaderProps } from '@/types';
 import dynamic from 'next/dynamic';
-
-const Share = dynamic(() => import('@/components/Share').then((mod) => mod.default), { ssr: true });
-const CliRenderer = dynamic(() => import('@/components/CliLoaderRenderer').then((mod) => mod.default), { ssr: true });
 
 export const generateStaticParams = async () => (
   getCliLoaders().map(({ name }: { name: string }) => ({
@@ -15,15 +12,13 @@ export const generateStaticParams = async () => (
   }))
 );
 
-export const dynamicParams = false;
-
-const ComponentPage = async ({
+const ComponentViewPage = async ({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) => {
   const param = await params;
-  const loader = getCliLoaders().find(
+  const loader: CliLoaderProps | undefined = getCliLoaders().find(
     ({ name }: { name: string }) => name === param.slug,
   );
 
@@ -33,20 +28,9 @@ const ComponentPage = async ({
 
   const { name, keyframes, speed, category } = loader;
 
-  const joke = getLoaderJokes(name, category);
-
-  const code = getCodeUsage(name, speed, keyframes);
-
-  const standard = code.find((example) => example.title === 'Standard CLI Usage');
-  const custom = code.find((example) => example.title === 'Custom CLI Usage');
-  const zeroDependency = code.find((example) => example.title === 'Zero Dependency Usage');
-  const ohMyZsh = code.find((example) => example.title === 'Oh My Zsh Plugin Usage');
-  const nextJs = code.find((example) => example.title === 'Usage in Next.js');
-  const nextJsUsage = code.find((example) => example.title === 'Next.js Component Code Usage');
-
-  if (!standard || !custom || !zeroDependency || !ohMyZsh || !nextJs || !nextJsUsage) {
-    return <div>Code not found</div>;
-  }
+  const DynamicBackButton = dynamic(() => import('@/components/Buttons').then((mod) => mod.BackButton), { ssr: true });
+  const DynamicShare = dynamic(() => import('@/components/Share').then((mod) => mod.Share), { ssr: true });
+  const DynamicCliLoaderRenderer = dynamic(() => import('@/components/CliLoaderRenderer').then((mod) => mod.CliLoaderRenderer), { ssr: true });
 
   return (
     <>
@@ -57,45 +41,45 @@ const ComponentPage = async ({
             {name} loader
           </h1>
           <p className='relative z-40 text-neutral-300 text-center py-6'>
-            {joke}
+            {getLoaderJokes(name, category)}
           </p>
         </div>
       </section>
       <section>
         <div className='px-6 pb-0 min-h-full'>
           <div className='flex flex-row justify-between items-center'>
-        <BackButton />
-            <Share
+            <DynamicBackButton />
+            <DynamicShare
               className='z-40 flex justify-end items-end'
               title={category as string}
               url={`https://cliloaders.com/${name}`}
-              description={`It's an awesome ${category?.toLocaleLowerCase()} loader!`}
+              description={`It's an awesome ${category.toLocaleLowerCase()} loader!`}
             />
           </div>
         </div>
       </section>
       <section className='w-full p-6'>
-        <ComponentPlayground>
-          <CliRenderer
+        <ComponentView>
+          <DynamicCliLoaderRenderer
             speed={speed}
             keyframes={keyframes}
             category={category}
           />
-        </ComponentPlayground>
+        </ComponentView>
         <div className='mt-6 space-y-6'>
           <h1 className='text-md font-light text-neutral-400'>Examples</h1>
-          <CodeBlock code={standard.code} lang='ts' title={standard.title} />
-          <CodeBlock code={custom.code} lang='ts' title={custom.title} isV2 />
-          <CodeBlock code={zeroDependency.code} lang='ts' title={zeroDependency.title} />
+          <StandardExample name={name} speed={speed} />
+          <CustomExample name={name} speed={speed} keyframes={keyframes} />
+          <ZeroDependencyExample name={name} speed={speed} />
           <p className='text-sm font-light text-neutral-400'>Usage in Oh My Zsh</p>
-          <CodeBlock code={ohMyZsh.code} lang='shell' title={ohMyZsh.title} />
+          <OhMyZshExample name={name} speed={speed} />
           <p className='text-sm font-light text-neutral-400'>Usage in Next.js</p>
-          <CodeBlock code={nextJs.code} lang='tsx' title={nextJs.title} />
-          <CodeBlock code={nextJsUsage.code} lang='tsx' title={nextJsUsage.title} />
+          <NextJsExample name={name} speed={speed} />
+          <NextJsComponentExample name={name} speed={speed} keyframes={keyframes} />
         </div>
       </section>
     </>
   );
 };
 
-export default ComponentPage;
+export default ComponentViewPage;

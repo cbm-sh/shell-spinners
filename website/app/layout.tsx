@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import { Header } from "@/components/Header";
-import { Toaster } from 'sonner';
 import { TopBar } from "@/components/TopBar";
+import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { Geist } from "next/font/google";
+import "./globals.css";
 
-const Analytics = dynamic(() => import("@vercel/analytics/react").then((mod) => mod.Analytics));
-const SpeedInsights = dynamic(() => import("@vercel/speed-insights/next").then((mod) => mod.SpeedInsights));
-const Footer = dynamic(() => import("@/components/Footer").then((mod) => mod.Footer));
+const DynamicAnalytics = dynamic(() => import("@vercel/analytics/react").then((mod) => mod.Analytics));
+const DynamicSpeedInsights = dynamic(() => import("@vercel/speed-insights/next").then((mod) => mod.SpeedInsights));
+const DynamicFooter = dynamic(() => import("@/components/Footer").then((mod) => mod.Footer));
+const DynamicToaster = dynamic(() => import("sonner").then((mod) => mod.Toaster));
 
 export const metadata: Metadata = {
   title: {
@@ -79,11 +79,7 @@ export const metadata: Metadata = {
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "600", "700", "900"],
 });
 
 const RootLayout = ({
@@ -93,22 +89,22 @@ const RootLayout = ({
 }) => (
     <html lang="en" suppressHydrationWarning>
       <body
-      className={`${geistSans.variable} ${geistMono.variable} bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl mx-auto border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen`}>
+      className={`${geistSans.variable} bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl mx-auto border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen`}>
       <Header />
       <TopBar />
       <main>
         {children}
       </main>
-      <Footer />
-      <Toaster
+      <DynamicFooter />
+      <DynamicToaster
         toastOptions={{
         style: {
           borderRadius: 0,
         },
         className: 'border border-neutral-800 bg-black text-neutral-50',
         }} />
-      <SpeedInsights />
-      <Analytics />
+      <DynamicSpeedInsights />
+      <DynamicAnalytics />
       </body>
     </html>
   );

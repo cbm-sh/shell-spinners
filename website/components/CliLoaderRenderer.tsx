@@ -1,8 +1,9 @@
 "use client";
 
+import type { LoaderProps } from '@/types';
 import { memo, useEffect, useState } from 'react';
 
-const CliLoaderRenderer: React.FC<LoaderProps> = ({ speed, keyframes, className }) => {
+export const CliLoaderRenderer: React.FC<LoaderProps> = memo(({ speed, keyframes, className }) => {
   const [currentFrame, setCurrentFrame] = useState(keyframes[0]);
 
   useEffect(() => {
@@ -20,8 +21,6 @@ const CliLoaderRenderer: React.FC<LoaderProps> = ({ speed, keyframes, className 
       {currentFrame}
     </div>
   );
-};
+});
 
 CliLoaderRenderer.displayName = 'CliLoaderRenderer';
-
-export default memo(CliLoaderRenderer);

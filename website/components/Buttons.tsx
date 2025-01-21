@@ -1,18 +1,19 @@
 'use client';
 
-import { ArrowLeftIcon, ArrowRightIcon, CodeIcon, HomeIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
-import { CheckIcon, CopyIcon, LayersIcon } from '@radix-ui/react-icons';
-import { memo } from 'react';
 import { useCopyCode } from "@/hooks/use-copy-code";
 import { cx, generateCnPositionForButton, isKeyframes, isNpm } from "@/lib/utils";
-import { FaNpm } from "react-icons/fa";
+import type { AnimatedIconButtonProps, CopyCodeButtonProps } from "@/types";
+import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, CodeIcon, CopyIcon, HomeIcon, LayersIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
+import { memo, useMemo } from 'react';
 
-export const AnimatedIconButton: React.FC<AnimatedIconButtonProps> = ({ icons, buttonVariant, className, ...props }) => (
+export const AnimatedIconButton: React.FC<AnimatedIconButtonProps> = memo(({ icons, buttonVariant, className, ...props }) => (
+  console.log(`AnimatedIconButton called for ${buttonVariant}!`),
   <button
     type="button"
-    className={cx(
-      generateCnPositionForButton(buttonVariant),
+      className={cx(
+        className,
+        generateCnPositionForButton(buttonVariant),
       'inline-flex cursor-pointer items-center justify-center p-2 overflow-hidden font-medium text-neutral-50 transition duration-300 ease-out border border-neutral-800 group',
     )}
     {...props}>
@@ -25,11 +26,12 @@ export const AnimatedIconButton: React.FC<AnimatedIconButtonProps> = ({ icons, b
     </span>
     <span className="relative invisible">{icons.default}</span>
   </button>
-);
+));
 
 AnimatedIconButton.displayName = 'AnimatedIconButton';
 
-export const BackButton = () => (
+export const BackButton = memo(() => (
+  console.log('BackButton called!'),
   <Link href="/">
     <AnimatedIconButton
       icons={{ default: <ArrowLeftIcon />, hover: <HomeIcon className="size-4 text-neutral-50" /> }}
@@ -37,21 +39,12 @@ export const BackButton = () => (
       buttonVariant="back"
     />
   </Link>
-);
+));
 
 BackButton.displayName = 'BackButton';
 
-export const NpmButton = () => (
-  <Link href="/">
-    <AnimatedIconButton
-      icons={{ default: <CopyIcon />, hover: <FaNpm className="size-4 text-neutral-50" /> }}
-      aria-label="Copy NPM Command"
-      buttonVariant="npm"
-    />
-  </Link>
-);
-
-export const CodeViewButton = ({ slug }: { slug: string }) => (
+export const CodeViewButton = memo(({ slug }: { slug: string }) => (
+  console.log('CodeViewButton called!'),
   <Link href={slug}>
     <AnimatedIconButton
       icons={{ default: <ArrowRightIcon />, hover: <CodeIcon className="size-4 text-neutral-50" /> }}
@@ -59,24 +52,29 @@ export const CodeViewButton = ({ slug }: { slug: string }) => (
       buttonVariant="code-view"
     />
   </Link>
-);
+));
 
 CodeViewButton.displayName = 'CodeViewButton';
 
-export const CopyCodeButton: React.FC<CopyCodeButton> = memo(({ code }) => {
+export const CopyCodeButton: React.FC<CopyCodeButtonProps> = memo(({ code }) => {
+  console.log('CopyCodeButton called!');
   const { onCopy, isChecked } = useCopyCode(code);
+
+  const icons = useMemo(() => ({
+    default: isChecked ? <CheckIcon className='size-4' /> : <CopyIcon className='size-4' />,
+    hover: isChecked ? <CheckIcon className='size-4' /> : <LayersIcon className='size-4' />
+  }), [isChecked]);
+
+  const buttonVariant = useMemo(() => isKeyframes(code) ? 'keyframes' : isNpm(code) ? 'npm' : 'code', [code]);
+  console.log(`Button Variant ${buttonVariant} Loaded`);
 
   return (
     <AnimatedIconButton
-      icons={{
-        default: isChecked ? <CheckIcon className='size-4' /> : <CopyIcon className='size-4' />, hover: isChecked ? <CheckIcon className='size-4' /> : <LayersIcon className='size-4' />
-      }}
+      icons={icons}
       onClick={onCopy}
-      buttonVariant={isKeyframes(code) ? 'keyframes' : isNpm(code) ? 'npm' : 'code'}
+      buttonVariant={buttonVariant}
     />
   );
 });
 
 CopyCodeButton.displayName = 'CopyCodeButton';
-
-
