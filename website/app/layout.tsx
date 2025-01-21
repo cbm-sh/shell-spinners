@@ -82,7 +82,7 @@ const RootLayout = ({
 }) => (
     <html lang="en" suppressHydrationWarning>
       <body
-      className='bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl overflow-x-hidden border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen'>
+      className='mx-auto bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl overflow-x-hidden border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen'>
       <Header />
       <TopBar />
       <main>
