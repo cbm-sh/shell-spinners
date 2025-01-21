@@ -1,6 +1,7 @@
-import { memoize } from '@/lib/utils';
+import { memoizer } from "./utils";
 
-export const getJokes = memoize((name: string, category: string): string => {
+export const getJokes = memoizer((name: string, category: string): string => {
+	console.log('getJokes called!');
 	const jokeCategories: Record<string, string[]> = {
 		Arrows: [
 			`Why did ${name} cross the road? To point you in the right direction!`,

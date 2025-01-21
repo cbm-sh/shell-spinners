@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { memo } from 'react';
 import { Renderer } from "./Renderer";
 
-export const TopBar = () => {
+export const TopBar = memo(() => {
     console.log('TopBar called!');
     const keyframes = ['▎', '▎', '', '', '▎', '▎', '', '', 'V▎', 'V2▎', 'V2 N▎', 'V2 No▎', 'V2 Now▎', 'V2 Now ▎', 'V2 Now A▎', 'V2 Now Av▎', 'V2 Now Ava▎', 'V2 Now Avai▎', 'V2 Now Avail▎', 'V2 Now Availa▎', 'V2 Now Availab▎', 'V2 Now Availabl▎', 'V2 Now Available▎', 'V2 Now Available!▎', 'V2 Now Available! ☺️', 'V2 Now Available! ☺️', 'V2 Now Available! ☺️', 'V2 Now Available! ☺️', 'V2 Now Available! 😊', 'V2 Now Available! 😊', 'V2 Now Available! 😊', 'V2 Now Available! 😊', 'V2 Now Available! 🥳', 'V2 Now Available! 🥳', 'V2 Now Available! 🥳', 'V2 Now Available! 🥳', 'V2 Now Available! 🎉', 'V2 Now Available! 🎉', 'V2 Now Available! 🎉', 'V2 Now Available! 🎉', 'V2 Now Available! 🎉', 'V2 Now Available! 🎉', 'V2 Now Available! 🎉', 'V2 Now Available! 🎉', 'V2 Now Available! 🎉', 'V2 Now Available! 🎉', 'V2 Now Available! 🎉', 'V2 Now Available! 🎉', 'V2 Now Available! 🥳', 'V2 Now Available! 🥳', 'V2 Now Available! 🥳', 'V2 Now Available! 🥳', 'V2 Now Available!▎', 'V2 Now Available▎', 'V2 Now Availabl▎', 'V2 Now Availab▎', 'V2 Now Availa▎', 'V2 Now Avail▎', 'V2 Now Avai▎', 'V2 Now Ava▎', 'V2 Now Av▎', 'V2 Now A▎', 'V2 Now ▎', 'V2 Now▎', 'V2 No▎', 'V2 N▎', 'V2▎', 'V▎', ''];
     return (
@@ -10,7 +11,7 @@ export const TopBar = () => {
                 <span>
                     <Renderer
                         className="inline-flex text-sm"
-                        speed={100}
+                        speed={150}
                         keyframes={keyframes}
                         category={"Arrows"}
                         name={""} />
@@ -18,6 +19,6 @@ export const TopBar = () => {
             </Link>
         </div>
     );
-};
+});
 
 TopBar.displayName = 'TopBar';

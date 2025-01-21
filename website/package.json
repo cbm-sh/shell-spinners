@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "build:dev": "next build NODE_ENV=development",
     "start": "next start",
     "lint": "next lint"
   },
@@ -14,6 +13,7 @@
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "framer-motion": "^11.18.1",
+    "lodash": "^4.17.21",
     "next": "^15.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

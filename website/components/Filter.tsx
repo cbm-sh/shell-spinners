@@ -1,19 +1,21 @@
 "use client";
 
-import { PreviewCard } from '@/components/Cards';
-import { Tabs } from '@/components/Tabs';
 import { getLoaders } from '@/lib/get-loaders';
-import type { LoaderCategories, LoaderProps } from '@/types';
+import type { LoaderProps } from '@/types';
 import { AnimatePresence, motion } from "framer-motion";
+import dynamic from 'next/dynamic';
 import { useMemo, useState } from 'react';
-import { Renderer } from './Renderer';
+
+const PreviewCard = dynamic(() => import('@/components/Cards').then(mod => mod.PreviewCard));
+const Tabs = dynamic(() => import('@/components/Tabs').then(mod => mod.Tabs));
+const Renderer = dynamic(() => import('./Renderer').then(mod => mod.Renderer));
 
 export const Filter = () => {
     const [activeTab, setActiveTab] = useState('Arrows');
     const filteredLoaders = useMemo(() => {
         return activeTab === 'All'
             ? getLoaders()
-            : getLoaders().filter(({ category }: { category: LoaderCategories }) => category.includes(activeTab));
+            : getLoaders().filter((loader) => loader.category?.includes(activeTab));
     }, [activeTab]);
 
     return (

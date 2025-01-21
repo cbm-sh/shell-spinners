@@ -1,6 +1,9 @@
 import type { CardProps, ExampleCardProps } from '@/types';
+import dynamic from 'next/dynamic';
 import { memo } from 'react';
-import { CodeViewButton, CopyCodeButton } from './Buttons';
+
+const CodeViewButton = dynamic(() => import('./Buttons').then(mod => mod.CodeViewButton));
+const CopyCodeButton = dynamic(() => import('./Buttons').then(mod => mod.CopyCodeButton));
 
 export const PreviewCard: React.FC<CardProps> = memo(({
     children,

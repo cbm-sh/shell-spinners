@@ -1,5 +1,7 @@
-import { CopyCodeButton } from '@/components/Buttons';
-import { Filter } from '@/components/Filter';
+import dynamic from 'next/dynamic';
+
+const CopyCodeButton = dynamic(() => import('@/components/Buttons').then(mod => mod.CopyCodeButton));
+const Filter = dynamic(() => import('@/components/Filter').then(mod => mod.Filter));
 
 const HomePage = () => {
   return (

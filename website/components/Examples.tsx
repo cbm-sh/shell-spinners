@@ -1,5 +1,7 @@
+import dynamic from 'next/dynamic';
 import { memo, useMemo } from 'react';
-import { ExampleCard } from './Cards';
+
+const ExampleCard = dynamic(() => import('@/components/Cards').then(mod => mod.ExampleCard));
 
 export const StandardExample = memo(({ name, speed }: { name: string; speed: number }) => {
     const title = 'Standard CLI Example';

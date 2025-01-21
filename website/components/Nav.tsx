@@ -1,9 +1,11 @@
 import { getLoaders } from "@/lib/get-loaders";
 import type { LoaderProps } from "@/types";
-import { CodeIcon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "framer-motion";
+import dynamic from 'next/dynamic';
 import Link from "next/link";
-import { memo, useState } from "react";
+import { memo, useState } from 'react';
+
+const CodeIcon = dynamic(() => import('@radix-ui/react-icons').then(mod => mod.CodeIcon));
 
 const UL_VARIANTS = {
     open: {

@@ -1,16 +1,17 @@
 "use client";
 
+import dynamic from 'next/dynamic';
+import { memo } from 'react';
 import { AiFillMail } from "react-icons/ai";
 import { FaFacebook, FaLinkedin, FaReddit } from "react-icons/fa";
-import {
-  EmailShareButton,
-  FacebookShareButton,
-  LinkedinShareButton,
-  RedditShareButton,
-  TwitterShareButton,
-} from "react-share";
 
-export const Share = ({
+const EmailShareButton = dynamic(() => import('react-share').then(mod => mod.EmailShareButton), { ssr: false });
+const FacebookShareButton = dynamic(() => import('react-share').then(mod => mod.FacebookShareButton), { ssr: false });
+const LinkedinShareButton = dynamic(() => import('react-share').then(mod => mod.LinkedinShareButton), { ssr: false });
+const RedditShareButton = dynamic(() => import('react-share').then(mod => mod.RedditShareButton), { ssr: false });
+const TwitterShareButton = dynamic(() => import('react-share').then(mod => mod.TwitterShareButton), { ssr: false });
+
+export const Share = memo(({
   className,
   title,
   url,
@@ -93,6 +94,6 @@ export const Share = ({
       </TwitterShareButton>
     </div>
   );
-};
+}, () => true);
 
 Share.displayName = "Share";
