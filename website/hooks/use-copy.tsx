@@ -1,4 +1,4 @@
-import { isKeyframes } from "@/lib/utils";
+import { isKeyframes, isNpm } from "@/lib/utils";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -9,12 +9,12 @@ export const useCopy = (code: string | string[]) => {
     const onCopy = () => {
         navigator.clipboard.writeText(codeString);
         setIsChecked(true);
-        toast.success(`${isKeyframes(code) ? 'Keyframes' : 'Code'} successfully copied to clipboard!`);
+        toast.success(`${isKeyframes(code) ? 'Keyframes' : isNpm(code) ? 'Npm command' : 'Code'} successfully copied to clipboard!`);
         setTimeout(() => {
             setIsChecked(false);
         }, 1000);
     };
 
-    return { onCopy, isChecked };
+    return [onCopy, isChecked] as const;
 
 };

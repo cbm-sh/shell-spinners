@@ -1,6 +1,7 @@
 import { TopBar } from "@/components/TopBar";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { AnimatePresence } from "framer-motion";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import "./globals.css";
@@ -80,6 +81,7 @@ const RootLayout = ({
 }: {
   children: React.ReactNode;
 }) => (
+  <AnimatePresence initial={false} mode='wait'>
     <html lang="en" suppressHydrationWarning>
       <body
       className='mx-auto bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl overflow-x-hidden border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen'>
@@ -100,6 +102,7 @@ const RootLayout = ({
       <Analytics />
       </body>
     </html>
+  </AnimatePresence>
   );
 
 export default RootLayout;

@@ -21,7 +21,7 @@ const styles = {
   BackButton: 'relative top-0 left-0',
   CopyKeyframesButton: 'absolute top-3 right-14',
   CopyCodeButton: 'absolute top-3 right-3',
-  CopyNpmButton: 'relative top-1 -right-2',
+  CopyNpmButton: 'relative top-0 -right-2',
   CodeViewButton: 'absolute top-3 right-3',
 };
 
@@ -69,7 +69,7 @@ export const CodeViewButton = memo(({ slug }: { slug: string }) => (
 CodeViewButton.displayName = 'CodeViewButton';
 
 export const CopyCodeButton: React.FC<CopyCodeButtonProps> = memo(({ code }) => {
-  const { onCopy, isChecked } = useCopy(code);
+  const [onCopy, isChecked] = useCopy(code);
 
   const icons = useMemo(() => ({
     default: isChecked ? <BiCheck size={16} /> : <BiCopy />,

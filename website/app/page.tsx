@@ -12,12 +12,12 @@ const HomePage = () => {
         <h1 className='text-balance relative z-40 font-semibold text-neutral-100 text-4xl md:text-5xl text-center'>
           Cli Loaders
           </h1>
-        <p className='relative z-40 text-neutral-200 text-center py-6'>
+          <p className='relative z-40 text-neutral-200 text-center pt-6 pb-12'>
           A collection of animated CLI loaders for your projects.
           </p>
-        <div className='pt-2 text-center relative z-40'>
+          <div className='text-center relative z-40'>
             <pre>
-              <code className='w-full border bg-black border-neutral-800 p-4'>npm install cli-loaders
+              <code className='w-full border bg-black border-neutral-800 pr-3.5 pl-2.5 pt-[16px] pb-[14px]'>npm install cli-loaders
               <CopyCodeButton code={'npm install cli-loaders'} />
             </code>
           </pre>

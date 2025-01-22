@@ -51,9 +51,9 @@ export const Filter = memo(() => {
     const filteredLoaders = useMemo(() => getLoadersByCategory(activeTab), [activeTab]);
 
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={null}>
             <FilterTabs tabs={['Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers']} activeTab={activeTab} setActiveTab={setActiveTab} />
-            <div className='z-40 min-h-dvh w-full p-6 border border-y-neutral-800 border-x-0'>
+            <div className='z-40 min-h-screen w-full p-6 border border-y-neutral-800 border-x-0'>
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3'>
                     {filteredLoaders.map(({ name, keyframes, speed }) => (
                         <div key={name}>
