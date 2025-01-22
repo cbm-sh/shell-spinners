@@ -8,7 +8,7 @@ export const getChangeLog = cache((): ChangeLogProps[] => {
 	const changelogContent = fs.readFileSync(changelogPath, 'utf-8');
 	const changelogLines = changelogContent.split('\n');
 
-	const changelog = [];
+	const changelog: ChangeLogProps[] = [];
 	let currentVersion: ChangeLogProps | null = null;
 
 	for (const line of changelogLines) {
@@ -29,6 +29,3 @@ export const getChangeLog = cache((): ChangeLogProps[] => {
 
 	return changelog;
 });
-
-
-

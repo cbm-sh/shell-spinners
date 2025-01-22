@@ -1,11 +1,15 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { TopBar } from "@/components/TopBar";
+import "./globals.css";
+
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Toaster } from "sonner";
-import "./globals.css";
+import dynamic from "next/dynamic";
+
+const ToastWrapper = dynamic(() => import("@/components/Toast").then(mod => mod.ToastWrapper));
+const ToastProvider = dynamic(() => import("@/components/ToastProvider").then(mod => mod.ToastProvider));
+const TopBar = dynamic(() => import("@/components/TopBar").then(mod => mod.TopBar));
+const Footer = dynamic(() => import("@/components/Footer").then(mod => mod.Footer));
+const Header = dynamic(() => import("@/components/Header").then(mod => mod.Header));
 
 export const metadata: Metadata = {
   title: {
@@ -77,27 +81,23 @@ const RootLayout = ({
   children,
 }: {
   children: React.ReactNode;
-}) => (
-    <html lang="en" suppressHydrationWarning>
-      <body
-      className='bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl mx-auto border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen'>
-      <Header />
-      <TopBar />
-      <main>
-        {children}
-      </main>
-      <Footer />
-      <Toaster
-        toastOptions={{
-        style: {
-          borderRadius: 0,
-        },
-        className: 'border border-neutral-800 bg-black text-neutral-50',
-        }} />
-      <SpeedInsights />
-      <Analytics />
-      </body>
-    </html>
-  );
+  }) => (
+    <ToastProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className='mx-auto font-sans text-sm text-neutral-50 antialiased max-w-5xl overflow-x-hidden border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen bg-black'>
+          <Header />
+          <TopBar />
+          <main>
+            {children}
+          </main>
+          <Footer />
+          <ToastWrapper />
+          <SpeedInsights />
+          <Analytics />
+        </body>
+      </html>
+  </ToastProvider>
+);
 
 export default RootLayout;

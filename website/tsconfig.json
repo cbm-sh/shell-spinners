@@ -28,8 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "types/index.d.ts",
-    "components/CodeViewWindowtsx"
+    "types/index.d.ts"
   ],
   "exclude": ["node_modules"]
 }
