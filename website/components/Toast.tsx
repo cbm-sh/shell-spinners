@@ -3,10 +3,8 @@
 import { useToast } from '@/hooks/use-toast';
 import type { ToastProps } from '@/types';
 import { AnimatePresence, motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
-import { memo, useEffect } from 'react';
-
-const FaCheckCircle = dynamic(() => import('react-icons/fa').then(mod => mod.FaCheckCircle));
+import { useEffect } from 'react';
+import { FaCheckCircle } from 'react-icons/fa';
 
 const TOAST_VARIANTS = {
     open: {
@@ -25,11 +23,12 @@ const TOAST_VARIANTS = {
     },
 };
 
-export const Toast = memo(({ isOpen, message, onClose }: ToastProps) => {
+export const Toast = ({ isOpen, message, onClose }: ToastProps) => {
     useEffect(() => {
         const timer = setTimeout(() => {
-            // @ts-expect-error
-            onClose();
+            if (onClose) {
+                onClose();
+            }
         }, 3000);
         return () => clearTimeout(timer);
     }, [onClose]);
@@ -51,11 +50,11 @@ export const Toast = memo(({ isOpen, message, onClose }: ToastProps) => {
             )}
         </AnimatePresence>
     );
-});
+};
 
 Toast.displayName = 'Toast';
 
-export const ToastWrapper = memo(() => {
+export const ToastWrapper = () => {
     const { toasts, removeToast } = useToast();
 
     const handleClose = (id: number) => {
@@ -75,6 +74,6 @@ export const ToastWrapper = memo(() => {
             ))}
         </div>
     );
-});
+};
 
 ToastWrapper.displayName = 'ToastWrapper';

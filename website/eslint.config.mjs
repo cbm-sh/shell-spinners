@@ -1,5 +1,4 @@
 import { FlatCompat } from "@eslint/eslintrc";
-import jsxA11y from 'eslint-plugin-jsx-a11y';
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -11,16 +10,13 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  jsxA11y.flatConfigs.recommended,
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   ...compat.config({
     extends: ["next"],
     rules: {
       "@typescript-eslint/no-explicit-any": "off",
     },
-    plugins: {
-      'jsx-a11y': jsxA11y,
-    },
+    plugins: ["jsx-a11y"],
   }),
 ];
 
