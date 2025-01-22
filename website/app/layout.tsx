@@ -1,14 +1,16 @@
+import "./globals.css";
+
+import { ToastContainer } from "@/components/ToastContainer";
+import { ToastProvider } from "@/components/ToastContext";
 import { TopBar } from "@/components/TopBar";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AnimatePresence } from "framer-motion";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import "./globals.css";
 
 const Footer = dynamic(() => import("@/components/Footer").then(mod => mod.Footer));
 const Header = dynamic(() => import("@/components/Header").then(mod => mod.Header));
-const Toaster = dynamic(() => import("sonner").then(mod => mod.Toaster));
 
 export const metadata: Metadata = {
   title: {
@@ -81,28 +83,24 @@ const RootLayout = ({
 }: {
   children: React.ReactNode;
 }) => (
-  <AnimatePresence initial={false} mode='wait'>
-    <html lang="en" suppressHydrationWarning>
-      <body
-      className='mx-auto bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl overflow-x-hidden border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen'>
-      <Header />
-      <TopBar />
-      <main>
-        {children}
-      </main>
-      <Footer />
-      <Toaster
-        toastOptions={{
-        style: {
-          borderRadius: 0,
-        },
-        className: 'border border-neutral-800 bg-black text-neutral-50',
-        }} />
-      <SpeedInsights />
-      <Analytics />
-      </body>
-    </html>
+  <AnimatePresence initial={false} mode="popLayout">
+    <ToastProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className='mx-auto bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl overflow-x-hidden border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen'>
+          <Header />
+          <TopBar />
+          <main>
+            {children}
+          </main>
+          <Footer />
+          <ToastContainer />
+          <SpeedInsights />
+          <Analytics />
+        </body>
+      </html>
+    </ToastProvider>
   </AnimatePresence>
-  );
+);
 
 export default RootLayout;

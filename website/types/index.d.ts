@@ -1,3 +1,4 @@
+
 export type AnimatedButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	icons: {
 		default: React.ReactElement<SVGElement>;
@@ -83,4 +84,26 @@ export type TabsProps = {
 	tabs: string[];
 	activeTab: string;
 	setActiveTab: (tab: string) => void;
+};
+
+export type ToastContextProps = {
+	toasts: ToastProps[];
+	addToast: (message: string, type: 'success' | 'error' | 'info') => void;
+	removeToast: (id: number) => void;
+	success: (message: string) => void;
+	error: (message: string) => void;
+	info: (message: string) => void;
+};
+
+export type ToastMessageProps = {
+	message: string;
+	type: 'success' | 'error' | 'info';
+	onClose: () => void;
+};
+
+export type ToastProps = {
+	id: number;
+	message: string;
+	type: 'success' | 'error' | 'info';
+	onClose?: () => void;
 };

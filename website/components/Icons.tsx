@@ -35,7 +35,6 @@ export const XLogoIcon = memo((props: IconProps) => (
 XLogoIcon.displayName = 'XLogoIcon';
 
 export const BMACLogoIcon = memo((props: IconProps) => (
-  console.log('BMACLogoIcon called!'),
     <svg
     width="16px"
     height="24px"
@@ -63,7 +62,6 @@ export const BMACLogoIcon = memo((props: IconProps) => (
 BMACLogoIcon.displayName = 'BMACLogoIcon';
 
 export const IconGroup = memo(({ ...props }: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => (
-  console.log('IconGroup called!'),
   <div {...props}>
     <Link
       href='https://github.com/cbm-sh/cli-loaders'
