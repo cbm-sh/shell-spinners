@@ -5,11 +5,11 @@ import { memo } from 'react';
 import { AiFillMail } from "react-icons/ai";
 import { FaFacebook, FaLinkedin, FaReddit } from "react-icons/fa";
 
-const EmailShareButton = dynamic(() => import('react-share').then(mod => mod.EmailShareButton), { ssr: false });
-const FacebookShareButton = dynamic(() => import('react-share').then(mod => mod.FacebookShareButton), { ssr: false });
-const LinkedinShareButton = dynamic(() => import('react-share').then(mod => mod.LinkedinShareButton), { ssr: false });
-const RedditShareButton = dynamic(() => import('react-share').then(mod => mod.RedditShareButton), { ssr: false });
-const TwitterShareButton = dynamic(() => import('react-share').then(mod => mod.TwitterShareButton), { ssr: false });
+const EmailShareButton = dynamic(() => import('react-share').then(mod => mod.EmailShareButton));
+const FacebookShareButton = dynamic(() => import('react-share').then(mod => mod.FacebookShareButton));
+const LinkedinShareButton = dynamic(() => import('react-share').then(mod => mod.LinkedinShareButton));
+const RedditShareButton = dynamic(() => import('react-share').then(mod => mod.RedditShareButton));
+const TwitterShareButton = dynamic(() => import('react-share').then(mod => mod.TwitterShareButton));
 
 export const Share = memo(({
   className,
@@ -21,8 +21,7 @@ export const Share = memo(({
   title: string;
   url: string;
   description: string;
-}) => {
-  console.log("Share called!");
+  }) => {
   return (
     <div className={className}>
       <EmailShareButton

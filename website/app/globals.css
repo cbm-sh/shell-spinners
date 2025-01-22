@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Customize the overflow-x scrollbar */
+::-webkit-scrollbar {
+    height: 0px;
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #222;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #2a2a2a;
+}

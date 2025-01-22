@@ -8,8 +8,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { memo, useCallback, useEffect, useState } from 'react';
 
-const Nav = dynamic(() => import('@/components/Nav').then((mod) => mod.Nav), { ssr: false });
-const IconGroup = dynamic(() => import('@/components/Icons').then((mod) => mod.IconGroup), { ssr: false });
+const Nav = dynamic(() => import('@/components/Nav').then((mod) => mod.Nav));
+const IconGroup = dynamic(() => import('@/components/Icons').then((mod) => mod.IconGroup));
 
 export const SVG_PATH_OPEN = {
     opened: { d: 'M3.06061 2.99999L21.0606 21' },
@@ -24,7 +24,6 @@ export const SVG_PATH_CLOSE = {
 }
 
 export const Header = memo(() => {
-    console.log('Header called!');
     const [animation, setAnimation] = useState('closed');
     const [isLoaded] = useLoaded();
     const [isVisible, toggleIsVisible] = useToggle(false);

@@ -3,11 +3,10 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { memo, type DetailedHTMLProps, type HTMLAttributes } from "react";
 
-const GitHubLogoIcon = dynamic(() => import('@radix-ui/react-icons').then(mod => mod.GitHubLogoIcon));
-const HeartIcon = dynamic(() => import('@radix-ui/react-icons').then(mod => mod.HeartIcon));
+const FaGithub = dynamic(() => import('react-icons/fa6').then(mod => mod.FaGithub));
+const FaHeart = dynamic(() => import('react-icons/fa6').then(mod => mod.FaHeart));
 
 export const XLogoIcon = memo((props: IconProps) => (
-  console.log('XLogoIcon called!'),
     <svg
     viewBox='0 0 64 64'
     width='64'
@@ -75,7 +74,7 @@ export const IconGroup = memo(({ ...props }: DetailedHTMLProps<HTMLAttributes<HT
       className='inline-flex'
       aria-label="Cli Loaders Github Repository"
     >
-      <GitHubLogoIcon className='size-4 sm:size-5' />
+        <FaGithub className='size-4 sm:size-5' />
     </Link>
     <Link
       href='https://x.com/cbmonx'
@@ -107,7 +106,7 @@ export const IconGroup = memo(({ ...props }: DetailedHTMLProps<HTMLAttributes<HT
       aria-hidden="false"
       aria-label="Author Christian B. Martinez' Buy Me A Coffee Page"
     >
-      <HeartIcon className='size-4 sm:size-5 text-pink-300' />
+        <FaHeart className='size-4 sm:size-5 text-pink-300' />
     </Link>
   </div>
 ), (a, b) => a === b);

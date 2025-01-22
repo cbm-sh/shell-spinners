@@ -1,7 +1,7 @@
 import { memoizer } from "./utils";
 
+// Create a function to generate jokes
 export const getJokes = memoizer((name: string, category: string): string => {
-	console.log('getJokes called!');
 	const jokeCategories: Record<string, string[]> = {
 		Arrows: [
 			`Why did ${name} cross the road? To point you in the right direction!`,

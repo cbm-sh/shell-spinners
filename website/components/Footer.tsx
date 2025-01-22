@@ -2,7 +2,6 @@ import Link from "next/link";
 import { memo } from "react";
 
 export const Footer = memo(() => (
-    console.log('Footer called!'),
     <footer className="p-6 flex h-20 items-center justify-between text-center border border-t-neutral-800 border-b-0 border-x-0">
         <Link href="/changelog" className="text-neutral-400 hover:text-neutral-500 transition-colors duration-300" aria-label="Cli Loaders Changelog" aria-hidden="false" role='link' >
             Changelog

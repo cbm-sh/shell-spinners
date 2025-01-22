@@ -1,18 +1,18 @@
-import { memoize } from 'lodash';
+import { memoize } from 'lodash-es';
 
-// Check if the code is an array of keyframes
+// Create a function to check if the code is a keyframes array
 export const isKeyframes = (code: string | string[]): code is string[] => Array.isArray(code);
 
-// Check if the code is an npm command
+// Create a function to check if the code is an npm command
 export const isNpm = (code: string): boolean => code.startsWith('npm');
 
-// Check if the code is a code snippet
+// Create a function to for checking code snippets
 export const isCode = (code: string): boolean => !isNpm(code) && !isKeyframes(code);
 
 // Create a class name from an array of strings
 export const cx = (...classes: string[]) => classes.filter(Boolean).join(' ');
 
-// Memoize a function to cache its results
+// Create a Memoize function to cache function results
 export const memoizer = <T extends (...args: any[]) => any>(fn: T) => {
 	const cache = new Map<string, ReturnType<T>>();
 

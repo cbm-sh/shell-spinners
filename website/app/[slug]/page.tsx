@@ -1,5 +1,9 @@
 import { getJokes } from '@/lib/get-jokes';
-import { getLoaders } from '@/lib/get-loaders';
+import {
+  getLoaderByName,
+  getLoaders,
+  getLoadersByCategory
+} from '@/lib/get-loaders';
 import type { LoaderProps } from '@/types';
 import dynamic from 'next/dynamic';
 import { memo } from 'react';
@@ -27,9 +31,7 @@ const ViewPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const param = await params;
-  const loader: LoaderProps | undefined = getLoaders().find(
-    ({ name }: { name: string }) => name === param.slug,
-  );
+  const loader: LoaderProps | undefined = getLoaderByName(param.slug);
 
   if (!loader) {
     return <div>Loader not found</div>;
@@ -37,13 +39,15 @@ const ViewPage = async ({
 
   const jokes = getJokes(loader.name, loader.category as string);
 
+  const chosenLoader = getLoadersByCategory(loader.category as string).find(({ name }) => name === param.slug);
+
   return (
     <>
       <section>
         <div className='py-12 px-6'>
           <div className='absolute w-full max-w-5xl min-h-48 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
-          <h1 className='text-balance relative z-40 font-semibold text-neutral-100 text-4xl md:text-5xl text-center'>
-            {loader.name} loader
+          <h1 className='text-balance relative font-semibold text-neutral-100 text-4xl md:text-5xl text-center'>
+            {chosenLoader?.name} loader
           </h1>
           <p className='relative z-40 text-neutral-300 text-center py-6'>
             {jokes}
@@ -56,9 +60,9 @@ const ViewPage = async ({
             <BackButton />
             <Share
               className='z-40 flex justify-end items-end'
-              title={loader.category as string}
-              url={`https://cliloaders.com/${loader.name}`}
-              description={`It's an awesome ${loader.category?.toLocaleLowerCase()} loader!`}
+              title={chosenLoader?.category as string}
+              url={`https://cliloaders.com/${chosenLoader?.name}`}
+              description={`It's an awesome ${chosenLoader?.category?.toLocaleLowerCase()} loader!`}
             />
           </div>
         </div>
@@ -66,21 +70,21 @@ const ViewPage = async ({
       <section className='w-full p-6'>
         <View>
           <Renderer
-            speed={loader.speed}
-            keyframes={loader.keyframes}
-            category={loader.category}
+            speed={chosenLoader?.speed as number}
+            keyframes={chosenLoader?.keyframes as string[]}
+            category={chosenLoader?.category}
           />
         </View>
         <div className='mt-6 space-y-6'>
           <h1 className='text-md font-light text-neutral-400'>Examples</h1>
-          <StandardExample name={loader.name} speed={loader.speed} />
-          <CustomExample keyframes={loader.keyframes} />
-          <ZeroDependencyExample speed={loader.speed} keyframes={loader.keyframes} />
+          <StandardExample name={chosenLoader?.name} speed={chosenLoader?.speed} />
+          <CustomExample keyframes={chosenLoader?.keyframes} />
+          <ZeroDependencyExample speed={chosenLoader?.speed} keyframes={chosenLoader?.keyframes} />
           <p className='text-sm font-light text-neutral-400'>Usage in Oh My Zsh</p>
-          <OhMyZshExample speed={loader.speed} keyframes={loader.keyframes} />
+          <OhMyZshExample speed={chosenLoader?.speed} keyframes={chosenLoader?.keyframes} />
           <p className='text-sm font-light text-neutral-400'>Usage in Next.js</p>
           <NextJsExample />
-          <NextJsComponentExample speed={loader.speed} keyframes={loader.keyframes} />
+          <NextJsComponentExample speed={chosenLoader?.speed} keyframes={chosenLoader?.keyframes} />
         </div>
       </section>
     </>

@@ -1,9 +1,10 @@
+import type { LoaderProps } from '@/types';
 import dynamic from 'next/dynamic';
 import { memo, useMemo } from 'react';
 
 const ExampleCard = dynamic(() => import('@/components/Cards').then(mod => mod.ExampleCard));
 
-export const StandardExample = memo(({ name, speed }: { name: string; speed: number }) => {
+export const StandardExample = memo(({ name, speed }: Partial<LoaderProps>) => {
     const title = 'Standard CLI Example';
     const code = useMemo(() => (
         `// Import the loader initializer
@@ -19,7 +20,7 @@ initLoader('${name}', ${speed});`), [name, speed]);
 
 StandardExample.displayName = 'StandardExample';
 
-export const CustomExample = memo(({ keyframes }: { keyframes: string[] }) => {
+export const CustomExample = memo(({ keyframes }: Partial<LoaderProps>) => {
     const title = 'Custom CLI Example';
     const code = useMemo(() => (
         `// Import the custom loader initializer
@@ -36,7 +37,7 @@ initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
 
 CustomExample.displayName = 'CustomExample';
 
-export const ZeroDependencyExample = memo(({ speed, keyframes }: { speed: number; keyframes: string[] }) => {
+export const ZeroDependencyExample = memo(({ speed, keyframes }: Partial<LoaderProps>) => {
     const title = 'Zero Dependency Example';
     const code = useMemo(() => (
         `const initLoader = () => {
@@ -62,7 +63,7 @@ initLoader();`   ), [speed, keyframes]);
 
 ZeroDependencyExample.displayName = 'ZeroDependencyExample';
 
-export const OhMyZshExample = memo(({ speed, keyframes }: { speed: number; keyframes: string[] }) => {
+export const OhMyZshExample = memo(({ speed, keyframes }: Partial<LoaderProps>) => {
     const title = 'Oh My Zsh Example';
     const code = useMemo(() =>
         `function start_loader() {
@@ -133,7 +134,7 @@ export const LoaderComponent: React.FC<LoaderComponentProps> = ({ speed, keyfram
 
 NextJsExample.displayName = 'NextJsExample';
 
-export const NextJsComponentExample = memo(({ speed, keyframes }: { speed: number; keyframes: string[] }) => {
+export const NextJsComponentExample = memo(({ speed, keyframes }: Partial<LoaderProps>) => {
     const title = 'Next.js Component Example';
     const code = useMemo(() => (
         `import { LoaderComponent } from "@/components/LoaderComponent";

@@ -1,7 +1,7 @@
 "use client";
 
 import type { RendererProps } from '@/types';
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 
 export const Renderer: React.FC<RendererProps> = memo(({ speed, keyframes, className, ...props }) => {
   const [currentFrame, setCurrentFrame] = useState(keyframes[0]);
@@ -16,9 +16,11 @@ export const Renderer: React.FC<RendererProps> = memo(({ speed, keyframes, class
     return () => clearInterval(interval);
   }, [keyframes, speed]);
 
+  const renderedFrame = useMemo(() => currentFrame, [currentFrame]);
+
   return (
     <div className={className ?? `relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden`} {...props}>
-      {currentFrame}
+      {renderedFrame}
     </div>
   );
 });

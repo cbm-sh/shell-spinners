@@ -6,17 +6,17 @@ import type { AnimatedButtonProps, CopyCodeButtonProps } from "@/types";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { memo, useMemo } from 'react';
-import { FaNpm } from "react-icons/fa";
 
-const CopyIcon = dynamic(() => import('@radix-ui/react-icons').then(mod => mod.CopyIcon));
-const ArrowLeftIcon = dynamic(() => import('@radix-ui/react-icons').then(mod => mod.ArrowLeftIcon));
-const ArrowRightIcon = dynamic(() => import('@radix-ui/react-icons').then(mod => mod.ArrowRightIcon));
-const CheckIcon = dynamic(() => import('@radix-ui/react-icons').then(mod => mod.CheckIcon));
-const CodeIcon = dynamic(() => import('@radix-ui/react-icons').then(mod => mod.CodeIcon));
-const HomeIcon = dynamic(() => import('@radix-ui/react-icons').then(mod => mod.HomeIcon));
-const LayersIcon = dynamic(() => import('@radix-ui/react-icons').then(mod => mod.LayersIcon));
+const BiCheck = dynamic(() => import('react-icons/bi').then(mod => mod.BiCheck));
+const BiCode = dynamic(() => import('react-icons/bi').then(mod => mod.BiCode));
+const BiCopy = dynamic(() => import('react-icons/bi').then(mod => mod.BiCopy));
+const FaNpm = dynamic(() => import('react-icons/fa6').then(mod => mod.FaNpm));
+const HiArrowLeft = dynamic(() => import('react-icons/hi').then(mod => mod.HiArrowRight));
+const HiArrowRight = dynamic(() => import('react-icons/hi').then(mod => mod.HiArrowLeft));
+const HiOutlineHome = dynamic(() => import('react-icons/hi').then(mod => mod.HiOutlineHome));
+const TbKeyframes = dynamic(() => import('react-icons/tb').then(mod => mod.TbKeyframes));
 
-const cls = {
+const styles = {
   AnimatedButton: 'inline-flex cursor-pointer items-center justify-center p-2 overflow-hidden text-neutral-50 transition duration-300 ease-in-out border border-neutral-800 group',
   BackButton: 'relative top-0 left-0',
   CopyKeyframesButton: 'absolute top-3 right-14',
@@ -25,10 +25,9 @@ const cls = {
   CodeViewButton: 'absolute top-3 right-3',
 };
 
-export const AnimatedButton: React.FC<AnimatedButtonProps> = memo(({ icons, className, ...props }) => {
-  return (
+export const AnimatedButton: React.FC<AnimatedButtonProps> = memo(({ icons, className, ...props }) => (
     <button
-      className={cx(className, cls.AnimatedButton)}
+    className={cx(className, styles.AnimatedButton)}
       {...props}
     >
       <span
@@ -41,17 +40,15 @@ export const AnimatedButton: React.FC<AnimatedButtonProps> = memo(({ icons, clas
       </span>
       <span className="relative invisible">{icons.default}</span>
     </button>
-  );
-});
+), (a, b) => a.icons === b.icons);
 
 AnimatedButton.displayName = 'AnimatedButton';
 
 export const BackButton = memo(() => (
-  console.log('BackButton called!'),
-  <Link href="/">
+  <Link onClick={() => history.go(-1)} href="/" prefetch={true}>
       <AnimatedButton
-        className={cls.BackButton}
-      icons={{ default: <ArrowLeftIcon />, hover: <HomeIcon className="size-4 text-neutral-50" /> }}
+      className={styles.BackButton}
+      icons={{ default: <HiArrowRight />, hover: <HiOutlineHome /> }}
         aria-label="Back to Home"
     />
   </Link>
@@ -60,11 +57,10 @@ export const BackButton = memo(() => (
 BackButton.displayName = 'BackButton';
 
 export const CodeViewButton = memo(({ slug }: { slug: string }) => (
-  console.log('CodeViewButton called!'),
-  <Link href={slug}>
+  <Link href={slug} prefetch={true}>
       <AnimatedButton
-        className={cls.CodeViewButton}
-      icons={{ default: <ArrowRightIcon />, hover: <CodeIcon className="size-4 text-neutral-50" /> }}
+      className={styles.CodeViewButton}
+      icons={{ default: <HiArrowLeft />, hover: <BiCode size={16} /> }}
         aria-label="Go to Code View"
     />
   </Link>
@@ -73,19 +69,24 @@ export const CodeViewButton = memo(({ slug }: { slug: string }) => (
 CodeViewButton.displayName = 'CodeViewButton';
 
 export const CopyCodeButton: React.FC<CopyCodeButtonProps> = memo(({ code }) => {
-  console.log('CopyCodeButton called!');
   const { onCopy, isChecked } = useCopy(code);
 
   const icons = useMemo(() => ({
-    default: isChecked ? <CheckIcon className='size-4' /> : <CopyIcon className='size-4' />,
-    hover: isChecked ? <CheckIcon className='size-4' /> : isNpm(code.toString()) ? <FaNpm className='size-4' /> : isKeyframes(code) ? <LayersIcon className='size-4' /> : isCode(code) ? <CopyIcon className='size-4' /> : <CheckIcon className='size-4' />,
+    default: isChecked ? <BiCheck size={16} /> : <BiCopy />,
+    hover: isChecked ? <BiCheck size={16} /> : isNpm(code.toString()) ? <FaNpm size={16} /> : isKeyframes(code) ? <TbKeyframes size={16} /> : isCode(code) ? <BiCopy /> : <BiCheck size={16} />,
   }), [isChecked, code]);
 
   const className = useMemo(() => {
-    if (isKeyframes(code)) return cls.CopyKeyframesButton;
-    else if (isNpm(code)) return cls.CopyNpmButton;
-    else if (isCode(code)) return cls.CopyCodeButton;
-    else return '';
+    switch (true) {
+      case isKeyframes(code as string[]):
+        return styles.CopyKeyframesButton;
+      case isNpm(code as string):
+        return styles.CopyNpmButton;
+      case isCode(code as string):
+        return styles.CopyCodeButton;
+      default:
+        return '';
+    }
   }, [code]);
 
   return (
@@ -96,6 +97,6 @@ export const CopyCodeButton: React.FC<CopyCodeButtonProps> = memo(({ code }) => 
       aria-label={"Copy Code"}
     />
   );
-});
+}, (a, b) => a.code === b.code);
 
 CopyCodeButton.displayName = 'CopyCodeButton';
