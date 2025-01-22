@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
-    height: 0px;
-    width: 0px;
+@layer utilities {
+    .overflow-scroll-invisible::-webkit-scrollbar {
+        height: 0px;
+        width: 0px;
+    }
 }

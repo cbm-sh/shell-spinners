@@ -7,28 +7,32 @@ export const ToastContext = createContext<ToastContextProps | undefined>(undefin
 
 ToastContext.displayName = 'ToastContext';
 
-let debounceTimeout: ReturnType<typeof setTimeout> | null = null;
+const debounce = (fn: (...args: any[]) => void, wait: number) => {
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+    return (...args: any[]) => {
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            fn(...args);
+            timeout = null;
+        }, wait);
+    };
+};
 
 export const ToastProvider = memo(({ children }: { children: ReactNode }) => {
     const [toasts, setToasts] = useState<ToastProps[]>([]);
 
     const addToast = useCallback((message: string) => {
-        if (debounceTimeout) return;
-        debounceTimeout = setTimeout(() => {
-            debounceTimeout = null;
-        }, 1000);
-
         const id = Date.now();
-        setToasts([...toasts, { id, message }]);
-        setTimeout(() => removeToast(id), 5000);
-    }, [toasts]);
+        setToasts(prevToasts => [...prevToasts, { id, message }]);
+        setTimeout(() => removeToast(id), 10000);
+    }, []);
 
     const removeToast = (id: number) => {
-        setToasts(toasts.filter(toast => toast.id !== id));
+        setToasts(prevToasts => prevToasts.filter(toast => toast.id !== id));
     };
 
     return (
-        <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
+        <ToastContext.Provider value={{ toasts, addToast: debounce(addToast, 1000), removeToast }}>
             {children}
         </ToastContext.Provider>
     );

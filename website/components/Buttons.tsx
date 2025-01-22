@@ -48,7 +48,7 @@ export const BackButton = memo(() => (
   <Link onClick={() => history.go(-1)} href="/" prefetch={true}>
       <AnimatedButton
       className={styles.BackButton}
-      icons={{ default: <HiArrowRight />, hover: <HiOutlineHome /> }}
+      icons={{ default: <HiArrowRight size={16} />, hover: <HiOutlineHome size={16} /> }}
         aria-label="Back to Home"
     />
   </Link>
@@ -60,7 +60,7 @@ export const CodeViewButton = memo(({ slug }: { slug: string }) => (
   <Link href={slug} prefetch={true}>
       <AnimatedButton
       className={styles.CodeViewButton}
-      icons={{ default: <HiArrowLeft />, hover: <BiCode size={16} /> }}
+      icons={{ default: <HiArrowLeft size={16} />, hover: <BiCode size={16} /> }}
         aria-label="Go to Code View"
     />
   </Link>
@@ -68,12 +68,12 @@ export const CodeViewButton = memo(({ slug }: { slug: string }) => (
 
 CodeViewButton.displayName = 'CodeViewButton';
 
-export const CopyCodeButton: React.FC<CopyCodeButtonProps> = memo(({ code }) => {
-  const [onCopy, isChecked] = useCopy(code);
+export const CopyCodeButton: React.FC<CopyCodeButtonProps> = memo(({ code, copyText }) => {
+  const [onCopy, isChecked] = useCopy(code, copyText as string);
 
   const icons = useMemo(() => ({
-    default: isChecked ? <BiCheck size={16} /> : <BiCopy />,
-    hover: isChecked ? <BiCheck size={16} /> : isNpm(code.toString()) ? <FaNpm size={16} /> : isKeyframes(code) ? <TbKeyframes size={16} /> : isCode(code) ? <BiCopy /> : <BiCheck size={16} />,
+    default: isChecked ? <BiCheck size={16} /> : <BiCopy size={16} />,
+    hover: isChecked ? <BiCheck size={16} /> : isNpm(code.toString()) ? <FaNpm size={16} /> : isKeyframes(code) ? <TbKeyframes size={16} /> : isCode(code) ? <BiCopy size={16} /> : <BiCheck size={16} />,
   }), [isChecked, code]);
 
   const className = useMemo(() => {

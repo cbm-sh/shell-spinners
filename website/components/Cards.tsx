@@ -18,7 +18,7 @@ export const PreviewCard: React.FC<CardProps> = memo(({
             <div className='absolute left-4 top-4 text-sm text-neutral-50'>
                 {name}
             </div>
-            <CopyCodeButton code={keyframes} />
+            <CopyCodeButton code={keyframes} copyText='Keyframes copied to clipboard!' />
             <CodeViewButton slug={slug} />
             {children}
         </div>
@@ -42,7 +42,7 @@ export const ExampleCard: React.FC<ExampleCardProps> = memo(({
             <pre className='flex flex-col justify-center items-start pt-10 pb-3 font-mono whitespace-pre-wrap text-neutral-300 break-normal'>
                 {code}
                 </pre>
-            <CopyCodeButton code={code} />
+            <CopyCodeButton code={code} copyText='Code copied to clipboard!' />
         </div>
     )
 });

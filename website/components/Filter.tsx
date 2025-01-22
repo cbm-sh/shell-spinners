@@ -11,19 +11,20 @@ import { memo, Suspense, useEffect, useMemo, useState } from 'react';
 const PreviewCard = dynamic(() => import('@/components/Cards').then(mod => mod.PreviewCard));
 const Renderer = dynamic(() => import('@/components/Renderer').then(mod => mod.Renderer));
 
-export const FilterTabs = memo(({ tabs, setActiveTab }: TabsProps) => {
+const Tabs = memo(({ setActiveTab }: TabsProps) => {
+    const tabs = ['Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers'];
     const handleTabClick = (tab: string) => {
         setActiveTab(tab);
         window.history.pushState(null, '', `?tab=${tab}`);
     };
 
     return (
-        <div className="z-40 px-6 font-light flex flex-row py-1 mx-auto justify-between items-center overflow-x-scroll">
-            {tabs.map((tab: string) => (
+        <div className="z-40 px-6 font-light flex flex-row py-1 mx-auto justify-between items-center overflow-x-scroll overflow-scroll-invisible">
+            {tabs.map((tab: string, i: number) => (
                 <button
+                    key={`tab-${i}`}
                     type="button"
                     className="cursor-pointer text-sm px-3 py-2"
-                    key={tab}
                     onClick={() => handleTabClick(tab)}
                 >
                     {tab}
@@ -33,7 +34,7 @@ export const FilterTabs = memo(({ tabs, setActiveTab }: TabsProps) => {
     );
 });
 
-FilterTabs.displayName = 'FilterTabs';
+Tabs.displayName = 'Tabs';
 
 export const Filter = memo(() => {
     const router = useRouter();
@@ -52,7 +53,7 @@ export const Filter = memo(() => {
 
     return (
         <Suspense fallback={null}>
-            <FilterTabs tabs={['Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers']} activeTab={activeTab} setActiveTab={setActiveTab} />
+            <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
             <div className='z-40 min-h-screen w-full p-6 border border-y-neutral-800 border-x-0'>
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3'>
                     {filteredLoaders.map(({ name, keyframes, speed }) => (

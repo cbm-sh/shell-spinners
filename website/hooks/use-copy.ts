@@ -1,10 +1,10 @@
 "use client";
 
 import { useToast } from "@/hooks/use-toast";
-import { isKeyframes, isNpm } from "@/lib/utils";
+import { isKeyframes } from "@/lib/utils";
 import { useState } from "react";
 
-export const useCopy = (code: string | string[]) => {
+export const useCopy = (code: string | string[], copyText: string) => {
     const [isChecked, setIsChecked] = useState(false);
     const { addToast } = useToast();
     const codeString = isKeyframes(code) ? `[${code?.map(keyframe => `'${keyframe}'`).join(',\n')}]` : code;
@@ -12,7 +12,7 @@ export const useCopy = (code: string | string[]) => {
     const onCopy = () => {
         navigator.clipboard.writeText(codeString);
         setIsChecked(true);
-        addToast(`${isKeyframes(code) ? 'Keyframes' : isNpm(code) ? 'Npm command' : 'Code'} successfully copied to clipboard!`);
+        addToast(copyText);
         setTimeout(() => {
             setIsChecked(false);
         }, 1000);

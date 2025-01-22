@@ -4,7 +4,7 @@ import { useToast } from '@/hooks/use-toast';
 import type { ToastProps } from '@/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect } from 'react';
 
 const FaCheckCircle = dynamic(() => import('react-icons/fa').then(mod => mod.FaCheckCircle));
 
@@ -17,7 +17,7 @@ const TOAST_VARIANTS = {
         },
     },
     closed: {
-        y: 100,
+        y: 20,
         opacity: 0,
         transition: {
             y: { duration: 0.5, stiffness: 30, type: 'spring', ease: 'easeOut' },
@@ -26,29 +26,27 @@ const TOAST_VARIANTS = {
 };
 
 export const Toast = memo(({ isOpen, message, onClose }: ToastProps) => {
-    const [isAnimating, setIsAnimating] = useState(isOpen);
-
     useEffect(() => {
-        if (isOpen) {
-            setIsAnimating(true);
-            const timer = setTimeout(() => {
-                setIsAnimating(false);
-                onClose?.();
-            }, 5000);
-            return () => clearTimeout(timer);
-        }
-    }, [isOpen, onClose]);
+        const timer = setTimeout(() => {
+            // @ts-expect-error
+            onClose();
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, [onClose]);
 
     return (
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                    className="fixed top-4 flex flex-row items-center justify-center text-neutral-50 w-96 z-50 h-12 bg-black border border-neutral-800 px-2 py-4"
+                    className="fixed bottom-4 flex flex-row items-center justify-between text-neutral-50 w-96 z-50 h-12 bg-black border border-neutral-800 px-2 py-4"
                     variants={TOAST_VARIANTS}
                     initial="closed"
-                    animate={isAnimating ? "open" : "closed"}
+                    animate="open"
                     exit="closed">
-                    <span className='inline-flex flex-row justify-center items-center'><FaCheckCircle />&nbsp;&nbsp;{message}</span>
+                    <div className='mx-auto inline-flex flex-row justify-around items-center space-x-3'>
+                        <FaCheckCircle />
+                        <span className='inline-flex flex-row justify-center items-center'>{message}</span>
+                    </div>
                 </motion.div>
             )}
         </AnimatePresence>
@@ -59,24 +57,23 @@ Toast.displayName = 'Toast';
 
 export const ToastWrapper = memo(() => {
     const { toasts, removeToast } = useToast();
-    const [isOpen, setIsOpen] = useState(false);
 
-    useEffect(() => {
-        setIsOpen((prev => !prev));
-    }, [toasts]);
+    const handleClose = (id: number) => {
+        removeToast(id);
+    };
 
     return (
         <div className='fixed flex flex-col justify-center items-center w-full max-w-5xl z-50'>
             {toasts.map(({ message, id }: ToastProps) => (
                 <Toast
-                    isOpen={isOpen}
+                    isOpen={true}
                     key={`toast_${id}`}
                     id={id}
                     message={message}
-                    onClose={() => removeToast(id)} />
+                    onClose={() => handleClose(id)}
+                />
             ))}
         </div>
-
     );
 });
 

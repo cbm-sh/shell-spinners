@@ -18,7 +18,7 @@ const HomePage = () => {
           <div className='text-center relative'>
             <pre>
               <code className='w-full border bg-black border-neutral-800 pr-3.5 pl-2.5 pt-[16px] pb-[14px]'>npm install cli-loaders
-              <CopyCodeButton code={'npm install cli-loaders'} />
+                <CopyCodeButton code={'npm install cli-loaders'} copyText="Npm command copied to clipboard!" />
             </code>
           </pre>
           </div>

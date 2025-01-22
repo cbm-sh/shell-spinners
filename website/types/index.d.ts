@@ -15,7 +15,7 @@ export type CardProps = {
 };
 
 export type ChangeLogProps = {
-	version: string;
+	version: string | number;
 	changes: { type: string; details: string[] }[];
 };
 
@@ -26,6 +26,7 @@ export type CopyButtonProps = {
 
 export type CopyCodeButtonProps = {
 	code: string | string[];
+	copyText?: string;
 };
 
 export type ExampleCardProps = {
@@ -80,7 +81,6 @@ export type RendererProps = {
 };
 
 export type TabsProps = {
-	tabs: string[];
 	activeTab: string;
 	setActiveTab: (tab: string) => void;
 };
@@ -93,7 +93,6 @@ export type ToastContextProps = {
 
 export type ToastMessageProps = {
 	message: string;
-	onClose: () => void;
 };
 
 export type ToastProps = {
