@@ -52,7 +52,7 @@ export const BackButton = memo(() => (
         aria-label="Back to Home"
     />
   </Link>
-), () => true);
+));
 
 BackButton.displayName = 'BackButton';
 
@@ -64,7 +64,7 @@ export const CodeViewButton = memo(({ slug }: { slug: string }) => (
         aria-label="Go to Code View"
     />
   </Link>
-), (a, b) => a.slug === b.slug);
+));
 
 CodeViewButton.displayName = 'CodeViewButton';
 
@@ -97,6 +97,6 @@ export const CopyCodeButton: React.FC<CopyCodeButtonProps> = memo(({ code }) => 
       aria-label={"Copy Code"}
     />
   );
-}, (a, b) => a.code === b.code);
+});
 
 CopyCodeButton.displayName = 'CopyCodeButton';

@@ -6,13 +6,13 @@ import { useState } from "react";
 
 export const useCopy = (code: string | string[]) => {
     const [isChecked, setIsChecked] = useState(false);
-    const { success } = useToast();
+    const { addToast } = useToast();
     const codeString = isKeyframes(code) ? `[${code?.map(keyframe => `'${keyframe}'`).join(',\n')}]` : code;
 
     const onCopy = () => {
         navigator.clipboard.writeText(codeString);
         setIsChecked(true);
-        success(`${isKeyframes(code) ? 'Keyframes' : isNpm(code) ? 'Npm command' : 'Code'} successfully copied to clipboard!`);
+        addToast(`${isKeyframes(code) ? 'Keyframes' : isNpm(code) ? 'Npm command' : 'Code'} successfully copied to clipboard!`);
         setTimeout(() => {
             setIsChecked(false);
         }, 1000);

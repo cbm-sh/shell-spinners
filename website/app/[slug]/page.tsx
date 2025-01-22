@@ -49,7 +49,7 @@ const ViewPage = async ({
           <h1 className='text-balance relative font-semibold text-neutral-100 text-4xl md:text-5xl text-center'>
             {chosenLoader?.name} loader
           </h1>
-          <p className='relative z-40 text-neutral-300 text-center py-6'>
+          <p className='relative text-neutral-300 text-center py-6'>
             {jokes}
           </p>
         </div>
@@ -59,7 +59,7 @@ const ViewPage = async ({
           <div className='flex flex-row justify-between items-center'>
             <BackButton />
             <Share
-              className='z-40 flex justify-end items-end'
+              className='flex justify-end items-end'
               title={chosenLoader?.category as string}
               url={`https://cliloaders.com/${chosenLoader?.name}`}
               description={`It's an awesome ${chosenLoader?.category?.toLocaleLowerCase()} loader!`}

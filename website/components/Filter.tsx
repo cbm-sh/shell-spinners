@@ -38,7 +38,7 @@ FilterTabs.displayName = 'FilterTabs';
 export const Filter = memo(() => {
     const router = useRouter();
     const params = useSearchParams();
-    const initialTab = useMemo(() => params.get('tab') || 'Arrows', [params]);
+    const initialTab = params.get('tab') ?? 'Arrows';
     const [activeTab, setActiveTab] = useState(initialTab);
 
     useEffect(() => {

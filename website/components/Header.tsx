@@ -26,20 +26,20 @@ export const SVG_PATH_CLOSE = {
 export const Header = memo(() => {
     const [animation, setAnimation] = useState('closed');
     const [isLoaded] = useLoaded();
-    const [isVisible, toggleIsVisible] = useToggle(false);
+    const [isOpen, toggleIsVisible] = useToggle(false);
 
     const handleMenuToggle = useCallback(() => {
         toggleIsVisible();
         setAnimation('moving');
         setTimeout(() => {
-            setAnimation(isVisible ? 'closed' : 'opened');
+            setAnimation(isOpen ? 'closed' : 'opened');
         }, 1000);
-    }, [isVisible, toggleIsVisible]);
+    }, [isOpen, toggleIsVisible]);
 
     useEffect(() => {
         const bodyClass = document.querySelector('body')?.classList;
         if (bodyClass) {
-            if (isVisible) {
+            if (isOpen) {
                 bodyClass.add('overflow-hidden');
             }
 
@@ -48,12 +48,12 @@ export const Header = memo(() => {
             };
         }
 
-    }, [isVisible]);
+    }, [isOpen]);
 
     return (
         <>
-            {isLoaded && (<Nav isOpen={isVisible} onToggle={handleMenuToggle} />)}
-            <header className='flex p-6 h-20 items-center justify-between'>
+            {isLoaded && (<Nav isOpen={isOpen} onToggle={handleMenuToggle} />)}
+            <header className='z-50 flex p-6 h-20 items-center justify-between bg-black'>
                 <Link href='/' aria-label="Cli Loaders Logo" aria-hidden="false" tabIndex={0} className='inline-flex items-center gap-2'>
                     <Image role='img' className="z-50" alt="cli-loaders logo" src="/icon.svg" width={24} height={24} /><span className='text-md sm:text-lg'>cli-loaders</span>
                 </Link>

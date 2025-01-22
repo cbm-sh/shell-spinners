@@ -93,6 +93,6 @@ export const Share = memo(({
       </TwitterShareButton>
     </div>
   );
-}, () => true);
+});
 
 Share.displayName = "Share";

@@ -1,14 +1,14 @@
 import "./globals.css";
 
-import { ToastContainer } from "@/components/ToastContainer";
-import { ToastProvider } from "@/components/ToastContext";
-import { TopBar } from "@/components/TopBar";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AnimatePresence } from "framer-motion";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
+const ToastWrapper = dynamic(() => import("@/components/Toast").then(mod => mod.ToastWrapper));
+const ToastProvider = dynamic(() => import("@/components/ToastProvider").then(mod => mod.ToastProvider));
+const TopBar = dynamic(() => import("@/components/TopBar").then(mod => mod.TopBar));
 const Footer = dynamic(() => import("@/components/Footer").then(mod => mod.Footer));
 const Header = dynamic(() => import("@/components/Header").then(mod => mod.Header));
 
@@ -87,14 +87,14 @@ const RootLayout = ({
     <ToastProvider>
       <html lang="en" suppressHydrationWarning>
         <body
-          className='mx-auto bg-black font-sans text-sm text-neutral-50 antialiased max-w-5xl overflow-x-hidden border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen'>
+          className='mx-auto font-sans text-sm text-neutral-50 antialiased max-w-5xl overflow-x-hidden border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen bg-black'>
           <Header />
           <TopBar />
           <main>
             {children}
           </main>
           <Footer />
-          <ToastContainer />
+          <ToastWrapper />
           <SpeedInsights />
           <Analytics />
         </body>

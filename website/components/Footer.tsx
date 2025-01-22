@@ -11,6 +11,6 @@ export const Footer = memo(() => (
         </Link>
         <p className="inline-flex items-center gap-2 text-neutral-400">&copy; 2025 cli-loaders</p>
     </footer >
-), () => true);
+));
 
 Footer.displayName = 'Footer';
