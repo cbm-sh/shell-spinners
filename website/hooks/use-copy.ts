@@ -1,5 +1,3 @@
-"use client";
-
 import { useToast } from "@/hooks/use-toast";
 import { isKeyframes } from "@/lib/utils";
 import { useState } from "react";

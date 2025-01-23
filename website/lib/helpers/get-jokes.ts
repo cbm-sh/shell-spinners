@@ -1,4 +1,4 @@
-import { memoizer } from "./utils";
+import { memoizer } from "../utils";
 
 // Create a function to generate jokes
 export const getJokes = memoizer((name: string, category: string): string => {
@@ -72,4 +72,3 @@ export const getJokes = memoizer((name: string, category: string): string => {
 	const selectedJoke = jokes[Math.floor(Math.random() * jokes.length)];
 	return selectedJoke.joke;
 });
-

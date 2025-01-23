@@ -1,9 +1,6 @@
 import type { CardProps, ExampleCardProps } from '@/types';
-import dynamic from 'next/dynamic';
 import { memo } from 'react';
-
-const CodeViewButton = dynamic(() => import('./Buttons').then(mod => mod.CodeViewButton));
-const CopyCodeButton = dynamic(() => import('./Buttons').then(mod => mod.CopyCodeButton));
+import { CodeViewButton, CopyCodeButton } from './Buttons';
 
 export const PreviewCard: React.FC<CardProps> = memo(({
     children,
@@ -41,7 +38,7 @@ export const ExampleCard: React.FC<ExampleCardProps> = memo(({
             </div>
             <pre className='flex flex-col justify-center items-start pt-10 pb-3 font-mono whitespace-pre-wrap text-neutral-300 break-normal'>
                 {code}
-                </pre>
+            </pre>
             <CopyCodeButton code={code} copyText='Code copied to clipboard!' />
         </div>
     )

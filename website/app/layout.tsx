@@ -1,15 +1,14 @@
-import "./globals.css";
+import './globals.css';
+
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { ToastWrapper } from "@/components/Toast";
+import { ToastProvider } from "@/components/ToastProvider";
+import { TopBar } from "@/components/TopBar";
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
-
-const ToastWrapper = dynamic(() => import("@/components/Toast").then(mod => mod.ToastWrapper));
-const ToastProvider = dynamic(() => import("@/components/ToastProvider").then(mod => mod.ToastProvider));
-const TopBar = dynamic(() => import("@/components/TopBar").then(mod => mod.TopBar));
-const Footer = dynamic(() => import("@/components/Footer").then(mod => mod.Footer));
-const Header = dynamic(() => import("@/components/Header").then(mod => mod.Header));
 
 export const metadata: Metadata = {
   title: {

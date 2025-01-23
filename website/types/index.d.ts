@@ -19,6 +19,12 @@ export type ChangeLogProps = {
 	changes: { type: string; details: string[] }[];
 };
 
+export type CodeBlockProps = {
+	title: string;
+	code: string;
+	isV2?: boolean;
+};
+
 export type CopyButtonProps = {
 	className?: string;
 	code: string;
@@ -72,7 +78,7 @@ export type LoaderProps = {
 	keyframes: string[];
 };
 
-export type RendererProps = {
+export type LoaderRendererProps = {
 	category?: LoaderCategories;
 	name?: string;
 	speed: number;

@@ -1,11 +1,9 @@
-import { getLoaders } from "@/lib/get-loaders";
+import { getLoaders } from "@/lib/helpers/get-loaders";
 import type { LoaderProps } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
-import dynamic from 'next/dynamic';
 import Link from "next/link";
 import { memo, useState } from 'react';
-
-const BiCode = dynamic(() => import('react-icons/bi').then(mod => mod.BiCode));
+import { BiCode } from "react-icons/bi";
 
 const UL_VARIANTS = {
     open: {

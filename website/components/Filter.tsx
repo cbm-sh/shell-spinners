@@ -2,14 +2,12 @@
 
 import {
     getLoadersByCategory
-} from '@/lib/get-loaders';
+} from '@/lib/helpers/get-loaders';
 import type { TabsProps } from '@/types';
-import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { memo, Suspense, useEffect, useMemo, useState } from 'react';
-
-const PreviewCard = dynamic(() => import('@/components/Cards').then(mod => mod.PreviewCard));
-const Renderer = dynamic(() => import('@/components/Renderer').then(mod => mod.Renderer));
+import { LoaderRenderer } from './LoaderRenderer';
+import { PreviewCard } from './ui/Cards';
 
 const Tabs = memo(({ setActiveTab }: TabsProps) => {
     const tabs = ['Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers'];
@@ -52,14 +50,14 @@ export const Filter = memo(() => {
     const filteredLoaders = useMemo(() => getLoadersByCategory(activeTab), [activeTab]);
 
     return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<div>Loading...</div>}>
             <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
             <div className='z-40 min-h-screen w-full p-6 border border-y-neutral-800 border-x-0'>
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3'>
                     {filteredLoaders.map(({ name, keyframes, speed }) => (
                         <div key={name}>
                                 <PreviewCard keyframes={keyframes} key={name} slug={name} name={name}>
-                                    <Renderer key={name} speed={speed} keyframes={keyframes} />
+                                <LoaderRenderer key={name} speed={speed} keyframes={keyframes} />
                                 </PreviewCard>
                         </div>
                     ))}

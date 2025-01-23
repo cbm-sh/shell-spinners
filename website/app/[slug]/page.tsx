@@ -1,23 +1,16 @@
-import { getJokes } from '@/lib/get-jokes';
+import { CustomExample, NextJsComponentExample, NextJsExample, OhMyZshExample, StandardExample, ZeroDependencyExample } from '@/components/Examples';
+import { LoaderRenderer } from '@/components/LoaderRenderer';
+import { LoaderView } from '@/components/LoaderView';
+import { Share } from '@/components/Share';
+import { BackButton } from '@/components/ui/Buttons';
+import { getJokes } from '@/lib/helpers/get-jokes';
 import {
   getLoaderByName,
   getLoaders,
   getLoadersByCategory
-} from '@/lib/get-loaders';
+} from '@/lib/helpers/get-loaders';
 import type { LoaderProps } from '@/types';
-import dynamic from 'next/dynamic';
 import { memo } from 'react';
-
-const BackButton = dynamic(() => import('@/components/Buttons').then(mod => mod.BackButton));
-const CustomExample = dynamic(() => import('@/components/Examples').then(mod => mod.CustomExample));
-const NextJsComponentExample = dynamic(() => import('@/components/Examples').then(mod => mod.NextJsComponentExample));
-const NextJsExample = dynamic(() => import('@/components/Examples').then(mod => mod.NextJsExample));
-const OhMyZshExample = dynamic(() => import('@/components/Examples').then(mod => mod.OhMyZshExample));
-const StandardExample = dynamic(() => import('@/components/Examples').then(mod => mod.StandardExample));
-const ZeroDependencyExample = dynamic(() => import('@/components/Examples').then(mod => mod.ZeroDependencyExample));
-const Renderer = dynamic(() => import('@/components/Renderer').then(mod => mod.Renderer));
-const Share = dynamic(() => import('@/components/Share').then(mod => mod.Share));
-const View = dynamic(() => import('@/components/View').then(mod => mod.View));
 
 export const generateStaticParams = async () => (
   getLoaders().map(({ name }: { name: string }) => ({
@@ -25,7 +18,7 @@ export const generateStaticParams = async () => (
   }))
 );
 
-const ViewPage = async ({
+const Page = async ({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -68,13 +61,13 @@ const ViewPage = async ({
         </div>
       </section>
       <section className='w-full p-6'>
-        <View>
-          <Renderer
+        <LoaderView>
+          <LoaderRenderer
             speed={chosenLoader?.speed as number}
             keyframes={chosenLoader?.keyframes as string[]}
             category={chosenLoader?.category}
           />
-        </View>
+        </LoaderView>
         <div className='mt-6 space-y-6'>
           <h1 className='text-md font-light text-neutral-400'>Examples</h1>
           <StandardExample name={chosenLoader?.name} speed={chosenLoader?.speed} />
@@ -91,4 +84,4 @@ const ViewPage = async ({
   );
 };
 
-export default memo(ViewPage);
+export default memo(Page);

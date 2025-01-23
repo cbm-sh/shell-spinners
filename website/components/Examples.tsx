@@ -1,8 +1,6 @@
 import type { LoaderProps } from '@/types';
-import dynamic from 'next/dynamic';
 import { memo, useMemo } from 'react';
-
-const ExampleCard = dynamic(() => import('@/components/Cards').then(mod => mod.ExampleCard));
+import { CodeBlock } from './CodeBlock';
 
 export const StandardExample = memo(({ name, speed }: Partial<LoaderProps>) => {
     const title = 'Standard CLI Example';
@@ -14,7 +12,7 @@ import { initLoader } from 'cli-loaders';
 initLoader('${name}', ${speed});`), [name, speed]);
 
     return (
-        <ExampleCard title={title} code={code} />
+        <CodeBlock title={title} code={code} />
     );
 });
 
@@ -31,7 +29,7 @@ initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
     ), [keyframes]);
 
     return (
-        <ExampleCard title={title} code={code} isV2 />
+        <CodeBlock title={title} code={code} isV2 />
     );
 });
 
@@ -57,7 +55,7 @@ export const ZeroDependencyExample = memo(({ speed, keyframes }: Partial<LoaderP
 initLoader();`   ), [speed, keyframes]);
 
     return (
-        <ExampleCard title={title} code={code} />
+        <CodeBlock title={title} code={code} />
     );
 });
 
@@ -89,7 +87,7 @@ function custom_loader() {
 }`, [speed, keyframes]);
 
     return (
-        <ExampleCard title={title} code={code} />
+        <CodeBlock title={title} code={code} />
     );
 });
 
@@ -128,7 +126,7 @@ export const LoaderComponent: React.FC<LoaderComponentProps> = ({ speed, keyfram
     ), []);
 
     return (
-        <ExampleCard title={title} code={code} />
+        <CodeBlock title={title} code={code} />
     );
 });
 
@@ -151,7 +149,7 @@ export default Page;`
     ), [speed, keyframes]);
 
     return (
-        <ExampleCard title={title} code={code} />
+        <CodeBlock title={title} code={code} />
     );
 });
 

@@ -3,18 +3,12 @@
 import { useCopy } from "@/hooks/use-copy";
 import { cx, isCode, isKeyframes, isNpm } from "@/lib/utils";
 import type { AnimatedButtonProps, CopyCodeButtonProps } from "@/types";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { memo, useMemo } from 'react';
-
-const BiCheck = dynamic(() => import('react-icons/bi').then(mod => mod.BiCheck));
-const BiCode = dynamic(() => import('react-icons/bi').then(mod => mod.BiCode));
-const BiCopy = dynamic(() => import('react-icons/bi').then(mod => mod.BiCopy));
-const FaNpm = dynamic(() => import('react-icons/fa6').then(mod => mod.FaNpm));
-const HiArrowLeft = dynamic(() => import('react-icons/hi').then(mod => mod.HiArrowRight));
-const HiArrowRight = dynamic(() => import('react-icons/hi').then(mod => mod.HiArrowLeft));
-const HiOutlineHome = dynamic(() => import('react-icons/hi').then(mod => mod.HiOutlineHome));
-const TbKeyframes = dynamic(() => import('react-icons/tb').then(mod => mod.TbKeyframes));
+import { BiCheck, BiCode, BiCopy } from "react-icons/bi";
+import { FaNpm } from "react-icons/fa";
+import { HiArrowLeft, HiArrowRight, HiOutlineHome } from "react-icons/hi";
+import { TbKeyframes } from "react-icons/tb";
 
 const styles = {
   AnimatedButton: 'inline-flex cursor-pointer items-center justify-center p-2 overflow-hidden text-neutral-50 transition duration-300 ease-in-out border border-neutral-800 group',
@@ -26,30 +20,42 @@ const styles = {
 };
 
 export const AnimatedButton: React.FC<AnimatedButtonProps> = memo(({ icons, className, ...props }) => (
-    <button
+  <button
     className={cx(className, styles.AnimatedButton)}
-      {...props}
+    {...props}
+  >
+    <span
+      className="absolute inset-0 flex items-center justify-center size-full text-neutral-50 transition duration-300 -translate-x-full bg-neutral-900 group-hover:translate-x-0 ease"
     >
-      <span
-        className="absolute inset-0 flex items-center justify-center size-full text-neutral-50 transition duration-300 -translate-x-full bg-neutral-900 group-hover:translate-x-0 ease"
-      >
-        {icons.hover ?? icons.default}
-      </span>
-      <span className="absolute flex items-center justify-center size-full text-neutral-50 transition duration-300 transform group-hover:translate-x-full ease">
-        {icons.default}
-      </span>
-      <span className="relative invisible">{icons.default}</span>
-    </button>
+      {icons.hover ?? icons.default}
+    </span>
+    <span className="absolute flex items-center justify-center size-full text-neutral-50 transition duration-300 transform group-hover:translate-x-full ease">
+      {icons.default}
+    </span>
+    <span className="relative invisible">{icons.default}</span>
+  </button>
 ), (a, b) => a.icons === b.icons);
 
 AnimatedButton.displayName = 'AnimatedButton';
 
 export const BackButton = memo(() => (
   <Link onClick={() => history.go(-1)} href="/" prefetch={true}>
-      <AnimatedButton
+    <AnimatedButton
       className={styles.BackButton}
-      icons={{ default: <HiArrowRight size={16} />, hover: <HiOutlineHome size={16} /> }}
-        aria-label="Back to Home"
+      icons={{ default: <HiArrowLeft size={16} />, hover: <HiOutlineHome size={16} /> }}
+      aria-label="Back to Home"
+    />
+  </Link>
+));
+
+BackButton.displayName = 'BackButton';
+
+export const ForwardButton = memo(() => (
+  <Link onClick={() => history.go(-1)} href="/" prefetch={true}>
+    <AnimatedButton
+      className={styles.BackButton}
+      icons={{ default: <HiArrowLeft size={16} />, hover: <HiOutlineHome size={16} /> }}
+      aria-label="Back to Home"
     />
   </Link>
 ));
@@ -58,10 +64,10 @@ BackButton.displayName = 'BackButton';
 
 export const CodeViewButton = memo(({ slug }: { slug: string }) => (
   <Link href={slug} prefetch={true}>
-      <AnimatedButton
+    <AnimatedButton
       className={styles.CodeViewButton}
-      icons={{ default: <HiArrowLeft size={16} />, hover: <BiCode size={16} /> }}
-        aria-label="Go to Code View"
+      icons={{ default: <HiArrowRight size={16} />, hover: <BiCode size={16} /> }}
+      aria-label="Go to Code View"
     />
   </Link>
 ));

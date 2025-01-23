@@ -1,9 +1,7 @@
-import { getChangeLog } from '@/lib/get-changelog';
+import { BackButton } from '@/components/ui/Buttons';
+import { getChangeLog } from '@/lib/helpers/get-changelog';
 import { type ChangeLogProps } from '@/types';
-import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
-
-const BackButton = dynamic(() => import('@/components/Buttons').then(mod => mod.BackButton));
 
 const ChangelogPage = () => {
     const changelog: ChangeLogProps[] = useMemo(() => getChangeLog(), []);

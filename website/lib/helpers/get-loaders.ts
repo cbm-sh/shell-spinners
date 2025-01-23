@@ -1,5 +1,5 @@
 import type { LoaderCategories, LoaderProps } from '@/types';
-import { memoizer } from './utils';
+import { memoizer } from '../utils';
 
 // Create a function to generate loaders
 const $ = (

@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { memo, useCallback, useEffect, useState } from 'react';
 
 const Nav = dynamic(() => import('@/components/Nav').then((mod) => mod.Nav));
-const IconGroup = dynamic(() => import('@/components/Icons').then((mod) => mod.IconGroup));
+const IconGroup = dynamic(() => import('@/components/ui/Icons').then((mod) => mod.IconGroup));
 
 export const SVG_PATH_OPEN = {
     opened: { d: 'M3.06061 2.99999L21.0606 21' },

@@ -1,10 +1,2 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer utilities {
-    .overflow-scroll-invisible::-webkit-scrollbar {
-        height: 0px;
-        width: 0px;
-    }
-}
