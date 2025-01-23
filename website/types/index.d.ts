@@ -11,12 +11,12 @@ export type CardProps = {
 	children: React.ReactNode;
 	keyframes: string[];
 	slug: string;
-	name: string;
+	id: string;
 };
 
 export type ChangeLogProps = {
-	version: string | number;
-	changes: { type: string; details: string[] }[];
+	v: string | number;
+	change: { type: string; notes: string[] }[];
 };
 
 export type CodeBlockProps = {
@@ -72,15 +72,15 @@ export type LoaderCategories =
 	| 'Togglers';
 
 export type LoaderProps = {
-	category?: LoaderCategories;
-	name: string;
+	category: LoaderCategories;
+	id: string;
 	speed: number;
 	keyframes: string[];
 };
 
 export type LoaderRendererProps = {
 	category?: LoaderCategories;
-	name?: string;
+	id?: string;
 	speed: number;
 	keyframes: string[];
 	className?: string;

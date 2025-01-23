@@ -3,29 +3,36 @@ import fs from "node:fs";
 import path from "node:path";
 import { cache } from "react";
 
-export const getChangeLog = cache((): ChangeLogProps[] => {
-	const changelogPath = path.join(process.cwd(), '..', 'CHANGELOG.md');
-	const changelogContent = fs.readFileSync(changelogPath, 'utf-8');
-	const changelogLines = changelogContent.split('\n');
+const changeLog = cache((): ChangeLogProps[] => {
+	const dir = path.join(process.cwd(), '..', 'CHANGELOG.md');
+	const log = fs.readFileSync(dir, 'utf-8');
+	const lines = log.split('\n');
 
-	const changelog: ChangeLogProps[] = [];
-	let currentVersion: ChangeLogProps | null = null;
+	const changeLog: ChangeLogProps[] = [];
+	let latest: ChangeLogProps | null = null;
 
-	for (const line of changelogLines) {
-		if (line.startsWith('## ')) {
-			currentVersion = { version: line.replace('## ', '').trim(), changes: [] };
-			changelog.push(currentVersion);
-		} else if (line.startsWith('### ')) {
-			currentVersion?.changes.push({
-				type: line.replace('### ', '').trim(),
-				details: [],
-			});
-		} else if (line.startsWith('- ')) {
-			currentVersion?.changes[currentVersion.changes.length - 1].details.push(
-				line.replace('- ', '').trim(),
-			);
+	for (const line of lines) {
+		switch (true) {
+			case line.startsWith('## '):
+				latest = { v: line.replace('## ', '').trim(), change: [] };
+				changeLog.push(latest);
+				break;
+			case line.startsWith('### '):
+				latest?.change.push({
+					type: line.replace('### ', '').trim(),
+					notes: [],
+				});
+				break;
+			case line.startsWith('- '):
+				latest?.change[latest.change.length - 1].notes.push(
+					line.replace('- ', '').trim(),
+				);
+				break;
 		}
 	}
 
-	return changelog;
+	return changeLog;
 });
+
+export const getChangeLog = (): ChangeLogProps[] => changeLog();
+

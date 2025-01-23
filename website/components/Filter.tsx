@@ -1,11 +1,11 @@
 "use client";
 
 import {
-    getLoadersByCategory
+    getLoaders
 } from '@/lib/helpers/get-loaders';
 import type { TabsProps } from '@/types';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { memo, Suspense, useEffect, useMemo, useState } from 'react';
+import { memo, Suspense, useEffect, useState } from 'react';
 import { LoaderRenderer } from './LoaderRenderer';
 import { PreviewCard } from './ui/Cards';
 
@@ -34,7 +34,7 @@ const Tabs = memo(({ setActiveTab }: TabsProps) => {
 
 Tabs.displayName = 'Tabs';
 
-export const Filter = memo(() => {
+export const Filter = () => {
     const router = useRouter();
     const params = useSearchParams();
     const initialTab = params.get('tab') ?? 'Arrows';
@@ -47,24 +47,22 @@ export const Filter = memo(() => {
         }
     }, [params, router, activeTab]);
 
-    const filteredLoaders = useMemo(() => getLoadersByCategory(activeTab), [activeTab]);
+    const filteredLoaders = getLoaders.filter(category => category.category === activeTab);
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
             <div className='z-40 min-h-screen w-full p-6 border border-y-neutral-800 border-x-0'>
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3'>
-                    {filteredLoaders.map(({ name, keyframes, speed }) => (
-                        <div key={name}>
-                                <PreviewCard keyframes={keyframes} key={name} slug={name} name={name}>
-                                <LoaderRenderer key={name} speed={speed} keyframes={keyframes} />
-                                </PreviewCard>
-                        </div>
+                    {filteredLoaders.map(({ category, id, keyframes, speed }, i: number) => (
+                        <PreviewCard keyframes={keyframes} key={`filter_${category}_${i}`} slug={id} id={id}>
+                            <LoaderRenderer key={id} speed={speed} keyframes={keyframes} />
+                        </PreviewCard>
                     ))}
                 </div>
             </div>
         </Suspense>
     );
-});
+};
 
 Filter.displayName = 'Filter';

@@ -1,5 +1,4 @@
 import { getLoaders } from "@/lib/helpers/get-loaders";
-import type { LoaderProps } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { memo, useState } from 'react';
@@ -38,9 +37,6 @@ export const Nav = memo(({ isOpen, onToggle }: { isOpen: boolean, onToggle: () =
         if (isAnimating) return;
         setIsAnimating(true);
         onToggle();
-        setTimeout(() => {
-            setIsAnimating(false);
-        }, 1000);
     };
 
     return (
@@ -55,18 +51,18 @@ export const Nav = memo(({ isOpen, onToggle }: { isOpen: boolean, onToggle: () =
                             animate='open'
                             exit='closed'
                             onAnimationComplete={() => setIsAnimating(false)}>
-                            {getLoaders().map((loader: LoaderProps, i: number) => (
+                            {getLoaders.map(({ category, id }, i: number) => (
                                 <Link
-                                    key={`${loader.category}_${loader.name}_${i}`} href={`/${loader.name}`} role='link' onClick={handleToggle} aria-label={`cli-loaders | ${loader.name}`}>
-                                    <motion.li className='size-full border border-neutral-800 hover:bg-neutral-900 hover:border-neutral-700 cursor-pointer flex items-center justify-center' key={`${loader.name}_${i}`} onClick={handleToggle} variants={LI_VARIANTS} whileHover={{ scale: 0.95 }} whileTap={{ scale: 0.93 }}>
+                                    key={`${category}_${id}_${i}`} href={`/${id}`} role='link' onClick={handleToggle} aria-label={`cli-loaders | ${id}`}>
+                                    <motion.li className='size-full border border-neutral-800 hover:bg-neutral-900 hover:border-neutral-700 cursor-pointer flex items-center justify-center' key={`${id}_${i}`} onClick={handleToggle} variants={LI_VARIANTS} whileHover={{ scale: 0.95 }} whileTap={{ scale: 0.93 }}>
                                         <button onClick={handleToggle} className="relative w-full h-full inline-flex cursor-pointer items-center justify-center overflow-hidden font-medium text-neutral-50 transition duration-300 ease-out group">
                                             <span className="absolute inset-0 flex items-center justify-center size-full text-neutral-50 duration-300 -translate-x-full bg-neutral-900 group-hover:translate-x-0 ease">
                                                 <BiCode size={16} />
                                             </span>
                                             <span className="font-light absolute flex text-xs sm:text-sm lg:text-normal items-center justify-center size-full text-neutral-50 transition duration-300 transform group-hover:translate-x-full ease">
-                                                {loader.name}
+                                                {id}
                                             </span>
-                                            <span className="relative invisible">{loader.name}</span>
+                                            <span className="relative invisible">{id}</span>
                                         </button>
                                     </motion.li>
                                 </Link>

@@ -1,11 +1,11 @@
 import { useToast } from "@/hooks/use-toast";
-import { isKeyframes } from "@/lib/utils";
+import { getCodeCategory } from "@/lib/utils";
 import { useState } from "react";
 
 export const useCopy = (code: string | string[], copyText: string) => {
     const [isChecked, setIsChecked] = useState(false);
     const { addToast } = useToast();
-    const codeString = isKeyframes(code) ? `[${code?.map(keyframe => `'${keyframe}'`).join(',\n')}]` : code;
+    const codeString = getCodeCategory(code) === 'Keyframes' && Array.isArray(code) ? `[${code.map(keyframe => `'${keyframe}'`).join(',\n')}]` : String(code);
 
     const onCopy = () => {
         navigator.clipboard.writeText(codeString);

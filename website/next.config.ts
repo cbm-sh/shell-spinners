@@ -5,8 +5,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 	enabled: process.env.ANALYZE === 'true',
 })
 
-const isProduction = process.env.NODE_ENV !== 'development';
-
 const nextConfig: NextConfig = {
 	experimental: {
 		optimizePackageImports: [
@@ -35,31 +33,12 @@ const nextConfig: NextConfig = {
 	reactStrictMode: true,
 	webpack: (
 		config,
-		{ dev, isServer },
+		{ isServer },
 	) => {
-		// Webpack config cache for faster builds in development
-		if (config.cache && dev) {
+		if (config.cache && !isServer) {
 			config.cache = Object.freeze({
 				type: 'memory',
 			})
-		}
-
-		if (config.cache && isProduction) {
-			config.cache = {
-				type: 'filesystem',
-				buildDependencies: {
-					config: [__filename],
-				},
-			};
-		}
-
-		if (!isServer) {
-			// Disable specific Babel runtime modules on the client-side
-			config.resolve.alias['@babel/runtime/regenerator'] = false;
-			config.resolve.alias['@babel/runtime/helpers/asyncToGenerator'] = false;
-			config.resolve.alias['@babel/runtime/helpers/interopRequireDefault'] = false;
-			config.resolve.alias['@babel/runtime/helpers/interopRequireWildcard'] = false;
-			config.resolve.alias['@babel/runtime/helpers/interopRequireDefault'] = false;
 		}
 
 		if (!isServer) {
