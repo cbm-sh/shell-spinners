@@ -40,8 +40,10 @@ export const AnimatedButton: React.FC<AnimatedButtonProps> = memo(({ icons, clas
 
 AnimatedButton.displayName = 'AnimatedButton';
 
+const handleBackClick = () => history.go(-1);
+
 export const BackButton = memo(() => (
-  <Link onClick={() => history.go(-1)} href="/" prefetch={true}>
+  <Link onClick={handleBackClick} href="/" prefetch={true}>
     <AnimatedButton
       className={styles.BackButton}
       icons={{ default: <HiArrowLeft size={16} />, hover: <HiOutlineHome size={16} /> }}
@@ -52,18 +54,15 @@ export const BackButton = memo(() => (
 
 BackButton.displayName = 'BackButton';
 
-export const ForwardButton = memo(({ slug }: { slug: string }) => {
-
-  return (
-    <Link href={slug} prefetch={true}>
-      <AnimatedButton
-        className={styles.ForwardButton}
-        icons={{ default: <HiArrowRight size={16} />, hover: <HiArrowRight size={16} /> }}
-        aria-label="Next Loader"
-      />
-    </Link>
-  );
-});
+export const ForwardButton = memo(({ slug }: { slug: string }) => (
+  <Link href={slug} prefetch={true}>
+    <AnimatedButton
+      className={styles.ForwardButton}
+      icons={{ default: <HiArrowRight size={16} />, hover: <HiArrowRight size={16} /> }}
+      aria-label="Next Loader"
+    />
+  </Link>
+));
 
 ForwardButton.displayName = 'ForwardButton';
 

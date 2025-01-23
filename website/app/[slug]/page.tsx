@@ -1,14 +1,23 @@
-import { CustomExample, NextJsComponentExample, NextJsExample, OhMyZshExample, StandardExample, ZeroDependencyExample } from '@/components/Examples';
-import { LoaderRenderer } from '@/components/LoaderRenderer';
-import { LoaderView } from '@/components/LoaderView';
-import { Share } from '@/components/Share';
-import { BackButton, ForwardButton, HomeButton } from '@/components/ui/Buttons';
 import { getJokes } from '@/lib/helpers/get-jokes';
 import {
   getLoaders
 } from '@/lib/helpers/get-loaders';
 import type { LoaderProps } from '@/types';
+import dynamic from 'next/dynamic';
 import { memo } from 'react';
+
+const CustomExample = dynamic(() => import('@/components/Examples').then((mod) => mod.CustomExample));
+const NextJsComponentExample = dynamic(() => import('@/components/Examples').then((mod) => mod.NextJsComponentExample));
+const NextJsExample = dynamic(() => import('@/components/Examples').then((mod) => mod.NextJsExample));
+const OhMyZshExample = dynamic(() => import('@/components/Examples').then((mod) => mod.OhMyZshExample));
+const StandardExample = dynamic(() => import('@/components/Examples').then((mod) => mod.StandardExample));
+const ZeroDependencyExample = dynamic(() => import('@/components/Examples').then((mod) => mod.ZeroDependencyExample));
+const LoaderRenderer = dynamic(() => import('@/components/LoaderRenderer').then((mod) => mod.LoaderRenderer));
+const LoaderView = dynamic(() => import('@/components/LoaderView').then((mod) => mod.LoaderView));
+const Share = dynamic(() => import('@/components/Share').then((mod) => mod.Share));
+const BackButton = dynamic(() => import('@/components/ui/Buttons').then((mod) => mod.BackButton));
+const ForwardButton = dynamic(() => import('@/components/ui/Buttons').then((mod) => mod.ForwardButton));
+const HomeButton = dynamic(() => import('@/components/ui/Buttons').then((mod) => mod.HomeButton));
 
 export const generateStaticParams = async () => (
   getLoaders.map(({ id }: { id: string }) => ({

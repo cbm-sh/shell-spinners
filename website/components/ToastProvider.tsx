@@ -1,5 +1,6 @@
 "use client";
 
+import { memoizer } from '@/lib/utils';
 import type { ToastContextProps, ToastProps } from '@/types';
 import { createContext, memo, useCallback, useState, type ReactNode } from 'react';
 
@@ -7,7 +8,7 @@ export const ToastContext = createContext<ToastContextProps | undefined>(undefin
 
 ToastContext.displayName = 'ToastContext';
 
-const debounce = (fn: (...args: any[]) => void, wait: number) => {
+const debounce = memoizer((fn: (...args: any[]) => void, wait: number) => {
     let timeout: ReturnType<typeof setTimeout> | null = null;
     return (...args: any[]) => {
         if (timeout) clearTimeout(timeout);
@@ -16,7 +17,7 @@ const debounce = (fn: (...args: any[]) => void, wait: number) => {
             timeout = null;
         }, wait);
     };
-};
+});
 
 export const ToastProvider = memo(({ children }: { children: ReactNode }) => {
     const [toasts, setToasts] = useState<ToastProps[]>([]);

@@ -1,12 +1,14 @@
-import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { ToastWrapper } from "@/components/Toast";
-import { ToastProvider } from "@/components/ToastProvider";
 import { TopBar } from "@/components/TopBar";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import './globals.css';
+
+const ToastProvider = dynamic(() => import('@/components/ToastProvider').then((mod) => mod.ToastProvider));
+const ToastWrapper = dynamic(() => import('@/components/Toast').then((mod) => mod.ToastWrapper));
+const Footer = dynamic(() => import('@/components/Footer').then((mod) => mod.Footer));
 
 export const metadata: Metadata = {
   title: {
@@ -82,7 +84,7 @@ const RootLayout = ({
     <ToastProvider>
       <html lang="en" suppressHydrationWarning>
         <body
-          className='mx-auto font-sans text-sm text-neutral-50 antialiased max-w-5xl overflow-x-hidden border scroll-smooth border-x-neutral-800 border-y-0 min-h-screen bg-black'>
+        className='mx-auto font-sans text-sm text-neutral-50 antialiased max-w-5xl overflow-x-hidden border-0 lg:border scroll-smooth lg:border-x-neutral-800 lg:border-y-0 min-h-screen bg-black'>
           <Header />
           <TopBar />
           <main>

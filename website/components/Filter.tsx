@@ -7,7 +7,7 @@ import type { TabsProps } from '@/types';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { memo, Suspense, useEffect, useState } from 'react';
 import { LoaderRenderer } from './LoaderRenderer';
-import { PreviewCard } from './ui/Cards';
+import { PreviewCard } from './ui/PreviewCard';
 
 const Tabs = memo(({ setActiveTab }: TabsProps) => {
     const tabs = ['Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers'];

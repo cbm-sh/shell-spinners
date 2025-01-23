@@ -1,2 +1,6 @@
 @import 'tailwindcss';
 
+.overflow-scroll-invisible::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+}

@@ -1,7 +1,7 @@
-import { memoize } from "lodash-es";
+import { memoizer } from "@/lib/utils";
 
 // Function and data structure to get jokes
-export const getJokes = memoize((id: string, category: string): string => {
+const jokes = (id: string, category: string): string => {
 	const jokeCategories: Record<string, { id: string, joke: string }[]> = {
 		Arrows: [
 			{ id: "arrows_joke_1", joke: `Why did ${id} cross the road? To point you in the right direction!` },
@@ -71,4 +71,8 @@ export const getJokes = memoize((id: string, category: string): string => {
 
 	const randomJoke = jokesList[Math.floor(Math.random() * jokesList.length)];
 	return randomJoke.joke;
-});
+};
+
+
+// Function to get jokes
+export const getJokes = memoizer((id: string, category: string): string => jokes(id, category));

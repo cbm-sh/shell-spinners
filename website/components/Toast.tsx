@@ -3,7 +3,7 @@
 import { useToast } from '@/hooks/use-toast';
 import type { ToastProps } from '@/types';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 
 const TOAST_VARIANTS = {
@@ -23,7 +23,7 @@ const TOAST_VARIANTS = {
     },
 };
 
-export const Toast = ({ isOpen, message, onClose }: ToastProps) => {
+export const Toast = memo(({ isOpen, message, onClose }: ToastProps) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             if (onClose) {
@@ -50,11 +50,11 @@ export const Toast = ({ isOpen, message, onClose }: ToastProps) => {
             )}
         </AnimatePresence>
     );
-};
+});
 
 Toast.displayName = 'Toast';
 
-export const ToastWrapper = () => {
+export const ToastWrapper = memo(() => {
     const { toasts, removeToast } = useToast();
 
     const handleClose = (id: number) => {
@@ -74,6 +74,6 @@ export const ToastWrapper = () => {
             ))}
         </div>
     );
-};
+});
 
 ToastWrapper.displayName = 'ToastWrapper';
