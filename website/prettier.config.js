@@ -3,7 +3,7 @@ module.exports = {
     singleQuote: true,
     trailingComma: 'all',
     printWidth: 90,
-    tabWidth: 4,
+    tabWidth: 2,
     endOfLine: 'lf',
     arrowParens: 'always',
     bracketSpacing: true,
@@ -12,4 +12,4 @@ module.exports = {
     quoteProps: 'as-needed',
     useTabs: true,
     plugins: ['prettier-plugin-tailwindcss'],
-}
+};

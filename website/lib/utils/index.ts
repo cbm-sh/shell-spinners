@@ -24,11 +24,12 @@ export const cx = (...classes: string[]) => classes.filter(Boolean).join(' ');
 // Memoize a function to cache its types with a custom resolver
 export const memoizer = <T extends (...args: any[]) => any>(fn: T, resolver?: (...args: Parameters<T>) => string) => {
     const cache = new Map<string, ReturnType<T>>();
-
+    console.log('Memoizer called! Cache: ', cache);
     const defaultResolver = (...args: Parameters<T>) => JSON.stringify(args);
     const finalResolver = resolver || defaultResolver;
 
     const memoizerFn = memoize(((...args: Parameters<T>) => {
+        console.log('Memoizer function called!');
         const key = finalResolver(...args);
         if (cache.has(key)) {
             return cache.get(key);
@@ -42,6 +43,6 @@ export const memoizer = <T extends (...args: any[]) => any>(fn: T, resolver?: (.
     return memoizerFn;
 };
 
-// Expose memoizer cache
-memoizer.getCache = <T extends (...args: any[]) => any>
+export const getCache = memoizer.getCache = <T extends (...args: any[]) => any>
     (memoizerFn: T & { cache: Map<string, any> }) => memoizerFn?.cache;
+

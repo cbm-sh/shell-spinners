@@ -1,11 +1,9 @@
 const loading = () => {
-    return (
-        <div className="relative h-screen w-screen mx-auto transition duration-300 flex flex-col px-6 animate-pulse blur-lg">
-            <div className="mx-auto flex flex-col justify-center items-center h-full">
-                👨‍💻
-            </div>
-        </div>
-    );
-}
+	return (
+		<div className='relative mx-auto flex h-screen w-screen animate-pulse flex-col px-6 blur-lg transition duration-300'>
+			<div className='mx-auto flex h-full flex-col items-center justify-center'>👨‍💻</div>
+		</div>
+	);
+};
 
 export default loading;
