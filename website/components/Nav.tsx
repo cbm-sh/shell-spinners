@@ -41,7 +41,7 @@ export const Nav = memo(
 		};
 
 		return (
-			<AnimatePresence initial={false}>
+			<AnimatePresence>
 				{isOpen && (
 					<motion.nav className='flex items-center justify-center gap-4'>
 						<motion.div className='fixed top-20 right-[50%] z-50 flex max-w-5xl flex-col items-center justify-center text-neutral-50'>
@@ -51,36 +51,35 @@ export const Nav = memo(
 								initial='closed'
 								animate='open'
 								exit='closed'
-								onAnimationComplete={() => setIsAnimating(false)}
 							>
-								{getLoaders.map(({ category, id }, i: number) => (
+								{Object.values(getLoaders).map(({ category, name }, i: number) => (
 									<Link
-										key={`${category}_${id}_${i}`}
-										href={`/${id}`}
+										key={`${category}_${name}_${i}`}
+										href={`/${name}`}
 										role='link'
 										onClick={handleToggle}
-										aria-label={`cli-loaders | ${id}`}
+										aria-label={`cli-loaders | ${name}`}
 									>
 										<motion.li
 											className='flex size-full cursor-pointer items-center justify-center border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-900'
-											key={`${id}_${i}`}
+											key={`${name}_${i}`}
 											onClick={handleToggle}
 											variants={LI_VARIANTS}
 											whileHover={{ scale: 0.95 }}
 											whileTap={{ scale: 0.93 }}
 										>
-											<button
+											<motion.button
 												onClick={handleToggle}
 												className='group relative inline-flex h-full w-full cursor-pointer items-center justify-center overflow-hidden font-medium text-neutral-50 transition duration-300 ease-out'
 											>
-												<span className='ease absolute inset-0 flex size-full -translate-x-full items-center justify-center bg-neutral-900 text-neutral-50 duration-300 group-hover:translate-x-0'>
+												<motion.span className='ease absolute inset-0 flex size-full -translate-x-full items-center justify-center bg-neutral-900 text-neutral-50 duration-300 group-hover:translate-x-0'>
 													<BiCode size={16} />
-												</span>
-												<span className='lg:text-normal ease absolute flex size-full transform items-center justify-center text-xs font-light text-neutral-50 transition duration-300 group-hover:translate-x-full sm:text-sm'>
-													{id}
-												</span>
-												<span className='invisible relative'>{id}</span>
-											</button>
+												</motion.span>
+												<motion.span className='lg:text-normal ease absolute flex size-full transform items-center justify-center text-xs font-light text-neutral-50 transition duration-300 group-hover:translate-x-full sm:text-sm'>
+													{name}
+												</motion.span>
+												<motion.span className='invisible relative'>{name}</motion.span>
+											</motion.button>
 										</motion.li>
 									</Link>
 								))}

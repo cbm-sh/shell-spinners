@@ -2,15 +2,15 @@ import type { LoaderProps } from '@/types';
 import { memo, useMemo } from 'react';
 import { CodeBlock } from './CodeBlock';
 
-export const StandardExample = memo(({ id, speed }: Partial<LoaderProps>) => {
+export const StandardExample = memo(({ name, speed }: Partial<LoaderProps>) => {
 	const title = 'Standard CLI Example';
 	const code = useMemo(
 		() => `// Import the loader initializer
 import { initLoader } from 'cli-loaders';
 
 // Start the loader
-initLoader('${id}', ${speed});`,
-		[id, speed],
+initLoader('${name}', ${speed});`,
+		[name, speed],
 	);
 
 	return <CodeBlock title={title} code={code} />;
@@ -68,9 +68,9 @@ export const OhMyZshExample = memo(({ speed, keyframes }: Partial<LoaderProps>) 
 		() => `function start_loader() {
     local keyframes=(${keyframes?.map((keyframe) => `"${keyframe}"`).join(' ')}) # Keyframes for the loader
     local speed=${speed} # Speed at which the keyframes change
-    local pid=$1 # PID of the process to wait for
+    local pname=$1 # PID of the process to wait for
 
-    while kill -0 "$pid" 2>/dev/null; do
+    while kill -0 "$pname" 2>/dev/null; do
         for frame in "\${keyframes[@]}"; do
             printf "\\r%s %s" "$frame"
             sleep $speed
@@ -142,7 +142,7 @@ const Page = () => (
     <LoaderComponent
         speed={${speed}}
         keyframes={[${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]}
-        className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden"
+        className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hnameden"
     />
 );
 

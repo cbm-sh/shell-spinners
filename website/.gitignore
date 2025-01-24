@@ -41,3 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 experimental
+lib/helpers/loaders.ts
+lib/helpers/loaders.json

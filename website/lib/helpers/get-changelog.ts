@@ -1,7 +1,7 @@
-import type { ChangeLogProps } from "@/types";
-import fs from "node:fs";
-import path from "node:path";
-import { cache } from "react";
+import type { ChangeLogProps } from '@/types';
+import fs from 'node:fs';
+import path from 'node:path';
+import { cache } from 'react';
 
 const changeLog = cache((): ChangeLogProps[] => {
 	const dir = path.join(process.cwd(), '..', 'CHANGELOG.md');
@@ -35,4 +35,3 @@ const changeLog = cache((): ChangeLogProps[] => {
 });
 
 export const getChangeLog = (): ChangeLogProps[] => changeLog();
-

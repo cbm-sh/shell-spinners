@@ -11,7 +11,7 @@ export type CardProps = {
 	children: React.ReactNode;
 	keyframes: string[];
 	slug: string;
-	id: string;
+	name: string;
 };
 
 export type ChangeLogProps = {
@@ -55,10 +55,6 @@ export type IconComponents = {
 
 export type IconProps = React.SVGProps<SVGSVGElement>;
 
-export type JokeCategories = {
-	[key in Categories]: string[];
-};
-
 export type LoaderCategories =
 	| 'Arrows'
 	| 'Bars'
@@ -72,15 +68,14 @@ export type LoaderCategories =
 	| 'Togglers';
 
 export type LoaderProps = {
+	name?: string;
 	category: LoaderCategories;
-	id: string;
 	speed: number;
 	keyframes: string[];
 };
 
 export type LoaderRendererProps = {
 	category?: LoaderCategories;
-	id?: string;
 	speed: number;
 	keyframes: string[];
 	className?: string;
@@ -106,5 +101,4 @@ export type ToastProps = {
 	message: string;
 	onClose?: () => void;
 	isOpen?: boolean;
-	className?: string;
 };

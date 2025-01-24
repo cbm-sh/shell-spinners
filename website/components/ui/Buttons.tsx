@@ -38,13 +38,11 @@ export const AnimatedButton: React.FC<AnimatedButtonProps> = memo(
 
 AnimatedButton.displayName = 'AnimatedButton';
 
-const handleBackClick = () => history.go(-1);
-
 export const BackButton = memo(() => (
-	<Link onClick={handleBackClick} href='/' prefetch={true}>
+	<Link onClick={() => history.go(-1)} href='/'>
 		<AnimatedButton
 			className={styles.BackButton}
-			icons={{ default: <HiArrowLeft size={16} />, hover: <HiOutlineHome size={16} /> }}
+			icons={{ default: <HiArrowLeft size={16} />, hover: <HiArrowLeft size={16} /> }}
 			aria-label='Back to Home'
 		/>
 	</Link>
@@ -53,7 +51,7 @@ export const BackButton = memo(() => (
 BackButton.displayName = 'BackButton';
 
 export const ForwardButton = memo(({ slug }: { slug: string }) => (
-	<Link href={slug} prefetch={true}>
+	<Link href={slug}>
 		<AnimatedButton
 			className={styles.ForwardButton}
 			icons={{ default: <HiArrowRight size={16} />, hover: <HiArrowRight size={16} /> }}
@@ -65,7 +63,7 @@ export const ForwardButton = memo(({ slug }: { slug: string }) => (
 ForwardButton.displayName = 'ForwardButton';
 
 export const CodeViewButton = memo(({ slug }: { slug: string }) => (
-	<Link href={slug} prefetch={true}>
+	<Link href={slug}>
 		<AnimatedButton
 			className={styles.CodeViewButton}
 			icons={{ default: <HiArrowRight size={16} />, hover: <BiCode size={16} /> }}
@@ -125,7 +123,7 @@ export const CopyCodeButton: React.FC<CopyCodeButtonProps> = memo(
 CopyCodeButton.displayName = 'CopyCodeButton';
 
 export const HomeButton = memo(() => (
-	<Link href='/' prefetch={true}>
+	<Link href='/'>
 		<AnimatedButton
 			className={styles.HomeButton}
 			icons={{ default: <HiOutlineHome size={16} />, hover: <HiOutlineHome size={16} /> }}

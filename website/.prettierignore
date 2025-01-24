@@ -1,1 +1,7 @@
-lib
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+**/.json
+.next
+public

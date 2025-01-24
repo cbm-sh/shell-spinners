@@ -59,7 +59,7 @@ export const Filter = () => {
 		}
 	}, [params, router, activeTab]);
 
-	const filteredLoaders = getLoaders.filter(
+	const filteredLoaders = Object.values(getLoaders).filter(
 		(category) => category.category === activeTab,
 	);
 
@@ -68,14 +68,14 @@ export const Filter = () => {
 			<Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
 			<div className='z-40 min-h-screen w-full border border-x-0 border-y-neutral-800 p-6'>
 				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3'>
-					{filteredLoaders.map(({ category, id, keyframes, speed }, i: number) => (
+					{filteredLoaders.map(({ category, name, keyframes, speed }, i: number) => (
 						<PreviewCard
 							keyframes={keyframes}
 							key={`filter_${category}_${i}`}
-							slug={id}
-							id={id}
+							slug={name as string}
+							name={name as string}
 						>
-							<LoaderRenderer key={id} speed={speed} keyframes={keyframes} />
+							<LoaderRenderer key={name} speed={speed} keyframes={keyframes} />
 						</PreviewCard>
 					))}
 				</div>

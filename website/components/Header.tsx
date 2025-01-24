@@ -74,7 +74,7 @@ export const Header = memo(() => {
 				</Link>
 				{isLoaded && <IconGroup className='hidden lg:flex lg:gap-x-6' />}
 				<motion.button
-					className='cursor-pointer flex flex-col items-center justify-center border border-neutral-800 p-1 px-2 target:ring target:ring-neutral-800 focus-within:ring focus-within:ring-neutral-800 hover:ring hover:ring-neutral-800 focus:ring focus:ring-neutral-800 focus-visible:ring focus-visible:ring-neutral-800 active:ring active:ring-neutral-700 lg:hidden'
+					className='flex cursor-pointer flex-col items-center justify-center border border-neutral-800 p-1 px-2 target:ring target:ring-neutral-800 focus-within:ring focus-within:ring-neutral-800 hover:ring hover:ring-neutral-800 focus:ring focus:ring-neutral-800 focus-visible:ring focus-visible:ring-neutral-800 active:ring active:ring-neutral-700 lg:hidden'
 					type='button'
 					aria-label='Nav Toggle'
 					role='button'
