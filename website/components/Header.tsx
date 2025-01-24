@@ -73,14 +73,14 @@ export const Header = memo(() => {
 					<span className='text-md sm:text-lg'>cli-loaders</span>
 				</Link>
 				{isLoaded && <IconGroup className='hidden lg:flex lg:gap-x-6' />}
-				<button
-					className='flex flex-col items-center justify-center border border-neutral-800 p-1 px-2 target:ring target:ring-neutral-800 focus-within:ring focus-within:ring-neutral-800 hover:ring hover:ring-neutral-800 focus:ring focus:ring-neutral-800 focus-visible:ring focus-visible:ring-neutral-800 active:ring active:ring-neutral-700 lg:hidden'
+				<motion.button
+					className='cursor-pointer flex flex-col items-center justify-center border border-neutral-800 p-1 px-2 target:ring target:ring-neutral-800 focus-within:ring focus-within:ring-neutral-800 hover:ring hover:ring-neutral-800 focus:ring focus:ring-neutral-800 focus-visible:ring focus-visible:ring-neutral-800 active:ring active:ring-neutral-700 lg:hidden'
 					type='button'
 					aria-label='Nav Toggle'
 					role='button'
 					onClick={handleMenuToggle}
 				>
-					<svg
+					<motion.svg
 						className='outline-none'
 						aria-hidden='false'
 						tabIndex={5}
@@ -88,10 +88,10 @@ export const Header = memo(() => {
 						height='18'
 						viewBox='0 0 24 24'
 					>
-						<motion.path stroke='#FFFFFF' animate={animation} variants={SVG_PATH_OPEN} />
-						<motion.path stroke='#FFFFFF' animate={animation} variants={SVG_PATH_CLOSE} />
-					</svg>
-				</button>
+						<motion.path stroke='#ffffff' animate={animation} variants={SVG_PATH_OPEN} />
+						<motion.path stroke='#ffffff' animate={animation} variants={SVG_PATH_CLOSE} />
+					</motion.svg>
+				</motion.button>
 			</header>
 		</>
 	);

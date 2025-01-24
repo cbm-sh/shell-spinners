@@ -106,4 +106,5 @@ export type ToastProps = {
 	message: string;
 	onClose?: () => void;
 	isOpen?: boolean;
+	className?: string;
 };
