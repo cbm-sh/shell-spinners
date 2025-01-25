@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { cache } from 'react';
 
-const changeLog = cache((): ChangeLogProps[] => {
+export const getChangeLog = cache((): ChangeLogProps[] => {
 	const dir = path.join(process.cwd(), '..', 'CHANGELOG.md');
 	const log = fs.readFileSync(dir, 'utf-8');
 	const lines = log.split('\n');
@@ -33,5 +33,3 @@ const changeLog = cache((): ChangeLogProps[] => {
 
 	return changeLog;
 });
-
-export const getChangeLog = (): ChangeLogProps[] => changeLog();

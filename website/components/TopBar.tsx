@@ -1,9 +1,13 @@
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useCallback } from 'react';
-import { LoaderRenderer } from './LoaderRenderer';
+import { useMemo } from 'react';
+
+const Renderer = dynamic(() => import('./Renderer').then((mod) => mod.Renderer), {
+	loading: () => <span className='inline-flex text-sm'>Loading...</span>,
+});
 
 export const TopBar = () => {
-	const keyframes = useCallback(
+	const keyframes = useMemo(
 		() => [
 			'▎',
 			'▎',
@@ -73,6 +77,7 @@ export const TopBar = () => {
 		],
 		[],
 	);
+
 	return (
 		<div
 			aria-label='V2 Now Available'
@@ -80,10 +85,10 @@ export const TopBar = () => {
 		>
 			<Link href='/changelog'>
 				<span>
-					<LoaderRenderer
+					<Renderer
 						className='inline-flex text-sm'
 						speed={150}
-						keyframes={keyframes()}
+						keyframes={keyframes}
 						category={'Arrows'}
 					/>
 				</span>

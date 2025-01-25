@@ -1,5 +1,5 @@
-import { memoizer } from '@/lib/utils';
 import type { LoaderCategories, LoaderProps } from '@/types';
+import { cache } from 'react';
 
 // Create a function to generate loaders
 const _ = (
@@ -10,7 +10,7 @@ const _ = (
 ): LoaderProps => ({ name, category, speed, keyframes });
 
 // Create a function and data structure to retrieve loaders with O(1) time complexity
-export const loaders = memoizer(
+export const loaders = cache(
     () => ({
         arrows_1: _('arrows_1', 'Arrows', 100, ['←', '↖', '↑', '↗', '→', '↘', '↓', '↙']),
         arrows_2: _('arrows_2', 'Arrows', 80, [
@@ -647,7 +647,9 @@ export const loaders = memoizer(
         togglers_13: _('togglers_13', 'Togglers', 80, ['=', '*', '-']),
         togglers_14: _('togglers_14', 'Togglers', 300, ['❂', '✪']),
     }),
-    () => 'Loaders_Cache',
 );
 
 export const getLoaders = loaders();
+
+
+

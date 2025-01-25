@@ -1,20 +1,3 @@
 @import 'tailwindcss';
 
-.overflow-x-invisible {
-	scrollbar-width: thin;
-	scrollbar-color: #888 #1a1a1a;
-}
-.overflow-x-invisible::-webkit-scrollbar {
-	width: 0px;
-	height: 0px;
-}
-.overflow-x-invisible::-webkit-scrollbar-track {
-	background: #1a1a1a;
-}
-.overflow-x-invisible::-webkit-scrollbar-thumb {
-	background: #888;
-	border-radius: 4px;
-}
-.overflow-x-invisible::-webkit-scrollbar-thumb:hover {
-	background: #555;
-}
+

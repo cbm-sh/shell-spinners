@@ -1,34 +1,9 @@
+import { LI_VARIANTS, UL_VARIANTS } from '@/lib/config/variants';
 import { getLoaders } from '@/lib/helpers/get-loaders';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { memo, useState } from 'react';
 import { BiCode } from 'react-icons/bi';
-
-const UL_VARIANTS = {
-	open: {
-		transition: { staggerChildren: 0.005, staggerDirection: 0.005, delayChildren: 0.005 },
-	},
-	closed: {
-		transition: { staggerChildren: 0.005, staggerDirection: 0.005, delayChildren: 0.005 },
-	},
-};
-
-const LI_VARIANTS = {
-	open: {
-		x: 0,
-		opacity: 1,
-		transition: {
-			x: { duration: 1, stiffness: 30, type: 'spring', ease: 'easeIn' },
-		},
-	},
-	closed: {
-		x: 0,
-		opacity: 0,
-		transition: {
-			x: { duration: 1, stiffness: 30, type: 'spring', ease: 'easeOut' },
-		},
-	},
-};
 
 export const Nav = memo(
 	({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) => {

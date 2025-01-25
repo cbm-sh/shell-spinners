@@ -1,18 +1,19 @@
-import codeTheme from '@/lib/config/theme.json';
+import githubDark from '@/lib/config/theme.json';
 import type { CodeBlockProps } from '@/types';
 import { Code } from 'bright';
-import React, { memo } from 'react';
-import { CopyCodeButton } from './ui/Buttons';
+import { CopyButton } from './CopyButton';
 
-Code.theme = codeTheme as unknown as Record<string, string>;
+Code.theme = githubDark as unknown as Record<string, string>;
 
-export const CodeBlock: React.FC<CodeBlockProps> = memo(({ title, code }) => {
-	return (
-		<div className='relative flex h-full w-full max-w-5xl flex-col items-start justify-start overflow-x-auto border border-neutral-800 bg-black p-4'>
-			<Code style={{ margin: '0' }} title={title} code={code} />
-			<CopyCodeButton code={code} copyText='Code copied to clipboard!' />
+export const CodeBlock: React.FC<CodeBlockProps> = ({ code, keyframes, lang, title, isV2 }) => (
+	<div className='relative border border-neutral-800'>
+		<div className='absolute left-4 top-4'>
+			<p className='text-sm text-neutral-400'>{title}
+				{isV2 && (<span className='text-xs bg-blue-600 border border-blue-500 px-1 py-0.5 text-zinc-50 ml-2'>v2.0</span>)}
+			</p>
 		</div>
-	);
-});
-
-CodeBlock.displayName = 'CodeBlock';
+		{keyframes && <CopyButton hasKeyframes={Array.isArray(keyframes)} variant='quaternary' code={keyframes?.toString() || ''} copyText='Keyframes copied to clipboard!' />}
+		<CopyButton hasKeyframes={false} variant='secondary' code={code || ''} copyText="Code copied to clipboard!" />
+		<Code style={{ paddingTop: '20px' }} code={code} lang={lang} />
+	</div>
+);

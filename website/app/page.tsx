@@ -1,4 +1,4 @@
-import { CopyCodeButton } from '@/components/ui/Buttons';
+import { CopyButton } from '@/components/CopyButton';
 import dynamic from 'next/dynamic';
 const Filter = dynamic(() => import('@/components/Filter').then((mod) => mod.Filter));
 
@@ -18,9 +18,11 @@ const HomePage = () => {
 						<pre>
 							<code className='w-full border border-neutral-800 bg-black pt-[16px] pr-3.5 pb-[14px] pl-2.5'>
 								npm install cli-loaders
-								<CopyCodeButton
+								<CopyButton
+									hasKeyframes={false}
+									variant='tertiary'
+									copyText='Command copied to clipboard!'
 									code='npm install cli-loaders'
-									copyText='Npm command copied to clipboard!'
 								/>
 							</code>
 						</pre>

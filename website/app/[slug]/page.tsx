@@ -1,50 +1,23 @@
+import { CustomExample, NextJsComponentExample, NextJsExample, OhMyZshExample, StandardExample, ZeroDependencyExample } from '@/components/Examples';
 import { getLoaders } from '@/lib/helpers/get-loaders';
 import type { LoaderProps } from '@/types';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { memo } from 'react';
+import { HiArrowRight, HiOutlineHome } from 'react-icons/hi';
 
-const CustomExample = dynamic(() =>
-	import('@/components/Examples').then((mod) => mod.CustomExample),
-);
-const NextJsComponentExample = dynamic(() =>
-	import('@/components/Examples').then((mod) => mod.NextJsComponentExample),
-);
-const NextJsExample = dynamic(() =>
-	import('@/components/Examples').then((mod) => mod.NextJsExample),
-);
-const OhMyZshExample = dynamic(() =>
-	import('@/components/Examples').then((mod) => mod.OhMyZshExample),
-);
-const StandardExample = dynamic(() =>
-	import('@/components/Examples').then((mod) => mod.StandardExample),
-);
-const ZeroDependencyExample = dynamic(() =>
-	import('@/components/Examples').then((mod) => mod.ZeroDependencyExample),
-);
-const LoaderRenderer = dynamic(() =>
-	import('@/components/LoaderRenderer').then((mod) => mod.LoaderRenderer),
-);
-const LoaderView = dynamic(() =>
-	import('@/components/LoaderView').then((mod) => mod.LoaderView),
-);
+const BackButton = dynamic(() => import('@/components/BackButton').then((mod) => mod.BackButton));
+const Renderer = dynamic(() => import('@/components/Renderer').then((mod) => mod.Renderer));
 const Share = dynamic(() => import('@/components/Share').then((mod) => mod.Share));
-const BackButton = dynamic(() =>
-	import('@/components/ui/Buttons').then((mod) => mod.BackButton),
-);
-const ForwardButton = dynamic(() =>
-	import('@/components/ui/Buttons').then((mod) => mod.ForwardButton),
-);
-const HomeButton = dynamic(() =>
-	import('@/components/ui/Buttons').then((mod) => mod.HomeButton),
-);
+const Button = dynamic(() => import('@/components/ui/Button').then((mod) => mod.Button));
 
 export const generateStaticParams = async () =>
 	Object.keys(getLoaders).map((key) => ({
 		slug: key,
 	}));
 
-const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
-	const { slug } = await params;
+const Page = async ({ params }: { params: { slug: string } }) => {
+	const { slug } = params;
 	const loader: LoaderProps | undefined = getLoaders[slug as keyof typeof getLoaders];
 
 	if (!loader) {
@@ -73,8 +46,20 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 					<div className='flex flex-row items-center justify-between'>
 						<div className='inline-flex flex-row items-center justify-center space-x-3 pr-4'>
 							<BackButton />
-							<HomeButton />
-							<ForwardButton slug={`/${nextLoader}`} />
+							<Link href='/'>
+								<Button
+									variant='primary'
+									icon={<HiOutlineHome size={16} />}
+									aria-label='Back to Home'
+								/>
+							</Link>
+							<Link href={`/${nextLoader}`}>
+								<Button
+									variant='quinary'
+									icon={<HiArrowRight size={16} />}
+									aria-label='Next Loader'
+								/>
+							</Link>
 						</div>
 						<Share
 							className='flex items-end justify-end'
@@ -86,9 +71,10 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 				</div>
 			</section>
 			<section className='w-full p-6'>
-				<LoaderView>
-					<LoaderRenderer speed={speed} keyframes={keyframes} category={category} />
-				</LoaderView>
+				<div className='relative flex min-h-96 flex-col items-center justify-center overflow-hidden border border-neutral-800 bg-black p-6'>
+					<div className='absolute size-full bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
+					<Renderer speed={speed} keyframes={keyframes} category={category} />
+				</div>
 				<div className='mt-6 space-y-6'>
 					<h1 className='text-md font-light text-neutral-400'>Examples</h1>
 					<StandardExample name={slug} speed={speed} />

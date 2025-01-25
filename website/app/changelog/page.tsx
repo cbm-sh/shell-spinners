@@ -1,10 +1,10 @@
-import { BackButton } from '@/components/ui/Buttons';
+import { BackButton } from '@/components/BackButton';
 import { getChangeLog } from '@/lib/helpers/get-changelog';
 import { type ChangeLogProps } from '@/types';
 import { useMemo } from 'react';
 
 const Page = () => {
-	const changeLog: ChangeLogProps[] = useMemo(() => getChangeLog(), []);
+	const changeLog: ChangeLogProps[] = getChangeLog();
 
 	const latest = useMemo(
 		() =>

@@ -1,10 +1,8 @@
-export type AnimatedButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-	icons: {
-		default: React.ReactElement<SVGElement>;
-		hover: React.ReactElement<SVGElement>;
-		clicked?: React.ReactElement<SVGElement>;
-	};
-	className: string;
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+	icon: React.ReactElement<SVGElement>;
+	iconAlt?: React.ReactElement<SVGElement>;
+	className?: string;
+	variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary';
 };
 
 export type CardProps = {
@@ -19,20 +17,18 @@ export type ChangeLogProps = {
 	change: { type: string; notes: string[] }[];
 };
 
-export type CodeBlockProps = {
+type CodeBlockProps = {
+	code?: string;
+	keyframes?: string[];
+	lang: string;
 	title: string;
-	code: string;
 	isV2?: boolean;
 };
 
 export type CopyButtonProps = {
-	className?: string;
-	code: string;
-};
-
-export type CopyCodeButtonProps = {
 	code: string | string[];
-	copyText?: string;
+	copyText: string;
+	className: string;
 };
 
 export type ExampleCardProps = {
@@ -68,13 +64,13 @@ export type LoaderCategories =
 	| 'Togglers';
 
 export type LoaderProps = {
-	name?: string;
+	name: string;
 	category: LoaderCategories;
 	speed: number;
 	keyframes: string[];
 };
 
-export type LoaderRendererProps = {
+export type RendererProps = {
 	category?: LoaderCategories;
 	speed: number;
 	keyframes: string[];
