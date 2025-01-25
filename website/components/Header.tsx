@@ -18,7 +18,7 @@ export const Header = memo(() => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleMenuToggle = () => {
-		setIsOpen(prev => !prev);
+		setIsOpen((prev) => !prev);
 		setIsLoaded(true);
 		setAnimation('moving');
 		setTimeout(() => {
@@ -63,7 +63,7 @@ export const Header = memo(() => {
 				{isLoaded && <IconGroup className='hidden lg:flex lg:gap-x-6' />}
 				<AnimatePresence initial={false}>
 					<motion.button
-						className='flex cursor-pointer flex-col items-center justify-center border border-neutral-800 p-1 px-2 target:ring target:ring-neutral-800 focus-within:ring focus-within:ring-neutral-800 hover:ring hover:ring-neutral-800 focus:ring focus:ring-neutral-800 focus-visible:ring focus-visible:ring-neutral-800 active:ring active:ring-neutral-700 lg:hidden'
+						className='flex cursor-pointer flex-col items-center justify-center border border-neutral-800 p-1 px-2 target:ring target:ring-neutral-800 focus-within:ring focus-within:ring-neutral-800 hover:ring hover:ring-neutral-800 focus:ring focus:ring-neutral-800 focus-visible:ring focus-visible:ring-neutral-800 active:ring active:ring-neutral-700'
 						type='button'
 						aria-label='Nav Toggle'
 						role='button'
@@ -77,8 +77,16 @@ export const Header = memo(() => {
 							height='18'
 							viewBox='0 0 24 24'
 						>
-							<motion.path stroke='#ffffff' animate={animation} variants={SVG_PATH_OPEN} />
-							<motion.path stroke='#ffffff' animate={animation} variants={SVG_PATH_CLOSE} />
+							<motion.path
+								stroke='#ffffff'
+								animate={animation}
+								variants={SVG_PATH_OPEN}
+							/>
+							<motion.path
+								stroke='#ffffff'
+								animate={animation}
+								variants={SVG_PATH_CLOSE}
+							/>
 						</motion.svg>
 					</motion.button>
 				</AnimatePresence>

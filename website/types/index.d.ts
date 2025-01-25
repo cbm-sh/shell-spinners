@@ -7,7 +7,6 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export type CardProps = {
 	children: React.ReactNode;
-	keyframes: string[];
 	slug: string;
 	name: string;
 };
@@ -25,17 +24,12 @@ type CodeBlockProps = {
 	isV2?: boolean;
 };
 
-export type CopyButtonProps = {
+type CopyButtonProps = {
+	hasKeyframes: boolean;
 	code: string | string[];
 	copyText: string;
-	className: string;
-};
-
-export type ExampleCardProps = {
-	title: string;
-	code: string;
-	isV2?: boolean;
-	children?: React.ReactNode;
+	className?: string;
+	variant: ButtonProps['variant'];
 };
 
 export type FilterProps = {

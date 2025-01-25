@@ -34,7 +34,6 @@ export const Filter = () => {
 				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3'>
 					{filteredLoaders.map(({ category, name, keyframes, speed }, i: number) => (
 						<Card
-							keyframes={keyframes}
 							key={`filter_${category}_${i}`}
 							slug={name as string}
 							name={name as string}

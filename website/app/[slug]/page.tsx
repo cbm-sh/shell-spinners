@@ -13,10 +13,14 @@ import Link from 'next/link';
 import { memo } from 'react';
 import { HiArrowRight, HiOutlineHome } from 'react-icons/hi';
 
-const BackButton = dynamic(() =>
-	import('@/components/BackButton').then((mod) => mod.BackButton), {
-	loading: () => <div className='backdrop-blur-2xl animate-pulse bg-neutral-800 h-4 w-4' />,
-});
+const BackButton = dynamic(
+	() => import('@/components/BackButton').then((mod) => mod.BackButton),
+	{
+		loading: () => (
+			<div className='h-4 w-4 animate-pulse bg-neutral-800 backdrop-blur-2xl' />
+		),
+	},
+);
 
 const Renderer = dynamic(() =>
 	import('@/components/Renderer').then((mod) => mod.Renderer),
@@ -29,7 +33,7 @@ export const generateStaticParams = async () =>
 		slug: key,
 	}));
 
-const Page = async ({ params }: { params: { slug: string } }) => {
+const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 	const { slug } = await params;
 	const loader: LoaderProps = getLoaders[slug as keyof typeof getLoaders];
 

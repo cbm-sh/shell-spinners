@@ -1,19 +1,11 @@
 'use client';
 
 import { useToast } from '@/hooks/use-toast';
-import type { ButtonProps } from '@/types';
+import type { CopyButtonProps } from '@/types';
 import { CheckIcon, CopyIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
 import { TbKeyframe } from 'react-icons/tb';
 import { Button } from './ui/Button';
-
-type CopyButtonProps = {
-	hasKeyframes: boolean;
-	code: string | string[];
-	copyText: string;
-	className?: string;
-	variant: ButtonProps['variant'];
-};
 
 export const CopyButton: React.FC<CopyButtonProps> = ({
 	hasKeyframes,

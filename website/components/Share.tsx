@@ -32,18 +32,14 @@ export const Share = memo(
 					subject={`Check out this cli ${title.toLocaleLowerCase()} loader I found on cliloaders!`}
 					aria-label='Share loader by email button'
 				>
-					<Button
-						variant='primary'
-						icon={<FaEnvelope className='size-4' />}
-
-					/>
+					<Button variant='primary' icon={<FaEnvelope className='size-4' />} />
 				</EmailShareButton>
-				<FacebookShareButton className='ml-3' url={url} aria-label='Share loader through facebook button'>
-					<Button
-						variant='primary'
-						icon={<FaFacebook className='size-4' />}
-
-					/>
+				<FacebookShareButton
+					className='ml-3'
+					url={url}
+					aria-label='Share loader through facebook button'
+				>
+					<Button variant='primary' icon={<FaFacebook className='size-4' />} />
 				</FacebookShareButton>
 				<LinkedinShareButton
 					className='ml-3'
@@ -53,11 +49,7 @@ export const Share = memo(
 					source={url}
 					aria-label='Share loader through linkedin button'
 				>
-					<Button
-						variant='primary'
-						icon={<FaLinkedin className='size-4' />}
-
-					/>
+					<Button variant='primary' icon={<FaLinkedin className='size-4' />} />
 				</LinkedinShareButton>
 				<RedditShareButton
 					className='ml-3'
@@ -65,21 +57,15 @@ export const Share = memo(
 					title={title}
 					aria-label='Share loader through reddit button'
 				>
-					<Button
-						variant='primary'
-						icon={<FaReddit className='size-4' />}
-
-					/>
+					<Button variant='primary' icon={<FaReddit className='size-4' />} />
 				</RedditShareButton>
-				<TwitterShareButton url={url}
+				<TwitterShareButton
+					url={url}
 					className='ml-3'
 					title={`Check out this ${title.toLocaleLowerCase()} loader!`}
-					aria-label='Share loader through X button'>
-					<Button
-						variant='primary'
-						icon={<XLogoIcon className='size-4' />}
-
-					/>
+					aria-label='Share loader through X button'
+				>
+					<Button variant='primary' icon={<XLogoIcon className='size-4' />} />
 				</TwitterShareButton>
 			</div>
 		);
