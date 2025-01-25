@@ -8,41 +8,47 @@ import { TbKeyframe } from 'react-icons/tb';
 import { Button } from './ui/Button';
 
 type CopyButtonProps = {
-    hasKeyframes: boolean;
-    code: string | string[];
-    copyText: string;
-    className?: string;
-    variant: ButtonProps['variant'];
+	hasKeyframes: boolean;
+	code: string | string[];
+	copyText: string;
+	className?: string;
+	variant: ButtonProps['variant'];
 };
 
-export const CopyButton: React.FC<CopyButtonProps> = ({ hasKeyframes, variant, className, code, copyText }) => {
-    const { addToast } = useToast();
-    const [hasCheckIcon, setHasCheckIcon] = useState(false);
+export const CopyButton: React.FC<CopyButtonProps> = ({
+	hasKeyframes,
+	variant,
+	className,
+	code,
+	copyText,
+}) => {
+	const { addToast } = useToast();
+	const [hasCheckIcon, setHasCheckIcon] = useState(false);
 
-    const handleMouseDown = () => {
-        navigator.clipboard.writeText(code.toString());
-        setHasCheckIcon(true);
-        addToast(copyText);
-        setTimeout(() => {
-            setHasCheckIcon(false);
-        }, 1000);
-    };
+	const handleMouseDown = () => {
+		navigator.clipboard.writeText(code.toString());
+		setHasCheckIcon(true);
+		addToast(copyText);
+		setTimeout(() => {
+			setHasCheckIcon(false);
+		}, 1000);
+	};
 
-    return (
-        <Button
-            onMouseDown={handleMouseDown}
-            className={className}
-            variant={variant}
-            icon={hasCheckIcon ? (
-                <CheckIcon className='size-4 text-neutral-50' />
-            ) : hasKeyframes ? (
-                <TbKeyframe className='size-4 text-neutral-50' />
-            )
-                :
-                (
-                    <CopyIcon className='size-4 text-neutral-50' />
-                )}
-            aria-label='Back to Home'
-        />
-    );
+	return (
+		<Button
+			onMouseDown={handleMouseDown}
+			className={className}
+			variant={variant}
+			icon={
+				hasCheckIcon ? (
+					<CheckIcon className='size-4 text-neutral-50' />
+				) : hasKeyframes ? (
+					<TbKeyframe className='size-4 text-neutral-50' />
+				) : (
+					<CopyIcon className='size-4 text-neutral-50' />
+				)
+			}
+			aria-label='Back to Home'
+		/>
+	);
 };

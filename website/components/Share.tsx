@@ -1,8 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import { AiFillMail } from 'react-icons/ai';
-import { FaFacebook, FaLinkedin, FaReddit } from 'react-icons/fa';
+import { FaEnvelope, FaFacebook, FaLinkedin, FaReddit } from 'react-icons/fa';
 import {
 	EmailShareButton,
 	FacebookShareButton,
@@ -10,6 +9,8 @@ import {
 	RedditShareButton,
 	TwitterShareButton,
 } from 'react-share';
+import { Button } from './ui/Button';
+import { XLogoIcon } from './ui/Icons';
 
 export const Share = memo(
 	({
@@ -27,67 +28,58 @@ export const Share = memo(
 			<div className={className}>
 				<EmailShareButton
 					url={url}
+					className='ml-3'
 					subject={`Check out this cli ${title.toLocaleLowerCase()} loader I found on cliloaders!`}
 					aria-label='Share loader by email button'
 				>
-					<div className='ml-3 cursor-pointer border border-neutral-800 p-2 transition-colors hover:bg-neutral-900'>
-						<AiFillMail className='size-4 text-neutral-300' />
-					</div>
+					<Button
+						variant='primary'
+						icon={<FaEnvelope className='size-4' />}
+
+					/>
 				</EmailShareButton>
-				<FacebookShareButton url={url} aria-label='Share loader through facebook button'>
-					<div className='ml-3 cursor-pointer border border-neutral-800 p-2 transition-colors hover:bg-neutral-900'>
-						<FaFacebook className='size-4 text-neutral-300' />
-					</div>
+				<FacebookShareButton className='ml-3' url={url} aria-label='Share loader through facebook button'>
+					<Button
+						variant='primary'
+						icon={<FaFacebook className='size-4' />}
+
+					/>
 				</FacebookShareButton>
 				<LinkedinShareButton
+					className='ml-3'
 					url={url}
 					title={title}
 					summary={description}
 					source={url}
 					aria-label='Share loader through linkedin button'
 				>
-					<div className='ml-3 cursor-pointer border border-neutral-800 p-2 transition-colors hover:bg-neutral-900'>
-						<FaLinkedin className='size-4 text-neutral-300' />
-					</div>
+					<Button
+						variant='primary'
+						icon={<FaLinkedin className='size-4' />}
+
+					/>
 				</LinkedinShareButton>
 				<RedditShareButton
+					className='ml-3'
 					url={url}
 					title={title}
 					aria-label='Share loader through reddit button'
 				>
-					<div className='ml-3 cursor-pointer border border-neutral-800 p-2 transition-colors hover:bg-neutral-900'>
-						<FaReddit className='size-4 text-neutral-300' />
-					</div>
+					<Button
+						variant='primary'
+						icon={<FaReddit className='size-4' />}
+
+					/>
 				</RedditShareButton>
-				<TwitterShareButton
-					url={url}
+				<TwitterShareButton url={url}
+					className='ml-3'
 					title={`Check out this ${title.toLocaleLowerCase()} loader!`}
-					aria-label='Share loader through twitter button'
-				>
-					<div className='ml-3 cursor-pointer border border-neutral-800 p-2 transition-colors hover:bg-neutral-900'>
-						<svg
-							viewBox='0 0 64 64'
-							width='64'
-							height='64'
-							className='group size-4 flex-none fill-neutral-300 transition-colors group-hover:fill-neutral-900'
-							role='img'
-							aria-labelledby='xIconTitle'
-						>
-							<title id='xIconTitle'>X Icon</title>
-							<rect
-								className='fill-neutral-200 group-hover:fill-neutral-300'
-								width='64'
-								height='64'
-								rx='10'
-								ry='10'
-								fill='#eee'
-							/>
-							<path
-								d='M 41.116 18.375 h 4.962 l -10.8405 12.39 l 12.753 16.86 H 38.005 l -7.821 -10.2255 L 21.235 47.625 H 16.27 l 11.595 -13.2525 L 15.631 18.375 H 25.87 l 7.0695 9.3465 z m -1.7415 26.28 h 2.7495 L 24.376 21.189 H 21.4255 z'
-								fill='black'
-							/>
-						</svg>
-					</div>
+					aria-label='Share loader through X button'>
+					<Button
+						variant='primary'
+						icon={<XLogoIcon className='size-4' />}
+
+					/>
 				</TwitterShareButton>
 			</div>
 		);

@@ -1,12 +1,16 @@
 'use client';
 
 import { SVG_PATH_CLOSE, SVG_PATH_OPEN } from '@/lib/config/variants';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { memo, useEffect, useState } from 'react';
-import { Nav } from './Nav';
 import { IconGroup } from './ui/Icons';
+
+const Nav = dynamic(() => import('@/components/Nav').then((mod) => mod.Nav), {
+	ssr: false,
+});
 
 export const Header = memo(() => {
 	const [animation, setAnimation] = useState('closed');
@@ -37,7 +41,7 @@ export const Header = memo(() => {
 
 	return (
 		<>
-			<Nav isOpen={isOpen} onToggle={handleMenuToggle} />
+			{isLoaded && <Nav isOpen={isOpen} onToggle={handleMenuToggle} />}
 			<header className='z-50 flex h-20 items-center justify-between bg-black p-6'>
 				<Link
 					href='/'
@@ -57,25 +61,27 @@ export const Header = memo(() => {
 					<span className='text-md sm:text-lg'>cli-loaders</span>
 				</Link>
 				{isLoaded && <IconGroup className='hidden lg:flex lg:gap-x-6' />}
-				<motion.button
-					className='flex cursor-pointer flex-col items-center justify-center border border-neutral-800 p-1 px-2 target:ring target:ring-neutral-800 focus-within:ring focus-within:ring-neutral-800 hover:ring hover:ring-neutral-800 focus:ring focus:ring-neutral-800 focus-visible:ring focus-visible:ring-neutral-800 active:ring active:ring-neutral-700 lg:hidden'
-					type='button'
-					aria-label='Nav Toggle'
-					role='button'
-					onClick={handleMenuToggle}
-				>
-					<motion.svg
-						className='outline-none'
-						aria-hidden='false'
-						tabIndex={5}
-						width='18'
-						height='18'
-						viewBox='0 0 24 24'
+				<AnimatePresence initial={false}>
+					<motion.button
+						className='flex cursor-pointer flex-col items-center justify-center border border-neutral-800 p-1 px-2 target:ring target:ring-neutral-800 focus-within:ring focus-within:ring-neutral-800 hover:ring hover:ring-neutral-800 focus:ring focus:ring-neutral-800 focus-visible:ring focus-visible:ring-neutral-800 active:ring active:ring-neutral-700 lg:hidden'
+						type='button'
+						aria-label='Nav Toggle'
+						role='button'
+						onClick={handleMenuToggle}
 					>
-						<motion.path stroke='#ffffff' animate={animation} variants={SVG_PATH_OPEN} />
-						<motion.path stroke='#ffffff' animate={animation} variants={SVG_PATH_CLOSE} />
-					</motion.svg>
-				</motion.button>
+						<motion.svg
+							className='outline-none'
+							aria-hidden='false'
+							tabIndex={5}
+							width='18'
+							height='18'
+							viewBox='0 0 24 24'
+						>
+							<motion.path stroke='#ffffff' animate={animation} variants={SVG_PATH_OPEN} />
+							<motion.path stroke='#ffffff' animate={animation} variants={SVG_PATH_CLOSE} />
+						</motion.svg>
+					</motion.button>
+				</AnimatePresence>
 			</header>
 		</>
 	);

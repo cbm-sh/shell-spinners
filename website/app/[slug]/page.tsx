@@ -1,4 +1,11 @@
-import { CustomExample, NextJsComponentExample, NextJsExample, OhMyZshExample, StandardExample, ZeroDependencyExample } from '@/components/Examples';
+import {
+	CustomExample,
+	NextJsComponentExample,
+	NextJsExample,
+	OhMyZshExample,
+	StandardExample,
+	ZeroDependencyExample,
+} from '@/components/Examples';
 import { getLoaders } from '@/lib/helpers/get-loaders';
 import type { LoaderProps } from '@/types';
 import dynamic from 'next/dynamic';
@@ -6,8 +13,14 @@ import Link from 'next/link';
 import { memo } from 'react';
 import { HiArrowRight, HiOutlineHome } from 'react-icons/hi';
 
-const BackButton = dynamic(() => import('@/components/BackButton').then((mod) => mod.BackButton));
-const Renderer = dynamic(() => import('@/components/Renderer').then((mod) => mod.Renderer));
+const BackButton = dynamic(() =>
+	import('@/components/BackButton').then((mod) => mod.BackButton), {
+	loading: () => <div className='backdrop-blur-2xl animate-pulse bg-neutral-800 h-4 w-4' />,
+});
+
+const Renderer = dynamic(() =>
+	import('@/components/Renderer').then((mod) => mod.Renderer),
+);
 const Share = dynamic(() => import('@/components/Share').then((mod) => mod.Share));
 const Button = dynamic(() => import('@/components/ui/Button').then((mod) => mod.Button));
 
@@ -17,12 +30,13 @@ export const generateStaticParams = async () =>
 	}));
 
 const Page = async ({ params }: { params: { slug: string } }) => {
-	const { slug } = params;
-	const loader: LoaderProps | undefined = getLoaders[slug as keyof typeof getLoaders];
+	const { slug } = await params;
+	const loader: LoaderProps = getLoaders[slug as keyof typeof getLoaders];
 
 	if (!loader) {
 		return <div>Loader not found</div>;
 	}
+
 	const { category, keyframes, speed } = loader;
 	const loaderKeys = Object.keys(getLoaders);
 	const currentIndex = loaderKeys.indexOf(slug);
@@ -37,7 +51,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 						{slug.replace(/_/g, ' ')}
 					</h1>
 					<p className='relative py-6 text-center text-neutral-300'>
-						{category.charAt(0).toUpperCase() + category.slice(1)} collection
+						{category.toLocaleLowerCase()} collection
 					</p>
 				</div>
 			</section>
@@ -55,6 +69,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 							</Link>
 							<Link href={`/${nextLoader}`}>
 								<Button
+									className=''
 									variant='quinary'
 									icon={<HiArrowRight size={16} />}
 									aria-label='Next Loader'
@@ -62,7 +77,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 							</Link>
 						</div>
 						<Share
-							className='flex items-end justify-end'
+							className='z-40 flex items-end justify-end'
 							title={category}
 							url={`https://cliloaders.com/${slug}`}
 							description={`It's an awesome ${category.toLocaleLowerCase()} loader!`}

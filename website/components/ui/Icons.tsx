@@ -8,7 +8,7 @@ export const XLogoIcon = memo((props: IconProps) => (
 		viewBox='0 0 64 64'
 		width='64'
 		height='64'
-		className='group size-[0.95rem] flex-none fill-neutral-200 transition duration-300 group-hover:fill-neutral-300'
+		className='group size-4 flex-none fill-neutral-200 transition duration-300 group-hover:fill-neutral-300'
 		role='img'
 		aria-labelledby='xIconTitle'
 		{...props}

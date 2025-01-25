@@ -15,7 +15,6 @@ export const buttonVariants = {
 	quinary: {
 		className: 'relative top-0 right-0',
 	},
-
 };
 
 export const SVG_PATH_OPEN = {
@@ -72,4 +71,3 @@ export const TOAST_VARIANTS = {
 		},
 	},
 };
-
