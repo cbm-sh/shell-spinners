@@ -1,3 +1,4 @@
+import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { TopBar } from '@/components/TopBar';
 import { Analytics } from '@vercel/analytics/react';
@@ -12,7 +13,6 @@ const ToastProvider = dynamic(() =>
 const ToastWrapper = dynamic(() =>
 	import('@/components/Toast').then((mod) => mod.ToastWrapper),
 );
-const Footer = dynamic(() => import('@/components/Footer').then((mod) => mod.Footer));
 
 export const metadata: Metadata = {
 	title: {

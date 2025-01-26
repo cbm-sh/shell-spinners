@@ -67,7 +67,7 @@ export const Header = memo(() => {
 						type='button'
 						aria-label='Nav Toggle'
 						role='button'
-						onClick={handleMenuToggle}
+						onMouseDown={handleMenuToggle}
 					>
 						<motion.svg
 							className='outline-none'

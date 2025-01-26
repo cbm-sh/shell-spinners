@@ -5,7 +5,7 @@ import { HiArrowLeft } from 'react-icons/hi';
 import { Button } from './ui/Button';
 
 export const BackButton = () => (
-	<Link onClick={() => history.back()} href='/'>
+	<Link onMouseDown={() => history.back()} href='/'>
 		<Button
 			variant='primary'
 			icon={<HiArrowLeft size={16} />}

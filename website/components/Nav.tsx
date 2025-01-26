@@ -33,19 +33,19 @@ export const Nav = memo(
 										key={`${category}_${name}_${i}`}
 										href={`/${name}`}
 										role='link'
-										onClick={handleToggle}
+										onMouseDown={handleToggle}
 										aria-label={`cli-loaders | ${name}`}
 									>
 										<motion.li
 											className='flex size-full cursor-pointer items-center justify-center border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-900'
 											key={`${name}_${i}`}
-											onClick={handleToggle}
+											onMouseDown={handleToggle}
 											variants={LI_VARIANTS}
 											whileHover={{ scale: 0.95 }}
 											whileTap={{ scale: 0.93 }}
 										>
 											<motion.button
-												onClick={handleToggle}
+												onMouseDown={handleToggle}
 												className='group relative inline-flex h-full w-full cursor-pointer items-center justify-center overflow-hidden font-medium text-neutral-50 transition duration-300 ease-out'
 											>
 												<motion.span className='ease absolute inset-0 flex size-full -translate-x-full items-center justify-center bg-neutral-900 text-neutral-50 duration-300 group-hover:translate-x-0'>

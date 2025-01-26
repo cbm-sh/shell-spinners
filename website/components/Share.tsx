@@ -1,6 +1,5 @@
 'use client';
 
-import type { ShareProps } from '@/types';
 import { memo } from 'react';
 import { FaEnvelope, FaFacebook, FaLinkedin, FaReddit } from 'react-icons/fa';
 import {
@@ -19,7 +18,12 @@ export const Share = memo(
 		title,
 		url,
 		description,
-	}: ShareProps) => {
+	}: {
+		className?: string;
+		title: string;
+		url: string;
+		description: string;
+	}) => {
 		return (
 			<div className={className}>
 				<EmailShareButton
