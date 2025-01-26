@@ -40,7 +40,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
 					<CopyIcon className='size-4 text-neutral-50' />
 				)
 			}
-			aria-label='Back to Home'
+			aria-label={hasCheckIcon ? 'Copied!' : 'Copy'}
 		/>
 	);
 };

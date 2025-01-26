@@ -1,7 +1,9 @@
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+	as?: 'button' | 'link';
 	icon: React.ReactElement<SVGElement>;
 	iconAlt?: React.ReactElement<SVGElement>;
 	className?: string;
+	children?: React.ReactNode;
 	variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary';
 };
 
