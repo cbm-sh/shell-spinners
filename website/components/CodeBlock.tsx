@@ -5,13 +5,13 @@ import { CopyButton } from './CopyButton';
 
 Code.theme = githubDark as unknown as Record<string, string>;
 
-export const CodeBlock: React.FC<CodeBlockProps> = ({
+export const CodeBlock = ({
 	code,
 	keyframes,
 	lang,
 	title,
 	isV2,
-}) => (
+}: CodeBlockProps) => (
 	<div className='relative border border-neutral-800'>
 		<div className='absolute top-4 left-4'>
 			<p className='text-sm text-neutral-400'>

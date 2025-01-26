@@ -1,37 +1,10 @@
 'use client';
 
 import { buttonVariants } from '@/lib/config/variants';
-import { type JSX, createElement } from 'react';
+import type { ButtonProps } from '@/types';
+import { createElement, memo } from 'react';
 
-type SpanProps = JSX.IntrinsicElements['span'];
-
-type ButtonBaseProps = {
-	icon: React.ReactElement<SVGElement>;
-	iconAlt?: React.ReactElement<SVGElement>;
-	className?: string;
-	variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary';
-};
-
-type ButtonAsButton = ButtonBaseProps &
-	Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonBaseProps> & {
-		as?: 'button';
-	};
-
-type ButtonAsSpan = ButtonBaseProps &
-	Omit<SpanProps, keyof ButtonBaseProps> & {
-		as: 'span';
-	};
-
-type ButtonProps = ButtonAsButton | (ButtonAsSpan & ButtonBaseProps);
-
-export const Button = ({
-	as,
-	icon,
-	iconAlt,
-	className,
-	variant,
-	...props
-}: ButtonProps): JSX.Element => {
+export const Button = memo(({ as, icon, iconAlt, className, variant, ...props }: ButtonProps) => {
 	const cx = (...classes: string[]) => classes.filter(Boolean).join(' ');
 	const cn = buttonVariants[variant as unknown as keyof typeof buttonVariants].className;
 	const tag = as ? 'span' : 'button';
@@ -70,6 +43,6 @@ export const Button = ({
 			icon,
 		),
 	);
-};
+});
 
 Button.displayName = 'Button';

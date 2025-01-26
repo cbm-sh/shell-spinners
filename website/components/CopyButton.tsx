@@ -7,13 +7,13 @@ import { useState } from 'react';
 import { TbKeyframe } from 'react-icons/tb';
 import { Button } from './ui/Button';
 
-export const CopyButton: React.FC<CopyButtonProps> = ({
+export const CopyButton = ({
 	hasKeyframes,
 	variant,
 	className,
 	code,
 	copyText,
-}) => {
+}: CopyButtonProps) => {
 	const { addToast } = useToast();
 	const [hasCheckIcon, setHasCheckIcon] = useState(false);
 

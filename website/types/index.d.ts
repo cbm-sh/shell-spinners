@@ -1,11 +1,21 @@
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-	as?: 'button' | 'link';
+export type ButtonProps = ButtonAsButton | (ButtonAsSpan & ButtonBaseProps);
+
+export type ButtonBaseProps = {
+	className?: string;
 	icon: React.ReactElement<SVGElement>;
 	iconAlt?: React.ReactElement<SVGElement>;
-	className?: string;
-	children?: React.ReactNode;
 	variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary';
 };
+
+export type ButtonAsButton = ButtonBaseProps &
+	Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonBaseProps> & {
+		as?: 'button';
+	};
+
+export type ButtonAsSpan = ButtonBaseProps &
+	Omit<SpanProps, keyof ButtonBaseProps> & {
+		as: 'span';
+	};
 
 export type CardProps = {
 	children: React.ReactNode;
@@ -18,7 +28,7 @@ export type ChangeLogProps = {
 	change: { type: string; notes: string[] }[];
 };
 
-type CodeBlockProps = {
+export type CodeBlockProps = {
 	code?: string;
 	keyframes?: string[];
 	lang: string;
@@ -26,7 +36,7 @@ type CodeBlockProps = {
 	isV2?: boolean;
 };
 
-type CopyButtonProps = {
+export type CopyButtonProps = {
 	hasKeyframes: boolean;
 	code: string | string[];
 	copyText: string;
@@ -66,11 +76,22 @@ export type LoaderProps = {
 	keyframes: string[];
 };
 
+export type NavProps = { isOpen: boolean; onToggle: () => void };
+
 export type RendererProps = {
 	category?: LoaderCategories;
 	speed: number;
 	keyframes: string[];
 	className?: string;
+};
+
+export type SpanProps = JSX.IntrinsicElements['span'];
+
+export type ShareProps = {
+	className?: string;
+	title: string;
+	url: string;
+	description: string;
 };
 
 export type TabsProps = {

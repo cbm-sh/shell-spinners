@@ -1,5 +1,6 @@
 'use client';
 
+import type { ShareProps } from '@/types';
 import { memo } from 'react';
 import { FaEnvelope, FaFacebook, FaLinkedin, FaReddit } from 'react-icons/fa';
 import {
@@ -12,39 +13,13 @@ import {
 import { Button } from './ui/Button';
 import { XLogoIcon } from './ui/Icons';
 
-export const Sharer = ({
-	path,
-	description,
-}: {
-	className: string;
-	title: string;
-	url: URL | string;
-	path: string;
-	description: string;
-}) => {
-	const SHARE_URL = `https://cliloaders.com/${path}`;
-	const EMAIL_URL = `mailto:?subject=Check out this cli loader I found on cliloaders!&body=${description} ${encodeURIComponent(SHARE_URL)}`;
-	const FB_ENDPOINT = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SHARE_URL)}`;
-	const LI_ENDPOINT = `https://www.linkedin.com/feed/?linkOrigin=LI_BADGE&shareActive=true&shareUrl=${encodeURIComponent(SHARE_URL)}`;
-
-	console.log('Share URL:', SHARE_URL);
-	console.log('Email URL:', EMAIL_URL);
-	console.log('Facebook URL:', FB_ENDPOINT);
-	console.log('LinkedIn URL:', LI_ENDPOINT);
-};
-
 export const Share = memo(
 	({
 		className,
 		title,
 		url,
 		description,
-	}: {
-		className?: string;
-		title: string;
-		url: string;
-		description: string;
-	}) => {
+	}: ShareProps) => {
 		return (
 			<div className={className}>
 				<EmailShareButton

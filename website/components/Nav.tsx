@@ -1,12 +1,13 @@
 import { LI_VARIANTS, UL_VARIANTS } from '@/lib/config/variants';
 import { getLoaders } from '@/lib/helpers/get-loaders';
+import type { NavProps } from '@/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { memo, useState } from 'react';
 import { BiCode } from 'react-icons/bi';
 
 export const Nav = memo(
-	({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) => {
+	({ isOpen, onToggle }: NavProps) => {
 		const [isAnimating, setIsAnimating] = useState(false);
 
 		const handleToggle = () => {

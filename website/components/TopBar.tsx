@@ -2,9 +2,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useMemo } from 'react';
 
-const Renderer = dynamic(() => import('./Renderer').then((mod) => mod.Renderer), {
-	loading: () => <span className='inline-flex text-sm'>Loading...</span>,
-});
+const Renderer = dynamic(() => import('./Renderer').then((mod) => mod.Renderer));
 
 export const TopBar = () => {
 	const keyframes = useMemo(

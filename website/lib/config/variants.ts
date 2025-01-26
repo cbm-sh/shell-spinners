@@ -1,7 +1,7 @@
 // Object to store a buttonVariants for different button types
 export const buttonVariants = {
-	quaternary: {
-		className: 'absolute top-3 right-14',
+	primary: {
+		className: 'relative top-0 left-0',
 	},
 	secondary: {
 		className: 'absolute top-3 right-3',
@@ -9,8 +9,8 @@ export const buttonVariants = {
 	tertiary: {
 		className: 'relative top-0 -right-2',
 	},
-	primary: {
-		className: 'relative top-0 left-0',
+	quaternary: {
+		className: 'absolute top-3 right-14',
 	},
 	quinary: {
 		className: 'relative top-0 right-0',
