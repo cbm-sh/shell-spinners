@@ -1,4 +1,4 @@
-import allLoaders from "./all-loaders";
+import cliLoaders from "./cli-loaders";
 
 /**
  * Initialize a loader
@@ -8,8 +8,8 @@ import allLoaders from "./all-loaders";
  * @see {@link https://cliloaders.com} for different loaders
  */
 
-const initLoader = (name: string, speed?: number) => {
-  const loader = allLoaders.find(obj => obj.name === name);
+export const initLoader = (name: string, speed?: number) => {
+  const loader = Object.keys(cliLoaders).find(obj => obj === name);
 
   if (!loader) {
     console.error(
@@ -18,7 +18,7 @@ const initLoader = (name: string, speed?: number) => {
     return;
   }
 
-  const { keyframes } = loader;
+  const keyframes = loader ? cliLoaders[loader as keyof typeof cliLoaders]?.keyframes : undefined;
 
   if (speed && speed < 0) {
     console.error(

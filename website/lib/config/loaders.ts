@@ -282,6 +282,11 @@ const LOADERS = {
         category: 'emojis',
         keyframes: ['😄 ', '😝 '],
     },
+    emojis_10: {
+        speed: 100,
+        category: 'emojis',
+        keyframes: ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'],
+    },
     lines_1: {
         speed: 70,
         category: 'lines',
