@@ -1,6 +1,5 @@
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
-import { TopBar } from '@/components/TopBar';
 import { METADATA } from '@/lib/config/metadata';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -21,7 +20,6 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
 		<html lang='en' suppressHydrationWarning>
 			<body className='mx-auto min-h-screen max-w-5xl overflow-x-hidden scroll-smooth border-0 bg-black font-sans text-sm text-neutral-100 antialiased lg:border lg:border-y-0 lg:border-x-neutral-800'>
 				<Header />
-				<TopBar />
 				<main>{children}</main>
 				<Footer />
 				<ToastWrapper />
