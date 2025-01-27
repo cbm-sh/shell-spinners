@@ -44,7 +44,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 						<BackButton />
 						<Link href={`/${nextLoader}`}>
 							<Button
-								variant='quinary'
+								variant='tertiary'
 								icon={<HiArrowRight size={16} />}
 								aria-label='Next Loader'
 							/>

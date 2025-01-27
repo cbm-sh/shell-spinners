@@ -12,12 +12,7 @@ export const TopBar = () => {
 				aria-label='V2 Now Available'
 				className='flex flex-row items-center justify-center border border-x-0 border-y-neutral-800 px-6 py-2 text-center text-sm'
 			>
-				<Renderer
-					className='inline-flex text-sm'
-					speed={150}
-					keyframes={keyframes}
-					category={'Arrows'}
-				/>
+				<Renderer className='inline-flex text-sm' speed={150} keyframes={keyframes} />
 			</Link>
 		</section>
 	);

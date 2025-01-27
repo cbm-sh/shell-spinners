@@ -12,9 +12,6 @@ export const BUTTON_VARIANTS = {
 	quaternary: {
 		className: 'absolute top-3 right-14',
 	},
-	quinary: {
-		className: 'relative top-0 right-0',
-	},
 };
 
 // Object to store a motion variants for toast

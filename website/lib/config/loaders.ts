@@ -1,5 +1,6 @@
 import { cache } from "react";
 
+// Object to store loaders
 const LOADERS = {
     arrows_1: {
         speed: 100,

@@ -13,7 +13,9 @@ const HomePage = () => {
 			>
 				<div className='flex flex-col items-center justify-center'>
 					<div className='flex items-center border border-neutral-800'>
-						<code className='relative inline-flex h-6 pt-0.5 px-2'>npm install cli-loaders</code>
+						<code className='relative inline-flex h-6 px-2 pt-0.5'>
+							npm install cli-loaders
+						</code>
 						<CopyButton
 							hasKeyframes={false}
 							variant='tertiary'

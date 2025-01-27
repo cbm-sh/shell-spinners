@@ -12,7 +12,9 @@ export const Filter = () => {
 	const params = useSearchParams();
 	const initialTab = params.get('tab') ?? 'arrows';
 	const [activeTab, setActiveTab] = useState(initialTab);
-	const filteredLoaders = Object.values(LOADERS).filter(loader => loader.category === activeTab);
+	const filteredLoaders = Object.values(LOADERS).filter(
+		(loader) => loader.category === activeTab,
+	);
 
 	useEffect(() => {
 		if (params.get('tab') !== activeTab) {
