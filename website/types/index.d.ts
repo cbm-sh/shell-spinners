@@ -64,19 +64,19 @@ export type IconComponents = {
 export type IconProps = React.SVGProps<SVGSVGElement>;
 
 export type LoaderCategories =
-	| 'Arrows'
-	| 'Bars'
-	| 'Circles'
-	| 'Dots'
-	| 'Emojis'
-	| 'Lines'
-	| 'Numbers'
-	| 'Squares'
-	| 'Symbols'
-	| 'Togglers';
+	| 'arrows'
+	| 'bars'
+	| 'circles'
+	| 'dots'
+	| 'emojis'
+	| 'lines'
+	| 'numbers'
+	| 'squares'
+	| 'symbols'
+	| 'togglers';
 
 export type LoaderProps = {
-	name: string;
+	name?: string;
 	category: LoaderCategories;
 	speed: number;
 	keyframes: string[];
@@ -85,7 +85,6 @@ export type LoaderProps = {
 export type NavProps = { isOpen: boolean; onToggle: () => void };
 
 export type RendererProps = {
-	category?: LoaderCategories;
 	speed: number;
 	keyframes: string[];
 	className?: string;

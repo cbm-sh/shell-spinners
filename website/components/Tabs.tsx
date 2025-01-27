@@ -3,16 +3,16 @@ import { memo } from 'react';
 
 export const Tabs = memo(({ setActiveTab }: TabsProps) => {
 	const tabs = [
-		'Arrows',
-		'Bars',
-		'Circles',
-		'Dots',
-		'Emojis',
-		'Lines',
-		'Numbers',
-		'Squares',
-		'Symbols',
-		'Togglers',
+		'arrows',
+		'bars',
+		'circles',
+		'dots',
+		'emojis',
+		'lines',
+		'numbers',
+		'squares',
+		'symbols',
+		'togglers',
 	];
 
 	const handleTabClick = (tab: string) => {
@@ -29,7 +29,7 @@ export const Tabs = memo(({ setActiveTab }: TabsProps) => {
 					className='cursor-pointer px-3 py-2 text-sm'
 					onMouseDown={() => handleTabClick(tab)}
 				>
-					{tab}
+					{tab.charAt(0).toUpperCase() + tab.slice(1)}
 				</button>
 			))}
 		</div>

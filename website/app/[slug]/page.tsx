@@ -9,32 +9,33 @@ import {
 } from '@/components/Examples';
 import { Renderer } from '@/components/Renderer';
 import { Button } from '@/components/ui/Button';
-import { getLoaders } from '@/lib/helpers/get-loaders';
+import LOADERS from '@/lib/config/loaders';
 import type { LoaderProps } from '@/types';
 import Link from 'next/link';
 import { HiArrowRight } from 'react-icons/hi';
 
 export const generateStaticParams = async () =>
-	Object.keys(getLoaders).map((key) => ({
+	Object.keys(LOADERS).map((key) => ({
 		slug: key,
 	}));
 
 const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 	const { slug } = await params;
-	const loader: LoaderProps = getLoaders[slug as keyof typeof getLoaders];
-	const { category, keyframes, speed } = loader;
-	const loaderKeys = Object.keys(getLoaders);
-	const currentIndex = loaderKeys.indexOf(slug);
-	const nextLoader = loaderKeys[(currentIndex + 1) % loaderKeys.length];
+	const loaderCategories = Object.keys(LOADERS);
+	const currentIndex = loaderCategories.indexOf(slug);
+	const currentLoader = loaderCategories[currentIndex] as keyof typeof LOADERS;
+	const loader = LOADERS[currentLoader] as LoaderProps;
+	const nextLoader = loaderCategories[currentIndex + 1];
+	const { speed, category, keyframes } = loader as LoaderProps;
 
 	return (
 		<>
 			<section className='px-6 py-12'>
 				<h1 className='relative text-center text-4xl font-semibold text-balance text-neutral-100 md:text-5xl'>
-					{slug.replace(/_/g, ' ')}
+					{slug}
 				</h1>
 				<p className='relative py-6 text-center text-neutral-50'>
-					{category.toLocaleLowerCase()} collection
+					The {category.toLocaleLowerCase()} collection
 				</p>
 			</section>
 			<section className='w-full border border-x-0 border-b-0 border-t-neutral-800 p-6'>
@@ -50,7 +51,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 						</Link>
 					</div>
 					<div className='absolute size-full bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
-					<Renderer speed={speed} keyframes={keyframes} category={category} />
+					<Renderer speed={speed} keyframes={keyframes} />
 				</div>
 				<div className='mt-6 space-y-6'>
 					<h1 className='text-md font-light text-neutral-50'>Examples</h1>

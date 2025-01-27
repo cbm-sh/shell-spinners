@@ -13,7 +13,7 @@ export const ToastWrapper = memo(() => {
 	};
 
 	return (
-		<div className='fixed z-50 flex w-full max-w-3xl flex-col items-center justify-center'>
+		<div className='fixed z-50 flex w-full max-w-5xl flex-col items-center justify-center'>
 			{toasts.map(({ message, id }: ToastProps) => (
 				<Toast
 					isOpen={true}

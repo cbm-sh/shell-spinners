@@ -18,8 +18,8 @@ const Page = () => {
 		<>
 			<section>
 				<div className='px-6 py-12'>
-					<div className='absolute min-h-48 w-full max-w-3xl bg-[notear-gradient(to_right,#1a1a1a_1px,transparent_1px),notear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
-					<h1 className='relative z-40 text-center text-4xl font-semibold text-balance text-neutral-100 md:text-3xl'>
+					<div className='absolute min-h-48 w-full max-w-5xl bg-[notear-gradient(to_right,#1a1a1a_1px,transparent_1px),notear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
+					<h1 className='relative z-40 text-center text-4xl font-semibold text-balance text-neutral-100 md:text-5xl'>
 						Changelog
 					</h1>
 					<p className='relative z-40 py-6 text-center text-neutral-200'>
