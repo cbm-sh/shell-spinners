@@ -7,6 +7,7 @@ import {
 	StandardExample,
 	ZeroDependencyExample,
 } from '@/components/Examples';
+import { Hero } from '@/components/Hero';
 import { Renderer } from '@/components/Renderer';
 import { Button } from '@/components/ui/Button';
 import LOADERS from '@/lib/config/loaders';
@@ -30,17 +31,9 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
 	return (
 		<>
-			<section className='px-6 py-12'>
-				<h1 className='relative text-center text-4xl font-semibold text-balance text-neutral-100 md:text-5xl'>
-					{slug}
-				</h1>
-				<p className='relative py-6 text-center text-neutral-50'>
-					The {category.toLocaleLowerCase()} collection
-				</p>
-			</section>
-			<section className='w-full border border-x-0 border-b-0 border-t-neutral-800 p-6'>
-				<div className='relative flex min-h-96 flex-col items-center justify-center overflow-hidden border border-neutral-800 bg-black p-6'>
-					<div className='absolute top-4 z-40 flex w-full flex-row items-center justify-between px-4'>
+			<section>
+				<Hero title={slug} description={`The ${category.toLocaleLowerCase()} collection`}>
+					<div className='z-50 flex flex-row items-center justify-between'>
 						<BackButton />
 						<Link href={`/${nextLoader}`}>
 							<Button
@@ -50,6 +43,10 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 							/>
 						</Link>
 					</div>
+				</Hero>
+			</section>
+			<section className='w-full border border-x-0 border-b-0 border-t-neutral-800 p-6'>
+				<div className='relative flex min-h-96 flex-col items-center justify-center overflow-hidden border border-neutral-800 bg-black p-6'>
 					<div className='absolute size-full bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
 					<Renderer speed={speed} keyframes={keyframes} />
 				</div>
