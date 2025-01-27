@@ -1,6 +1,6 @@
 'use client';
 
-import LOADERS, { getLoaders } from '@/lib/config/loaders';
+import LOADERS from '@/lib/config/loaders';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 import { Renderer } from './Renderer';
@@ -13,17 +13,8 @@ export const Filter = () => {
 	const initialTab = params.get('tab') ?? 'arrows';
 	const [activeTab, setActiveTab] = useState(initialTab);
 	const filteredLoaders = Object.values(LOADERS).filter(loader => loader.category === activeTab);
-	const name = Object.keys(LOADERS).filter(name => activeTab === name);
-	console.log('filteredLoaders', filteredLoaders);
-	console.log('name', name);
-	console.log('initialTab', initialTab);
+
 	useEffect(() => {
-		console.log('getLoaders', getLoaders());
-		console.log('activeTab', activeTab);
-		console.log('params', params);
-		console.log('name', name);
-		console.log('filteredLoaders', filteredLoaders);
-		console.log('initialTab', initialTab);
 		if (params.get('tab') !== activeTab) {
 			const query = new URLSearchParams({
 				...Object.fromEntries(params.entries()),
