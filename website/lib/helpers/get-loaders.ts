@@ -92,8 +92,3 @@ export const loaders = cache(() => ({
 }));
 
 export const getLoaders = loaders();
-
-console.time('loaders');
-const key = Object.keys(getLoaders).map((key) => getLoaders[key as keyof typeof getLoaders]);
-console.log(key);
-console.timeEnd('loaders');
