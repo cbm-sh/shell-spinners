@@ -1,6 +1,5 @@
 'use client';
 
-import { useToast } from '@/hooks/use-toast';
 import { TOAST_VARIANTS } from '@/lib/config/variants';
 import type { ToastProps } from '@/types';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -40,27 +39,3 @@ export const Toast = memo(({ isOpen, message, onClose }: ToastProps) => {
 });
 
 Toast.displayName = 'Toast';
-
-export const ToastWrapper = memo(() => {
-	const { toasts, removeToast } = useToast();
-
-	const handleClose = (id: number) => {
-		removeToast(id);
-	};
-
-	return (
-		<div className='fixed z-50 flex w-full max-w-5xl flex-col items-center justify-center'>
-			{toasts.map(({ message, id }: ToastProps) => (
-				<Toast
-					isOpen={true}
-					key={`toast_${id}`}
-					id={id}
-					message={message}
-					onClose={() => handleClose(id)}
-				/>
-			))}
-		</div>
-	);
-});
-
-ToastWrapper.displayName = 'ToastWrapper';

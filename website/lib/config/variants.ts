@@ -1,5 +1,5 @@
 // Object to store a buttonVariants for different button types
-export const buttonVariants = {
+export const BUTTON_VARIANTS = {
 	primary: {
 		className: 'relative top-0 left-0',
 	},
@@ -7,7 +7,7 @@ export const buttonVariants = {
 		className: 'absolute top-3 right-3',
 	},
 	tertiary: {
-		className: 'relative top-0 -right-2',
+		className: 'relative top-0 right-0',
 	},
 	quaternary: {
 		className: 'absolute top-3 right-14',
@@ -17,44 +17,7 @@ export const buttonVariants = {
 	},
 };
 
-export const SVG_PATH_OPEN = {
-	opened: { d: 'M3.06061 2.99999L21.0606 21' },
-	moving: { d: 'M0 8.5L24 8.5' },
-	closed: { d: 'M0 8.5L24 8.5' },
-};
-
-export const SVG_PATH_CLOSE = {
-	opened: { d: 'M3.00006 21.0607L21 3.06064' },
-	moving: { d: 'M0 14.5L24 14.5' },
-	closed: { d: 'M0 14.5L12 14.5' },
-};
-
-export const UL_VARIANTS = {
-	open: {
-		transition: { staggerChildren: 0.005, staggerDirection: 0.005, delayChildren: 0.005 },
-	},
-	closed: {
-		transition: { staggerChildren: 0.005, staggerDirection: 0.005, delayChildren: 0.005 },
-	},
-};
-
-export const LI_VARIANTS = {
-	open: {
-		x: 0,
-		opacity: 1,
-		transition: {
-			x: { duration: 1, stiffness: 30, type: 'spring', ease: 'easeIn' },
-		},
-	},
-	closed: {
-		x: 0,
-		opacity: 0,
-		transition: {
-			x: { duration: 1, stiffness: 30, type: 'spring', ease: 'easeOut' },
-		},
-	},
-};
-
+// Object to store a motion variants for toast
 export const TOAST_VARIANTS = {
 	open: {
 		y: 0,

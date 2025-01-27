@@ -18,8 +18,8 @@ const Page = () => {
 		<>
 			<section>
 				<div className='px-6 py-12'>
-					<div className='absolute min-h-48 w-full max-w-5xl bg-[notear-gradient(to_right,#1a1a1a_1px,transparent_1px),notear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
-					<h1 className='relative z-40 text-center text-4xl font-semibold text-balance text-neutral-100 md:text-5xl'>
+					<div className='absolute min-h-48 w-full max-w-3xl bg-[notear-gradient(to_right,#1a1a1a_1px,transparent_1px),notear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
+					<h1 className='relative z-40 text-center text-4xl font-semibold text-balance text-neutral-100 md:text-3xl'>
 						Changelog
 					</h1>
 					<p className='relative z-40 py-6 text-center text-neutral-200'>
@@ -34,13 +34,13 @@ const Page = () => {
 					</div>
 				</div>
 			</section>
-			<section className='border border-x-0 border-b-0 border-t-neutral-800 bg-black'>
+			<section className='border border-x-0 border-b-0 border-t-neutral-800'>
 				<div className='flex flex-col items-start justify-center gap-6 p-6'>
-					<h1 className='text-md font-light text-neutral-400'>Latest Updates</h1>
+					<h1 className='text-md text-neutral-400'>Latest Updates</h1>
 					{changeLog.map((v, i) => (
 						<div
 							key={`${v}_${i}`}
-							className='flex h-auto min-h-96 w-full flex-col items-center justify-start overflow-y-scroll border border-neutral-800 bg-black py-6'
+							className='flex h-auto min-h-96 w-full flex-col items-center justify-start overflow-y-scroll border border-neutral-800 py-6'
 						>
 							<div className='relative flex flex-col items-center justify-center p-6 text-sm text-neutral-50'>
 								<h2 className='text-sm text-white'>

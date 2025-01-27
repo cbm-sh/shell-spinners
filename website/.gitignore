@@ -39,7 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-experimental
-lib/helpers/loaders.ts
-lib/helpers/loaders.json

@@ -103,5 +103,4 @@ export const loaders = cache(() => ({
     togglers_14: _('togglers_14', $10, 300, ['❂', '✪']),
 }));
 
-export const getLoaders = loaders();
-
+export const getLoaders = loaders;

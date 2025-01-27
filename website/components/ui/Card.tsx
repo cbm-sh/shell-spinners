@@ -6,7 +6,8 @@ import { Button } from './Button';
 
 export const Card = memo(({ children, slug, name, ...props }: CardProps) => (
 	<div
-		className='relative flex size-full items-center justify-center border border-neutral-800 bg-black px-8 py-32'
+		autoFocus={true}
+		className='relative flex h-24 w-full items-center justify-center border border-neutral-800 md:h-[302px]'
 		{...props}
 	>
 		<div className='absolute size-full bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />

@@ -21,7 +21,7 @@ export const Tabs = memo(({ setActiveTab }: TabsProps) => {
 	};
 
 	return (
-		<div className='overflow-x-invisible z-40 mx-auto flex flex-row items-center justify-between overflow-x-scroll px-6 py-1 font-light'>
+		<div className='overflow-x-invisible z-40 mx-auto flex h-10 flex-row items-center justify-between overflow-x-scroll px-6 py-1'>
 			{tabs.map((tab: string, i: number) => (
 				<button
 					key={`tab-${i}`}

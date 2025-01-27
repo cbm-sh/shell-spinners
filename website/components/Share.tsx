@@ -1,5 +1,3 @@
-'use client';
-
 import { memo } from 'react';
 import { FaEnvelope, FaFacebook, FaLinkedin, FaReddit } from 'react-icons/fa';
 import {

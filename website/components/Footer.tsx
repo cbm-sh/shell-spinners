@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
 export const Footer = () => (
-	<footer className='flex h-20 items-center justify-between border border-x-0 border-b-0 border-t-neutral-800 p-6 text-center'>
+	<footer className='flex h-15 items-center justify-between border border-x-0 border-b-0 border-t-neutral-800 p-6 text-center'>
 		<Link
 			href='/changelog'
-			className='text-neutral-400 transition-colors duration-300 hover:text-neutral-500'
+			className='text-neutral-400 transition-colors hover:text-neutral-500'
 			aria-label='Cli Loaders Changelog'
 			aria-hidden='false'
 			role='link'
@@ -13,7 +13,7 @@ export const Footer = () => (
 		</Link>
 		<Link
 			href='https://github.com/cbmongithub/cli-loaders/labels/bug'
-			className='text-neutral-400 transition-colors duration-300 hover:text-neutral-500'
+			className='text-neutral-400 transition-colors hover:text-neutral-500'
 			aria-label='Cli Loaders Bug Reports'
 			aria-hidden='false'
 			role='link'

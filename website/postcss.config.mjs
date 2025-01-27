@@ -1,7 +1,11 @@
 /** @type {import('postcss-load-postCssConfig').Config} */
 const postCssConfig = {
 	plugins: {
-		'@tailwindcss/postcss': {},
+		'@tailwindcss/postcss': {
+			optimize: {
+				minify: true,
+			},
+		},
 	},
 };
 

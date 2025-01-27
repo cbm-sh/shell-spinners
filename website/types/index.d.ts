@@ -49,6 +49,12 @@ export type FilterProps = {
 	onFilterChange: (filteredLoaders: Props[]) => void;
 };
 
+export type HeroProps = {
+	title: string;
+	description: string;
+	children?: React.ReactNode;
+};
+
 export type IconComponents = {
 	default: React.ReactElement<SVGElement>;
 	hovered: React.ReactElement<SVGElement>;
