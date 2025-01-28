@@ -19,17 +19,17 @@ initLoader('${name}', ${speed});`,
 StandardExample.displayName = 'StandardExample';
 
 export const CustomExample = memo(({ keyframes }: Partial<LoaderProps>) => {
-	const title = 'Custom CLI Example';
+	const title = 'Custom Loader Example';
 	const code = useMemo(
 		() => `// Import the custom loader initializer
-import { initCustomLoader } from 'cli-loaders';
+import { initCliLoader, dots_14 } from 'cli-loaders';
 
-initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
-// Example: initCustomLoader(100, [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]);`,
+initCliLoader(dots14, YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
+// Example: initCliLoader(dots_14, 100, [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]);`,
 		[keyframes],
 	);
 
-	return <CodeBlock lang='ts' title={title} code={code} keyframes={keyframes} />;
+	return <CodeBlock lang='ts' title={title} code={code} keyframes={keyframes} isV2 />;
 });
 
 CustomExample.displayName = 'CustomExample';
