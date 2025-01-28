@@ -2,35 +2,28 @@ import type { LoaderProps } from '@/types';
 import { memo, useMemo } from 'react';
 import { CodeBlock } from './CodeBlock';
 
-export const StandardExample = memo(({ name, speed }: Partial<LoaderProps>) => {
+export const StandardExample = ({ name, speed }: Partial<LoaderProps>) => {
 	const title = 'Standard CLI Example';
-	const code = useMemo(
-		() => `// Import the loader initializer
+	const code = () => `// Import the loader initializer
 import { initLoader } from 'cli-loaders';
 
 // Start the loader
-initLoader('${name}', ${speed});`,
-		[name, speed],
-	);
-
-	return <CodeBlock lang='ts' title={title} code={code} />;
-});
+initLoader('${name}', ${speed});`;
+	return <CodeBlock lang='ts' title={title} code={code()} />;
+};
 
 StandardExample.displayName = 'StandardExample';
 
-export const CustomExample = memo(({ keyframes }: Partial<LoaderProps>) => {
+export const CustomExample = ({ keyframes }: Partial<LoaderProps>) => {
 	const title = 'Custom Loader Example';
-	const code = useMemo(
-		() => `// Import the custom loader initializer
+	const code = () => `// Import the custom loader initializer
 import { initCliLoader, dots_14 } from 'cli-loaders';
 
 initCliLoader(dots14, YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
-// Example: initCliLoader(dots_14, 100, [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]);`,
-		[keyframes],
-	);
+// Example: initCliLoader(dots_14, 100, [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]);`;
 
-	return <CodeBlock lang='ts' title={title} code={code} keyframes={keyframes} isV2 />;
-});
+	return <CodeBlock lang='ts' title={title} code={code()} keyframes={keyframes} isV2 />;
+};
 
 CustomExample.displayName = 'CustomExample';
 

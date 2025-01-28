@@ -3,8 +3,9 @@
 import { IconGroup } from '@/components/ui/Icons';
 import Image from 'next/image';
 import Link from 'next/link';
+import { memo } from 'react';
 
-export const Header = () => (
+export const Header = memo(() => (
 	<header className='z-50 flex h-16 items-center justify-between p-6'>
 		<Link
 			href='/'
@@ -24,6 +25,6 @@ export const Header = () => (
 		</Link>
 		<IconGroup className='flex space-x-6' />
 	</header>
-);
+));
 
 Header.displayName = 'Header';

@@ -17,7 +17,6 @@ export const Tabs = memo(({ setActiveTab }: TabsProps) => {
 
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
-		window.history.pushState(null, '', `?tab=${tab}`);
 	};
 
 	return (
