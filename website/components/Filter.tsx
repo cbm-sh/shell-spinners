@@ -1,72 +1,49 @@
-"use client";
+'use client';
 
-import {
-    getLoadersByCategory
-} from '@/lib/get-loaders';
-import type { TabsProps } from '@/types';
-import dynamic from 'next/dynamic';
+import LOADERS from '@/lib/config/loaders';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { memo, Suspense, useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+import { Renderer } from './Renderer';
+import { Tabs } from './Tabs';
+import { Card } from './ui/Card';
 
-const PreviewCard = dynamic(() => import('@/components/Cards').then(mod => mod.PreviewCard));
-const Renderer = dynamic(() => import('@/components/Renderer').then(mod => mod.Renderer));
+export const Filter = () => {
+	const router = useRouter();
+	const params = useSearchParams();
+	const initialTab = params.get('tab') ?? 'arrows';
+	const [activeTab, setActiveTab] = useState(initialTab);
+	const filteredLoaders = Object.values(LOADERS).filter(
+		(loader) => loader.category === activeTab,
+	);
 
-const Tabs = memo(({ setActiveTab }: TabsProps) => {
-    const tabs = ['Arrows', 'Bars', 'Circles', 'Dots', 'Emojis', 'Lines', 'Numbers', 'Squares', 'Symbols', 'Togglers'];
-    const handleTabClick = (tab: string) => {
-        setActiveTab(tab);
-        window.history.pushState(null, '', `?tab=${tab}`);
-    };
+	useEffect(() => {
+		if (params.get('tab') !== activeTab) {
+			const query = new URLSearchParams({
+				...Object.fromEntries(params.entries()),
+				tab: activeTab,
+			}).toString();
+			router.push(`${window.location.pathname}?${query}`);
+		}
+	}, [params, router, activeTab]);
 
-    return (
-        <div className="z-40 px-6 font-light flex flex-row py-1 mx-auto justify-between items-center overflow-x-scroll overflow-scroll-invisible">
-            {tabs.map((tab: string, i: number) => (
-                <button
-                    key={`tab-${i}`}
-                    type="button"
-                    className="cursor-pointer text-sm px-3 py-2"
-                    onClick={() => handleTabClick(tab)}
-                >
-                    {tab}
-                </button>
-            ))}
-        </div>
-    );
-});
-
-Tabs.displayName = 'Tabs';
-
-export const Filter = memo(() => {
-    const router = useRouter();
-    const params = useSearchParams();
-    const initialTab = params.get('tab') ?? 'Arrows';
-    const [activeTab, setActiveTab] = useState(initialTab);
-
-    useEffect(() => {
-        if (params.get('tab') !== activeTab) {
-            const query = new URLSearchParams({ ...Object.fromEntries(params.entries()), tab: activeTab }).toString();
-            router.push(`${window.location.pathname}?${query}`);
-        }
-    }, [params, router, activeTab]);
-
-    const filteredLoaders = useMemo(() => getLoadersByCategory(activeTab), [activeTab]);
-
-    return (
-        <Suspense fallback={null}>
-            <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-            <div className='z-40 min-h-screen w-full p-6 border border-y-neutral-800 border-x-0'>
-                <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3'>
-                    {filteredLoaders.map(({ name, keyframes, speed }) => (
-                        <div key={name}>
-                                <PreviewCard keyframes={keyframes} key={name} slug={name} name={name}>
-                                    <Renderer key={name} speed={speed} keyframes={keyframes} />
-                                </PreviewCard>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </Suspense>
-    );
-});
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+			<div className='z-40 min-h-screen w-full border border-x-0 border-y-neutral-800 p-6'>
+				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3'>
+					{filteredLoaders.map(({ category, keyframes, speed }, i: number) => (
+						<Card
+							key={`filter_${category}_${i + 1}`}
+							slug={`/${category}_${i + 1}`}
+							name={`${category}_${i + 1}`}
+						>
+							<Renderer speed={speed} keyframes={keyframes} />
+						</Card>
+					))}
+				</div>
+			</div>
+		</Suspense>
+	);
+};
 
 Filter.displayName = 'Filter';

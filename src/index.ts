@@ -1,11 +1,5 @@
-import allLoaders from "./all-loaders";
-import cliLoaders from "./cli-loaders";
-import initLoader from "./init-loader";
-import initCustomLoader from "./init-custom-loader";
+export * from './cli-loaders';
+export { default as cliLoaders } from './cli-loaders';
+export { default as initCliLoader } from './init-cli-loader';
+export { default as initLoader } from './init-loader';
 
-export {
-    allLoaders,
-    cliLoaders,
-    initLoader,
-    initCustomLoader,
-    };

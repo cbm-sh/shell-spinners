@@ -1,46 +1,44 @@
 import type { LoaderProps } from '@/types';
-import dynamic from 'next/dynamic';
 import { memo, useMemo } from 'react';
-
-const ExampleCard = dynamic(() => import('@/components/Cards').then(mod => mod.ExampleCard));
+import { CodeBlock } from './CodeBlock';
 
 export const StandardExample = memo(({ name, speed }: Partial<LoaderProps>) => {
-    const title = 'Standard CLI Example';
-    const code = useMemo(() => (
-        `// Import the loader initializer
+	const title = 'Standard CLI Example';
+	const code = useMemo(
+		() => `// Import the loader initializer
 import { initLoader } from 'cli-loaders';
 
 // Start the loader
-initLoader('${name}', ${speed});`), [name, speed]);
+initLoader('${name}', ${speed});`,
+		[name, speed],
+	);
 
-    return (
-        <ExampleCard title={title} code={code} />
-    );
+	return <CodeBlock lang='ts' title={title} code={code} />;
 });
 
 StandardExample.displayName = 'StandardExample';
 
 export const CustomExample = memo(({ keyframes }: Partial<LoaderProps>) => {
-    const title = 'Custom CLI Example';
-    const code = useMemo(() => (
-        `// Import the custom loader initializer
-import { initCustomLoader } from 'cli-loaders';
+	const title = 'Custom Loader Example';
+	const code = useMemo(
+		() => `// Import the custom loader initializer
+import { initCliLoader, dots_14 } from 'cli-loaders';
 
-initCustomLoader(YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
-// Example: initCustomLoader(100, [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]);`
-    ), [keyframes]);
+initCliLoader(dots14, YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
+// Example: initCliLoader(dots_14, 100, [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]);`,
+		[keyframes],
+	);
 
-    return (
-        <ExampleCard title={title} code={code} isV2 />
-    );
+	return <CodeBlock lang='ts' title={title} code={code} keyframes={keyframes} isV2 />;
 });
 
 CustomExample.displayName = 'CustomExample';
 
-export const ZeroDependencyExample = memo(({ speed, keyframes }: Partial<LoaderProps>) => {
-    const title = 'Zero Dependency Example';
-    const code = useMemo(() => (
-        `const initLoader = () => {
+export const ZeroDependencyExample = memo(
+	({ speed, keyframes }: Partial<LoaderProps>) => {
+		const title = 'Zero Dependency Example';
+		const code = useMemo(
+			() => `const initLoader = () => {
     // Set keyframes
     const keyframes = [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}];
     // Set speed in milliseconds
@@ -54,24 +52,25 @@ export const ZeroDependencyExample = memo(({ speed, keyframes }: Partial<LoaderP
     }, speed);
 };
 // Start the loader
-initLoader();`   ), [speed, keyframes]);
+initLoader();`,
+			[speed, keyframes],
+		);
 
-    return (
-        <ExampleCard title={title} code={code} />
-    );
-});
+		return <CodeBlock lang='ts' title={title} code={code} keyframes={keyframes} />;
+	},
+);
 
 ZeroDependencyExample.displayName = 'ZeroDependencyExample';
 
 export const OhMyZshExample = memo(({ speed, keyframes }: Partial<LoaderProps>) => {
-    const title = 'Oh My Zsh Example';
-    const code = useMemo(() =>
-        `function start_loader() {
+	const title = 'Oh My Zsh Example';
+	const code = useMemo(
+		() => `function start_loader() {
     local keyframes=(${keyframes?.map((keyframe) => `"${keyframe}"`).join(' ')}) # Keyframes for the loader
     local speed=${speed} # Speed at which the keyframes change
-    local pid=$1 # PID of the process to wait for
+    local pname=$1 # PID of the process to wait for
 
-    while kill -0 "$pid" 2>/dev/null; do
+    while kill -0 "$pname" 2>/dev/null; do
         for frame in "\${keyframes[@]}"; do
             printf "\\r%s %s" "$frame"
             sleep $speed
@@ -86,29 +85,29 @@ function custom_loader() {
     # Example of using the loader with a background task
     (sleep 5) &  # Simulate a long-running task in the background
     start_loader $! # Call the loader with the PID of the background process
-}`, [speed, keyframes]);
+}`,
+		[speed, keyframes],
+	);
 
-    return (
-        <ExampleCard title={title} code={code} />
-    );
+	return <CodeBlock lang='bash' title={title} code={code} keyframes={keyframes} />;
 });
 
 OhMyZshExample.displayName = 'OhMyZshExample';
 
 export const NextJsExample = memo(() => {
-    const title = 'Next.js Example';
-    const code = useMemo(() => (
-        `"use client";
+	const title = 'Next.js Example';
+	const code = useMemo(
+		() => `"use client";
 
 import React, { useEffect, useState } from 'react';
 
-type LoaderComponentProps = {
+type LoaderProps = {
     speed: number;
     keyframes: string[];
     className?: string;
 };
 
-export const LoaderComponent: React.FC<LoaderComponentProps> = ({ speed, keyframes, className }) => {
+export const Loader: React.FC<LoaderProps> = ({ speed, keyframes, className }) => {
     const [currentFrame, setCurrentFrame] = useState(keyframes[0]);
 
     useEffect(() => {
@@ -124,35 +123,35 @@ export const LoaderComponent: React.FC<LoaderComponentProps> = ({ speed, keyfram
     return (
         <div className={className}>{currentFrame}</div>
     );
-};`
-    ), []);
+};`,
+		[],
+	);
 
-    return (
-        <ExampleCard title={title} code={code} />
-    );
+	return <CodeBlock lang='tsx' title={title} code={code} />;
 });
 
 NextJsExample.displayName = 'NextJsExample';
 
-export const NextJsComponentExample = memo(({ speed, keyframes }: Partial<LoaderProps>) => {
-    const title = 'Next.js Component Example';
-    const code = useMemo(() => (
-        `import { LoaderComponent } from "@/components/LoaderComponent";
+export const NextJsComponentExample = memo(
+	({ speed, keyframes }: Partial<LoaderProps>) => {
+		const title = 'Next.js Component Example';
+		const code = useMemo(
+			() => `import { Loader } from "@/components/Loader";
 
 const Page = () => (
-    <LoaderComponent
+    <Loader
         speed={${speed}}
         keyframes={[${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]}
-        className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden"
+        className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hnameden"
     />
 );
 
-export default Page;`
-    ), [speed, keyframes]);
+export default Page;`,
+			[speed, keyframes],
+		);
 
-    return (
-        <ExampleCard title={title} code={code} />
-    );
-});
+		return <CodeBlock lang='tsx' title={title} code={code} keyframes={keyframes} />;
+	},
+);
 
 NextJsComponentExample.displayName = 'NextJsComponentExample';

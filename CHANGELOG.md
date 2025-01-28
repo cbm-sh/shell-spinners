@@ -1,5 +1,20 @@
 # cli-loaders
 
+## 2.3.1
+
+### Patch Changes
+
+- exports
+
+## 2.3.0
+
+### Minor Changes
+
+- - Added new loader, 'emojis_10'.
+  - Some loaders have been renamed to follow the naming convention, final change.
+  - New loader, initCliLoader which takes in a loader name and optional speed and keyframes parameters for full customization.
+  - Updated data structure for tree shaking.
+
 ## 2.2.0
 
 ### Minor Changes

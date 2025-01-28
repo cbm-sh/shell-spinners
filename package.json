@@ -1,6 +1,6 @@
 {
   "name": "cli-loaders",
-  "version": "2.2.0",
+  "version": "2.3.1",
   "author": {
     "name": "Christian Martinez",
     "url": "http://christianbmartinez.com"
@@ -10,6 +10,8 @@
     "url": "git+https://github.com/cbmongithub/cli-loaders.git"
   },
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "devDependencies": {
     "@changesets/cli": "^2.27.11",
     "@types/bun": "^1.1.14",
@@ -49,9 +51,7 @@
     "start": "node dist/index.js",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "build": "tsup src/index.ts --format cjs,esm --dts --minify",
-    "lint": "tsc",
-    "test": "bun run src/init-custom-loader.test.ts"
+    "lint": "tsc"
   },
-  "type": "module",
-  "types": "dist/index.d.ts"
+  "type": "module"
 }

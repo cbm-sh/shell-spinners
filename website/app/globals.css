@@ -1,10 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer utilities {
-    .overflow-scroll-invisible::-webkit-scrollbar {
-        height: 0px;
-        width: 0px;
-    }
+.overflow-x-invisible::-webkit-scrollbar {
+	width: 0px;
+	height: 0px;
+}
+
+.overflow-x-invisible::-webkit-scrollbar-thumb {
+	background-color: transparent;
+}
+
+.overflow-x-invisible::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+.overflow-x-invisible::-webkit-scrollbar-corner {
+	background-color: transparent;
+}
+
+.overflow-x-invisible::-webkit-scrollbar-button {
+	display: none;
 }

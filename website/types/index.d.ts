@@ -1,44 +1,58 @@
-export type AnimatedButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-	icons: {
-		default: React.ReactElement<SVGElement>;
-		hover: React.ReactElement<SVGElement>;
-		clicked?: React.ReactElement<SVGElement>;
-	};
-	className: string;
+export type ButtonProps = ButtonAsButton | (ButtonAsSpan & ButtonBaseProps);
+
+export type ButtonBaseProps = {
+	className?: string;
+	icon: React.ReactElement<SVGElement>;
+	iconAlt?: React.ReactElement<SVGElement>;
+	variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary';
 };
+
+export type ButtonAsButton = ButtonBaseProps &
+	Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonBaseProps> & {
+		as?: 'button';
+	};
+
+export type ButtonAsSpan = ButtonBaseProps &
+	Omit<SpanProps, keyof ButtonBaseProps> & {
+		as: 'span';
+	};
 
 export type CardProps = {
 	children: React.ReactNode;
-	keyframes: string[];
 	slug: string;
 	name: string;
 };
 
 export type ChangeLogProps = {
-	version: string | number;
-	changes: { type: string; details: string[] }[];
+	v: string | number;
+	change: { type: string; notes: string[] }[];
+};
+
+export type CodeBlockProps = {
+	code?: string;
+	keyframes?: string[];
+	lang: string;
+	title: string;
+	isV2?: boolean;
 };
 
 export type CopyButtonProps = {
-	className?: string;
-	code: string;
-};
-
-export type CopyCodeButtonProps = {
+	hasKeyframes: boolean;
 	code: string | string[];
-	copyText?: string;
-};
-
-export type ExampleCardProps = {
-	title: string;
-	code: string;
-	isV2?: boolean;
-	children?: React.ReactNode;
+	copyText: string;
+	className?: string;
+	variant: ButtonProps['variant'];
 };
 
 export type FilterProps = {
 	category: string;
 	onFilterChange: (filteredLoaders: Props[]) => void;
+};
+
+export type HeroProps = {
+	title: string;
+	description: string;
+	children?: React.ReactNode;
 };
 
 export type IconComponents = {
@@ -49,35 +63,40 @@ export type IconComponents = {
 
 export type IconProps = React.SVGProps<SVGSVGElement>;
 
-export type JokeCategories = {
-	[key in Categories]: string[];
-};
-
 export type LoaderCategories =
-	| 'Arrows'
-	| 'Bars'
-	| 'Circles'
-	| 'Dots'
-	| 'Emojis'
-	| 'Lines'
-	| 'Numbers'
-	| 'Squares'
-	| 'Symbols'
-	| 'Togglers';
+	| 'arrows'
+	| 'bars'
+	| 'circles'
+	| 'dots'
+	| 'emojis'
+	| 'lines'
+	| 'numbers'
+	| 'squares'
+	| 'symbols'
+	| 'togglers';
 
 export type LoaderProps = {
-	category?: LoaderCategories;
-	name: string;
+	name?: string;
+	category: LoaderCategories;
 	speed: number;
 	keyframes: string[];
 };
 
+export type NavProps = { isOpen: boolean; onToggle: () => void };
+
 export type RendererProps = {
-	category?: LoaderCategories;
-	name?: string;
 	speed: number;
 	keyframes: string[];
 	className?: string;
+};
+
+export type SpanProps = JSX.IntrinsicElements['span'];
+
+export type ShareProps = {
+	className?: string;
+	title: string;
+	url: string;
+	description: string;
 };
 
 export type TabsProps = {

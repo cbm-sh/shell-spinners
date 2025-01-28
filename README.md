@@ -7,11 +7,6 @@ A collection of cli loaders for your command-line applications.
 Visit the [website](https://cliloaders.com) to see all loaders, copy keyframes, and more!
 
 
-> **⚠️ VARIANT LOADER NAMES CHANGED IN v2.1.5+:** Any loader name with `variant` in it has been deleted in favor of a cleaner, simplistic loader name convention.
-
-**Example:** If you were using `arrows_variant_1` prior to v2.1.5, the loader name will now simply be `arrows_1`. This change only applies to variants. View the [website](https://cliloaders.com) for the latest updates or to view the [changelog](https://cliloaders.com/changelog).
-
-
 ## Installation
 
 To install the package, use npm or yarn:
@@ -42,7 +37,7 @@ You can initialize any loader by its name using `initLoader`
 import { initLoader } from 'cli-loaders';
 
 // Initialize by name
-initLoader('dots_variant_1');
+initLoader('dots_1');
 ```
 
 ### Customizing the Speed
@@ -53,21 +48,25 @@ You can also customize the speed of the loader:
 import { initLoader } from 'cli-loaders';
 
 // Initialize with custom speed
-initLoader('dots_variant_1', 100);
+initLoader('dots_1', 100);
 ```
 
 ### Customizing everything
 
-New to v2.0+, you can import a custom loader initializer, `initCustomLoader`
+New to v2.0+, you can import the cli loader initializer, `initCliLoader` for full customization
 
 ```typescript
-import { initCustomLoader } from 'cli-loaders';
+import { initCliLoader, dots_14 } from 'cli-loaders';
 ```
 
 Then use it with your own speed and keyframe arguments:
 
 ```typescript
-initCustomLoader(100, ["⠋","⠙","⠹","⠸","⠼","⠴","⠦","⠧","⠇","⠏"]);
+import { initCliLoader, dots_14 } from 'cli-loaders';
+
+initCliLoader(dots_14); // Render loader
+initCliLoader(dots_14, 100); // Render loader with custom speed
+initCliLoader(dots_14, 100, ["⠋","⠙","⠹","⠸","⠼","⠴","⠦","⠧","⠇","⠏"]); // Render loader with speed and keyframes customized
 ```
 
 ### Upgrading versions
