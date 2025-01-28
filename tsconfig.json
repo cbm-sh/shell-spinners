@@ -10,5 +10,5 @@
     "noEmit": true,
     "jsx": "react",
   },
-  "exclude": ["node_modules", "website"]
+  "exclude": ["node_modules", "website", "experimental"]
 }

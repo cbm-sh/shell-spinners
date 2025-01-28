@@ -53,16 +53,20 @@ initLoader('dots_1', 100);
 
 ### Customizing everything
 
-New to v2.0+, you can import the cli loader initializer, `initCliLoader`
+New to v2.0+, you can import the cli loader initializer, `initCliLoader` for full customization
 
 ```typescript
-import { initCliLoader } from 'cli-loaders';
+import { initCliLoader, dots_14 } from 'cli-loaders';
 ```
 
 Then use it with your own speed and keyframe arguments:
 
 ```typescript
-initCliLoader(100, ["⠋","⠙","⠹","⠸","⠼","⠴","⠦","⠧","⠇","⠏"]);
+import { initCliLoader, dots_14 } from 'cli-loaders';
+
+initCliLoader(dots_14); // Render loader
+initCliLoader(dots_14, 100); // Render loader with custom speed
+initCliLoader(dots_14, 100, ["⠋","⠙","⠹","⠸","⠼","⠴","⠦","⠧","⠇","⠏"]); // Render loader with speed and keyframes customized
 ```
 
 ### Upgrading versions
