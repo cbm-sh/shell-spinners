@@ -278,10 +278,6 @@ export const emojis_9 = {
     keyframes: ['😄 ', '😝 '],
 };
 
-export const emojis_10 = {
-    speed: 100,
-    keyframes: ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'],
-};
 
 export const lines_1 = {
     speed: 70,
