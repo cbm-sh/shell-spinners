@@ -1,8 +1,8 @@
-import { CopyCode } from '@/components/CopyCode';
 import { Hero } from '@/components/Hero';
-import { TopBar } from '@/components/TopBar';
 import dynamic from 'next/dynamic';
 
+const TopBar = dynamic(() => import('@/components/TopBar').then((mod) => mod.TopBar));
+const CopyCode = dynamic(() => import('@/components/CopyCode').then((mod) => mod.CopyCode));
 const Filter = dynamic(() => import('@/components/Filter').then((mod) => mod.Filter));
 
 const HomePage = () => {

@@ -1,18 +1,18 @@
 import { BackButton } from '@/components/BackButton';
-import { CodeBlock } from '@/components/CodeBlock';
 import { CopyKeyframes } from '@/components/CopyKeyframes';
-import {
-	NextJsComponentExample,
-	OhMyZshExample,
-	ZeroDependencyExample,
-} from '@/components/Examples';
 import { Hero } from '@/components/Hero';
 import { Renderer } from '@/components/Renderer';
 import { Button } from '@/components/ui/Button';
 import LOADERS from '@/lib/config/loaders';
 import type { LoaderProps } from '@/types';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { HiArrowRight } from 'react-icons/hi';
+
+const CodeBlock = dynamic(() => import('@/components/CodeBlock').then(mod => mod.CodeBlock));
+const NextJsComponentExample = dynamic(() => import('@/components/Examples').then(mod => mod.NextJsComponentExample));
+const OhMyZshExample = dynamic(() => import('@/components/Examples').then(mod => mod.OhMyZshExample));
+const ZeroDependencyExample = dynamic(() => import('@/components/Examples').then(mod => mod.ZeroDependencyExample));
 
 export const generateStaticParams = async () =>
 	Object.keys(LOADERS).map((key) => ({
