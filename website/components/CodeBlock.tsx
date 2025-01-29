@@ -27,7 +27,6 @@ export const CodeBlock = memo(({ code, lang, title, isV2, children }: CodeBlockP
 			{children}
 		</Code>
 	</div>
-),
-);
+));
 
 CodeBlock.displayName = 'CodeBlock';
