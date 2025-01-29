@@ -8,22 +8,22 @@ import { TbKeyframe } from 'react-icons/tb';
 import { Button } from './ui/Button';
 
 export const CopyKeyframes = memo(({ variant, code, copyText }: CopyButtonProps) => {
-    const { hasCheckIcon, handleMouseDown } = useCopy(code, copyText);
+	const { hasCheckIcon, handleMouseDown } = useCopy(code, copyText);
 
-    return (
-        <Button
-            onMouseDown={handleMouseDown}
-            variant={variant}
-            icon={
-                hasCheckIcon ? (
-                    <CheckIcon className='size-4 text-neutral-50' />
-                ) : (
-                    <TbKeyframe className='size-4 text-neutral-50' />
-                )
-            }
-            aria-label={hasCheckIcon ? 'Copied keyframes!' : 'Copy keyframes'}
-        />
-    );
+	return (
+		<Button
+			onMouseDown={handleMouseDown}
+			variant={variant}
+			icon={
+				hasCheckIcon ? (
+					<CheckIcon className='size-4 text-neutral-50' />
+				) : (
+					<TbKeyframe className='size-4 text-neutral-50' />
+				)
+			}
+			aria-label={hasCheckIcon ? 'Copied keyframes!' : 'Copy keyframes'}
+		/>
+	);
 });
 
 CopyKeyframes.displayName = 'CopyKeyframes';
