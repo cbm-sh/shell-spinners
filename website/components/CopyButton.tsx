@@ -3,7 +3,7 @@
 import { useToast } from '@/hooks/use-toast';
 import type { CopyButtonProps } from '@/types';
 import { CheckIcon, CopyIcon } from '@radix-ui/react-icons';
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { TbKeyframe } from 'react-icons/tb';
 import { Button } from './ui/Button';
 
@@ -12,14 +12,14 @@ export const CopyButton = memo(
 		const { addToast } = useToast();
 		const [hasCheckIcon, setHasCheckIcon] = useState(false);
 
-		const handleMouseDown = () => {
+		const handleMouseDown = useCallback(() => {
 			navigator.clipboard.writeText(code as string);
 			setHasCheckIcon(true);
 			addToast(copyText);
 			setTimeout(() => {
 				setHasCheckIcon(false);
 			}, 1000);
-		};
+		}, [code, copyText, addToast]);
 
 		return (
 			<Button

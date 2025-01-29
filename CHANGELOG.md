@@ -1,5 +1,14 @@
 # cli-loaders
 
+## 3.0.0
+
+### Major Changes
+
+- - Full and clean re write of initCliLoader function using constant time to access objects + tree shaking.
+  - Returning the intervalId so users can clear the loader with clearInterval(intervalId).
+  - Updated website to reflect changes in the examples sections.
+  - Site changes and loader updates with the current naming convention (permanent) to follow.
+
 ## 2.3.1
 
 ### Patch Changes
@@ -10,10 +19,10 @@
 
 ### Minor Changes
 
-- - Added new loader, 'emojis_10'.
-  - Some loaders have been renamed to follow the naming convention, final change.
-  - New loader, initCliLoader which takes in a loader name and optional speed and keyframes parameters for full customization.
-  - Updated data structure for tree shaking.
+- Added new loader, 'emojis_10'.
+- Some loaders have been renamed to follow the naming convention, final change.
+- New loader, initCliLoader which takes in a loader name and optional speed and keyframes parameters for full customization.
+- Updated data structure for tree shaking.
 
 ## 2.2.0
 

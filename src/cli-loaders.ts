@@ -481,14 +481,7 @@ export const togglers_14 = {
     keyframes: ['❂', '✪'],
 };
 
-type CliLoadersProps = {
-    [key: string]: {
-        speed: number;
-        keyframes: string[];
-    }
-};
-
-const cliLoaders: CliLoadersProps = {
+const cliLoaders = {
     arrows_1,
     arrows_2,
     arrows_3,
