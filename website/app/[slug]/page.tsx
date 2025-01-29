@@ -1,18 +1,30 @@
-import { BackButton } from '@/components/BackButton';
-import { CopyKeyframes } from '@/components/CopyKeyframes';
 import { Hero } from '@/components/Hero';
 import { Renderer } from '@/components/Renderer';
-import { Button } from '@/components/ui/Button';
 import LOADERS from '@/lib/config/loaders';
 import type { LoaderProps } from '@/types';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { HiArrowRight } from 'react-icons/hi';
 
-const CodeBlock = dynamic(() => import('@/components/CodeBlock').then(mod => mod.CodeBlock));
-const NextJsComponentExample = dynamic(() => import('@/components/Examples').then(mod => mod.NextJsComponentExample));
-const OhMyZshExample = dynamic(() => import('@/components/Examples').then(mod => mod.OhMyZshExample));
-const ZeroDependencyExample = dynamic(() => import('@/components/Examples').then(mod => mod.ZeroDependencyExample));
+const CodeBlock = dynamic(() =>
+	import('@/components/CodeBlock').then((mod) => mod.CodeBlock),
+);
+const NextJsComponentExample = dynamic(() =>
+	import('@/components/Examples').then((mod) => mod.NextJsComponentExample),
+);
+const OhMyZshExample = dynamic(() =>
+	import('@/components/Examples').then((mod) => mod.OhMyZshExample),
+);
+const ZeroDependencyExample = dynamic(() =>
+	import('@/components/Examples').then((mod) => mod.ZeroDependencyExample),
+);
+const BackButton = dynamic(() =>
+	import('@/components/BackButton').then((mod) => mod.BackButton),
+);
+const CopyKeyframes = dynamic(() =>
+	import('@/components/CopyKeyframes').then((mod) => mod.CopyKeyframes),
+);
+const Button = dynamic(() => import('@/components/ui/Button').then((mod) => mod.Button));
 
 export const generateStaticParams = async () =>
 	Object.keys(LOADERS).map((key) => ({
