@@ -34,10 +34,10 @@ export type CodeBlockProps = {
 	lang: string;
 	title: string;
 	isV2?: boolean;
+	children?: React.ReactNode;
 };
 
 export type CopyButtonProps = {
-	hasKeyframes: boolean;
 	code: string | string[];
 	copyText: string;
 	className?: string;

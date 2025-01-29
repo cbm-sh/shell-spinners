@@ -2,43 +2,11 @@ import type { LoaderProps } from '@/types';
 import { memo, useMemo } from 'react';
 import { CodeBlock } from './CodeBlock';
 
-export const StandardExample = memo(({ name, speed }: Partial<LoaderProps>) => {
-	const title = 'Standard CLI Example';
-	const code = useMemo(
-		() => `// Import the loader initializer
-import { initCliLoader } from 'cli-loaders';
-
-// Start the loader
-initCliLoader('${name}', ${speed});`,
-		[name, speed],
-	);
-
-	return <CodeBlock lang='ts' title={title} code={code} />;
-});
-
-StandardExample.displayName = 'StandardExample';
-
-export const CustomExample = memo(({ keyframes }: Partial<LoaderProps>) => {
-	const title = 'Custom Loader Example';
-	const code = useMemo(
-		() => `// Import the custom loader initializer
-import { initCliLoader, dots_14 } from 'cli-loaders';
-
-initCliLoader(dots14, YOUR_CUSTOM_SPEED, YOUR_CUSTOM_KEYFRAMES);
-// Example: initCliLoader(dots_14, 100, [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]);`,
-		[keyframes],
-	);
-
-	return <CodeBlock lang='ts' title={title} code={code} keyframes={keyframes} isV2 />;
-});
-
-CustomExample.displayName = 'CustomExample';
-
 export const ZeroDependencyExample = memo(
-	({ speed, keyframes }: Partial<LoaderProps>) => {
-		const title = 'Zero Dependency Example';
-		const code = useMemo(
-			() => `const initCliLoader = () => {
+    ({ speed, keyframes }: Partial<LoaderProps>) => {
+        const title = 'Zero Dependency Example';
+        const code = useMemo(
+            () => `const initCliLoader = () => {
     // Set keyframes
     const keyframes = [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}];
     // Set speed in milliseconds
@@ -53,19 +21,19 @@ export const ZeroDependencyExample = memo(
 };
 // Start the loader
 initCliLoader();`,
-			[speed, keyframes],
-		);
+            [speed, keyframes],
+        );
 
-		return <CodeBlock lang='ts' title={title} code={code} keyframes={keyframes} />;
-	},
+        return <CodeBlock lang='ts' title={title} code={code} />;
+    },
 );
 
 ZeroDependencyExample.displayName = 'ZeroDependencyExample';
 
 export const OhMyZshExample = memo(({ speed, keyframes }: Partial<LoaderProps>) => {
-	const title = 'Oh My Zsh Example';
-	const code = useMemo(
-		() => `function start_loader() {
+    const title = 'Oh My Zsh Example';
+    const code = useMemo(
+        () => `function start_loader() {
     local keyframes=(${keyframes?.map((keyframe) => `"${keyframe}"`).join(' ')}) # Keyframes for the loader
     local speed=${speed} # Speed at which the keyframes change
     local pname=$1 # PID of the process to wait for
@@ -86,18 +54,19 @@ function custom_loader() {
     (sleep 5) &  # Simulate a long-running task in the background
     start_loader $! # Call the loader with the PID of the background process
 }`,
-		[speed, keyframes],
-	);
+        [speed, keyframes],
+    );
 
-	return <CodeBlock lang='bash' title={title} code={code} keyframes={keyframes} />;
+    return <CodeBlock lang='bash' title={title} code={code} />;
 });
 
 OhMyZshExample.displayName = 'OhMyZshExample';
 
-export const NextJsExample = memo(() => {
-	const title = 'Next.js Example';
-	const code = useMemo(
-		() => `"use client";
+export const NextJsComponentExample = memo(
+    ({ name }: Partial<LoaderProps>) => {
+        const title = 'Next.js Component Example';
+        const code = useMemo(
+            () => `"use client";
 
 import React, { useEffect, useState } from 'react';
 
@@ -123,35 +92,26 @@ export const Loader: React.FC<LoaderProps> = ({ speed, keyframes, className }) =
     return (
         <div className={className}>{currentFrame}</div>
     );
-};`,
-		[],
-	);
+};
 
-	return <CodeBlock lang='tsx' title={title} code={code} />;
-});
-
-NextJsExample.displayName = 'NextJsExample';
-
-export const NextJsComponentExample = memo(
-	({ speed, keyframes }: Partial<LoaderProps>) => {
-		const title = 'Next.js Component Example';
-		const code = useMemo(
-			() => `import { Loader } from "@/components/Loader";
+// page.tsx
+import { Loader } from "@/components/Loader";
+import { ${name} } from "cli-loaders";
 
 const Page = () => (
     <Loader
-        speed={${speed}}
-        keyframes={[${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]}
+        speed={${name}.speed}
+        keyframes={${name}.keyframes}
         className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden"
     />
 );
 
 export default Page;`,
-			[speed, keyframes],
-		);
+            [name],
+        );
 
-		return <CodeBlock lang='tsx' title={title} code={code} keyframes={keyframes} />;
-	},
+        return <CodeBlock lang='tsx' title={title} code={code} />;
+    },
 );
 
 NextJsComponentExample.displayName = 'NextJsComponentExample';
