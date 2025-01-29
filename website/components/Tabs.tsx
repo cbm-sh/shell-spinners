@@ -25,7 +25,7 @@ export const Tabs = memo(({ setActiveTab }: TabsProps) => {
 				<button
 					key={`tab-${i}`}
 					type='button'
-					className='cursor-pointer px-3 py-2 text-sm'
+					className='cursor-pointer px-3 py-2 text-sm bg-transparent transition ease-in-out hover:bg-neutral-900'
 					onMouseDown={() => handleTabClick(tab)}
 				>
 					{tab.charAt(0).toUpperCase() + tab.slice(1)}

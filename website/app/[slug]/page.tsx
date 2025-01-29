@@ -81,7 +81,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 						</CodeBlock>
 					</div>
 
-					<h1 className='mt-6 text-lg font-light text-neutral-50'>Initializing Loader</h1>
+					<h1 className='mt-6 text-lg font-light text-neutral-50'>Initializing the Loader</h1>
 					<div className='pt-6'>
 						<CodeBlock lang='tsx' title='example.ts'>
 							{`import { initCliLoader, ${slug} } from 'cli-loaders';

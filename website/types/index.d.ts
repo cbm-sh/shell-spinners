@@ -2,7 +2,7 @@ export type ButtonProps = ButtonAsButton | (ButtonAsSpan & ButtonBaseProps);
 
 export type ButtonBaseProps = {
 	className?: string;
-	icon: React.ReactElement<SVGElement>;
+	icon?: React.ReactElement<SVGElement>;
 	iconAlt?: React.ReactElement<SVGElement>;
 	variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary';
 };
