@@ -1,5 +1,3 @@
-'use client';
-
 import { BUTTON_VARIANTS } from '@/lib/config/variants';
 import type { ButtonProps } from '@/types';
 import { createElement, memo } from 'react';
@@ -24,7 +22,7 @@ export const Button = memo(
 				'span',
 				{
 					className:
-						'ease absolute inset-0 flex size-full -translate-x-full items-center justify-center bg-neutral-950 text-neutral-50 transition group-hover:translate-x-0',
+						'ease absolute inset-0 flex size-full -translate-x-full items-center justify-center bg-neutral-900 text-neutral-50 transition group-hover:translate-x-0',
 				},
 				iconAlt ?? icon,
 			),

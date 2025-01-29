@@ -1,4 +1,4 @@
-import { CopyButton } from '@/components/CopyButton';
+import { CopyCode } from '@/components/CopyCode';
 import { Hero } from '@/components/Hero';
 import { TopBar } from '@/components/TopBar';
 import dynamic from 'next/dynamic';
@@ -8,7 +8,7 @@ const Filter = dynamic(() => import('@/components/Filter').then((mod) => mod.Fil
 const HomePage = () => {
 	return (
 		<>
-			<TopBar text='V3 Now Available' />
+			<TopBar />
 			<Hero
 				title='Cli Loaders'
 				description='A collection of animated CLI loaders for your projects'
@@ -18,8 +18,7 @@ const HomePage = () => {
 						<code className='relative inline-flex h-6 px-2 pt-0.5'>
 							npm install cli-loaders
 						</code>
-						<CopyButton
-							hasKeyframes={false}
+						<CopyCode
 							variant='tertiary'
 							copyText='Command copied to clipboard!'
 							code='npm install cli-loaders'
