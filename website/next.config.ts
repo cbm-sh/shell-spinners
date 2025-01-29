@@ -23,7 +23,6 @@ const nextConfig: NextConfig = {
 			'react-icons',
 			'react-share',
 		],
-		reactCompiler: true,
 		serverSourceMaps: false,
 		webpackBuildWorker: true,
 		webpackMemoryOptimizations: true,
