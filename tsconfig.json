@@ -8,7 +8,10 @@
     "skipLibCheck": true,
     "noUncheckedIndexedAccess": true,
     "noEmit": true,
-    "jsx": "react",
+    "removeComments": true,
+    "paths": {
+      "init-cli-loaders": ["./test/init-cli-loader.test.ts"]
+    }
   },
   "exclude": ["node_modules", "website", "experimental"]
 }

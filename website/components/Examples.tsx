@@ -6,10 +6,10 @@ export const StandardExample = memo(({ name, speed }: Partial<LoaderProps>) => {
 	const title = 'Standard CLI Example';
 	const code = useMemo(
 		() => `// Import the loader initializer
-import { initLoader } from 'cli-loaders';
+import { initCliLoader } from 'cli-loaders';
 
 // Start the loader
-initLoader('${name}', ${speed});`,
+initCliLoader('${name}', ${speed});`,
 		[name, speed],
 	);
 
@@ -38,7 +38,7 @@ export const ZeroDependencyExample = memo(
 	({ speed, keyframes }: Partial<LoaderProps>) => {
 		const title = 'Zero Dependency Example';
 		const code = useMemo(
-			() => `const initLoader = () => {
+			() => `const initCliLoader = () => {
     // Set keyframes
     const keyframes = [${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}];
     // Set speed in milliseconds
@@ -52,7 +52,7 @@ export const ZeroDependencyExample = memo(
     }, speed);
 };
 // Start the loader
-initLoader();`,
+initCliLoader();`,
 			[speed, keyframes],
 		);
 
@@ -142,7 +142,7 @@ const Page = () => (
     <Loader
         speed={${speed}}
         keyframes={[${keyframes?.map((keyframe) => `"${keyframe}"`).join(', ')}]}
-        className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hnameden"
+        className="relative text-4xl font-mono flex flex-col justify-center items-center overflow-hidden"
     />
 );
 

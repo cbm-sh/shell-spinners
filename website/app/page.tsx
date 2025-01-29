@@ -8,7 +8,7 @@ const Filter = dynamic(() => import('@/components/Filter').then((mod) => mod.Fil
 const HomePage = () => {
 	return (
 		<>
-			<TopBar text='V2 Now Available' />
+			<TopBar text='V3 Now Available' />
 			<Hero
 				title='Cli Loaders'
 				description='A collection of animated CLI loaders for your projects'

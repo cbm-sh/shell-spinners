@@ -1,6 +1,7 @@
 import type { HeroProps } from '@/types';
+import { memo } from 'react';
 
-export const Hero = ({ title, description, children }: HeroProps) => (
+export const Hero = memo(({ title, description, children }: HeroProps) => (
 	<div className='px-6 py-12'>
 		<h1 className='text-center text-4xl font-semibold text-balance text-neutral-50 md:text-5xl'>
 			{title}
@@ -8,4 +9,6 @@ export const Hero = ({ title, description, children }: HeroProps) => (
 		<p className='pt-3 text-center text-neutral-100'>{description}</p>
 		{children}
 	</div>
-);
+));
+
+Hero.displayName = 'Hero';
