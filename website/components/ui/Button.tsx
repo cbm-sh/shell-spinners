@@ -14,7 +14,7 @@ export const Button = memo(
 				className: cx(
 					cn,
 					className ?? '',
-					'group inline-flex cursor-pointer items-center justify-center overflow-hidden border border-neutral-800 p-2 text-neutral-50 transition ease-in-out',
+					'group inline-flex cursor-pointer items-center justify-center overflow-hidden text-neutral-50 transition ease-in-out',
 				),
 				...props,
 			},

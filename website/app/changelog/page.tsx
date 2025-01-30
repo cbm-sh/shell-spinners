@@ -1,4 +1,5 @@
 import { BackButton } from '@/components/BackButton';
+import { Hero } from '@/components/Hero';
 import { getChangeLog } from '@/lib/helpers/get-changelog';
 import { type ChangeLogProps } from '@/types';
 import { useMemo } from 'react';
@@ -17,25 +18,16 @@ const Page = () => {
 	return (
 		<>
 			<section>
-				<div className='px-6 py-12'>
-					<div className='absolute min-h-48 w-full max-w-5xl bg-[notear-gradient(to_right,#1a1a1a_1px,transparent_1px),notear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:8px_10px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_100%)]' />
-					<h1 className='relative z-40 text-center text-4xl font-semibold text-balance text-neutral-100 md:text-5xl'>
-						Changelog
-					</h1>
-					<p className='relative z-40 py-6 text-center text-neutral-200'>
-						View the latest change to the cli-loaders package and website.
-					</p>
-				</div>
-			</section>
-			<section>
-				<div className='min-h-full space-y-6 px-6 pb-6'>
-					<div className='flex flex-row items-center justify-between'>
-						<BackButton />
-					</div>
+				<Hero
+					title='Changelog'
+					description='View the latest change to the cli-loaders package and website'
+				/>
+				<div className='z-50 p-6 flex flex-row items-center justify-between'>
+					<BackButton />
 				</div>
 			</section>
 			<section className='border border-x-0 border-b-0 border-t-neutral-800'>
-				<div className='flex flex-col items-start justify-center gap-6 p-6'>
+				<div className='flex flex-col items-center justify-center gap-6 p-6'>
 					<h1 className='text-md text-neutral-400'>Latest Updates</h1>
 					{changeLog.map((v, i) => (
 						<div

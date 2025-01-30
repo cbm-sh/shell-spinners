@@ -6,24 +6,19 @@ import { CopyCode } from './CopyCode';
 
 Code.theme = githubDark as unknown as Record<string, string>;
 
-export const CodeBlock = memo(({ code, lang, title, isV2, children }: CodeBlockProps) => (
+export const CodeBlock = memo(({ code, lang, title, children }: CodeBlockProps) => (
 	<div className='relative border border-neutral-800'>
-		<div className='absolute top-4 left-4'>
-			<p className='text-sm text-neutral-400'>
+		<div className='flex flex-row justify-between items-center border-b border-neutral-800 bg-black pl-3'>
+			<p className='text-neutral-400'>
 				{title}
-				{isV2 && (
-					<span className='ml-2 border border-blue-500 bg-blue-600 px-1 py-0.5 text-xs text-zinc-50'>
-						v2.0+
-					</span>
-				)}
 			</p>
+			<CopyCode
+				variant='quaternary'
+				code={code || ''}
+				copyText='Code copied to clipboard!'
+			/>
 		</div>
-		<CopyCode
-			variant='secondary'
-			code={code || ''}
-			copyText='Code copied to clipboard!'
-		/>
-		<Code style={{ paddingTop: '20px' }} code={code} lang={lang}>
+		<Code style={{ padding: '0', margin: '0' }} code={code} lang={lang}>
 			{children}
 		</Code>
 	</div>

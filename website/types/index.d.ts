@@ -4,7 +4,7 @@ export type ButtonBaseProps = {
 	className?: string;
 	icon?: React.ReactElement<SVGElement>;
 	iconAlt?: React.ReactElement<SVGElement>;
-	variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary';
+	variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary';
 };
 
 export type ButtonAsButton = ButtonBaseProps &
@@ -52,7 +52,6 @@ export type FilterProps = {
 export type HeroProps = {
 	title: string;
 	description: string;
-	children?: React.ReactNode;
 };
 
 export type IconComponents = {
