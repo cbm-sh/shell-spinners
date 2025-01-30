@@ -94,7 +94,7 @@ initCliLoader(${slug}); // by object`}
 					<h1 className='mt-6 text-lg font-light text-neutral-50'>Customizations</h1>
 					<div className='pt-6'>
 						<CodeBlock lang='tsx' title='example.ts'>
-							{`import { initCliLoader, ${slug} } from 'cli-loaders';
+							{`import { initCliLoader } from 'cli-loaders';
 
 initCliLoader('${slug}', 100); // custom speed
 initCliLoader('${slug}', 100, ["..", "."]); // custom speed and keyframes`}
@@ -103,7 +103,9 @@ initCliLoader('${slug}', 100, ["..", "."]); // custom speed and keyframes`}
 
 					<div className='pt-6'>
 						<CodeBlock lang='tsx' title='example.ts'>
-							{`const myAwesomeLoader = {
+							{`import { initCliLoader } from 'cli-loaders';
+
+const myAwesomeLoader = {
 	speed: 100,
 	keyframes: ["..", "."]
 };
@@ -117,12 +119,12 @@ initCliLoader(myAwesomeLoader); // custom loader object`}
 						<CodeBlock lang='tsx' title='example.ts'>
 							{`import { initCliLoader } from 'cli-loaders';
 
-	const intervalId = initCliLoader('dots_1');
+const intervalId = initCliLoader('dots_1');
 
-	// Stop the loader after some time
-	setTimeout(() => {
-	  clearInterval(intervalId);
-	}, 5000);`}
+// Stop the loader after some time
+setTimeout(() => {
+  clearInterval(intervalId);
+}, 5000);`}
 						</CodeBlock>
 						<h1 className='mt-6 text-lg font-light text-neutral-50'>Examples</h1>
 						<div className='pt-6'>
