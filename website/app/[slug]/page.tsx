@@ -68,7 +68,15 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 				<div className='flex w-full flex-col'>
 					<h1 className='mt-6 text-lg font-light text-neutral-50'>Installation</h1>
 					<div className='pt-6'>
-						<CodeBlock lang='bash' title='bash' code='npm install cli-loaders' />
+						<CodeBlock lang='bash' title='bash'>
+							{`npm install cli-loaders
+# or
+yarn add cli-loaders
+# or
+pnpm install cli-loaders
+# or
+bun add cli-loaders`}
+						</CodeBlock>
 					</div>
 
 					<h1 className='mt-6 text-lg font-light text-neutral-50'>
@@ -76,14 +84,14 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 					</h1>
 					<div className='pt-6'>
 						<CodeBlock lang='ts' title='example.ts'>
-							{`import { initCliLoader } from 'cli-loaders';`}
+							{`import { initCliLoader } from 'cli-loaders'; // for initializing`}
 						</CodeBlock>
 					</div>
 
 					<h1 className='mt-6 text-lg font-light text-neutral-50'>Initializing</h1>
 					<div className='pt-6'>
 						<CodeBlock lang='tsx' title='example.ts'>
-							{`import { initCliLoader, ${slug} } from 'cli-loaders';
+							{`import { initCliLoader, ${slug} } from 'cli-loaders'; // You can import the ${slug} object
 
 initCliLoader('${slug}'); // by name
 initCliLoader(${slug}); // by object`}
@@ -95,8 +103,8 @@ initCliLoader(${slug}); // by object`}
 						<CodeBlock lang='tsx' title='example.ts'>
 							{`import { initCliLoader } from 'cli-loaders';
 
-initCliLoader('${slug}', 100); // custom speed
-initCliLoader('${slug}', 100, ["..", "."]); // custom speed and keyframes`}
+initCliLoader('${slug}', 150); // custom speed
+initCliLoader('${slug}', 150, ["..", "."]); // custom speed and keyframes`}
 						</CodeBlock>
 					</div>
 
@@ -105,7 +113,7 @@ initCliLoader('${slug}', 100, ["..", "."]); // custom speed and keyframes`}
 							{`import { initCliLoader } from 'cli-loaders';
 
 const myAwesomeLoader = {
-	speed: 100,
+	speed: 150,
 	keyframes: ["..", "."]
 };
 
