@@ -51,7 +51,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 					{nextLoader && (
 						<Link href={`/${nextLoader}`}>
 							<Button
-								variant='tertiary'
+								variant='quinary'
 								icon={<HiArrowRight size={16} />}
 								aria-label='Next Loader'
 							/>

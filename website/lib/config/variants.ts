@@ -13,7 +13,7 @@ export const BUTTON_VARIANTS = {
 		className: 'relative top-0 right-0 border-l border-l-neutral-800 p-2',
 	},
 	quinary: {
-		className: 'relative top-0 left-0 border border-neutral-800 p-2',
+		className: 'relative top-0 right-0 border border-neutral-800 p-2',
 	},
 };
 

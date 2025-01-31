@@ -22,13 +22,13 @@ const Page = () => {
 					title='Changelog'
 					description='View the latest change to the cli-loaders package and website'
 				/>
-				<div className='z-50 p-6 flex flex-row items-center justify-start'>
+				<div className='z-50 flex flex-row items-center justify-start p-6'>
 					<BackButton />
 				</div>
 			</section>
 			<section className='border border-x-0 border-b-0 border-t-neutral-800'>
 				<div className='flex flex-col items-start justify-center gap-6 p-6'>
-					<h1 className='text-md text-neutral-400'>Latest Updates</h1>
+					<h1 className='text-md text-neutral-50'>Latest Updates</h1>
 					{changeLog.map((v, i) => (
 						<div
 							key={`${v}_${i}`}
@@ -37,11 +37,11 @@ const Page = () => {
 							<div className='relative flex flex-col items-start justify-start p-6 text-sm text-neutral-50'>
 								<h2 className='text-sm text-neutral-50'>
 									{v.v === latest.v ? (
-										<span className='flex relative mt-[4px] ml-[4px] h-auto w-auto border border-blue-400 bg-blue-500 p-0.5 text-xs'>
+										<span className='relative mt-[4px] ml-[4px] flex h-auto w-auto border border-blue-400 bg-blue-500 p-0.5 text-xs'>
 											v{v.v} - Latest
 										</span>
 									) : (
-										<span className='flex relative ml-[4px] h-auto w-auto border border-rose-400 bg-rose-500 p-0.5 text-xs'>
+										<span className='relative ml-[4px] flex h-auto w-auto border border-rose-400 bg-rose-500 p-0.5 text-xs'>
 											v{v.v} - Previous
 										</span>
 									)}
