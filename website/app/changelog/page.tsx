@@ -22,26 +22,26 @@ const Page = () => {
 					title='Changelog'
 					description='View the latest change to the cli-loaders package and website'
 				/>
-				<div className='z-50 p-6 flex flex-row items-center justify-between'>
+				<div className='z-50 p-6 flex flex-row items-center justify-start'>
 					<BackButton />
 				</div>
 			</section>
 			<section className='border border-x-0 border-b-0 border-t-neutral-800'>
-				<div className='flex flex-col items-center justify-center gap-6 p-6'>
+				<div className='flex flex-col items-start justify-center gap-6 p-6'>
 					<h1 className='text-md text-neutral-400'>Latest Updates</h1>
 					{changeLog.map((v, i) => (
 						<div
 							key={`${v}_${i}`}
-							className='flex h-auto min-h-96 w-full flex-col items-center justify-start overflow-y-scroll border border-neutral-800 py-6'
+							className='flex h-auto w-full flex-col items-start justify-start overflow-y-scroll border border-neutral-800'
 						>
-							<div className='relative flex flex-col items-center justify-center p-6 text-sm text-neutral-50'>
-								<h2 className='text-sm text-white'>
+							<div className='relative flex flex-col items-start justify-start p-6 text-sm text-neutral-50'>
+								<h2 className='text-sm text-neutral-50'>
 									{v.v === latest.v ? (
-										<span className='innote-flex relative mt-[4px] ml-[4px] h-auto w-auto border border-blue-500 bg-blue-600 px-0.5 py-0 text-xs'>
+										<span className='flex relative mt-[4px] ml-[4px] h-auto w-auto border border-blue-400 bg-blue-500 p-0.5 text-xs'>
 											v{v.v} - Latest
 										</span>
 									) : (
-										<span className='innote-flex relative ml-[4px] h-auto w-auto border border-rose-500 bg-rose-600 px-0.5 py-0 text-xs'>
+										<span className='flex relative ml-[4px] h-auto w-auto border border-rose-400 bg-rose-500 p-0.5 text-xs'>
 											v{v.v} - Previous
 										</span>
 									)}
@@ -49,10 +49,10 @@ const Page = () => {
 								{v.change.map(({ type, notes }, i) => (
 									<div
 										key={`${type}_${i}`}
-										className='flex min-h-96 w-full flex-col items-center justify-center overflow-y-scroll'
+										className='flex h-auto w-full flex-col items-start justify-start overflow-y-scroll'
 									>
-										<h3 className='p-6 text-lg font-semibold'>{type}</h3>
-										<ul className='flex flex-col items-start justify-center text-left text-neutral-300'>
+										<h3 className='py-6 text-lg font-semibold'>{type}</h3>
+										<ul className='flex flex-col items-start justify-start text-left text-neutral-300'>
 											{notes.map((note, i) => (
 												<li key={`${note.slice(3, 10)}_${i}`}> - {note}</li>
 											))}

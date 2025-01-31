@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { memo } from 'react';
 
 export const Header = memo(() => (
-	<header className='z-50 flex h-16 items-center justify-between p-6'>
+	<header className='z-50 flex h-16 items-center justify-between p-6 border-b border-b-neutral-800'>
 		<Link
 			href='/'
 			aria-label='Cli Loaders Logo'

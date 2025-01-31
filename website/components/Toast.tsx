@@ -20,7 +20,7 @@ export const Toast = memo(({ isOpen, message, onClose }: ToastProps) => {
 		<AnimatePresence>
 			{isOpen && (
 				<motion.div
-					className='fixed bottom-4 z-50 flex h-12 w-96 flex-row items-center justify-between border border-neutral-800 bg-black px-2 py-4 text-neutral-50'
+					className='fixed bottom-4 z-50 flex h-12 w-64 flex-row items-center justify-between border border-neutral-800 bg-black px-2 py-4 text-neutral-50'
 					variants={TOAST_VARIANTS}
 					initial='closed'
 					animate='open'

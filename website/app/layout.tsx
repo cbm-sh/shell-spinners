@@ -18,7 +18,7 @@ export const metadata = METADATA;
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
 	<ToastProvider>
 		<html lang='en' suppressHydrationWarning>
-			<body className='mx-auto min-h-screen max-w-5xl overflow-x-hidden scroll-smooth border-0 bg-black font-sans text-sm text-neutral-100 antialiased lg:border lg:border-y-0 lg:border-x-neutral-800'>
+			<body className='mx-auto min-h-screen max-w-3xl overflow-x-hidden scroll-smooth border-0 bg-black font-sans text-sm text-neutral-100 antialiased md:border md:border-y-0 md:border-x-neutral-800'>
 				<Header />
 				<main>{children}</main>
 				<Footer />

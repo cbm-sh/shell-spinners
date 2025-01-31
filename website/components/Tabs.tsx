@@ -20,12 +20,12 @@ export const Tabs = memo(({ setActiveTab }: TabsProps) => {
 	};
 
 	return (
-		<div className='overflow-x-invisible z-40 mx-auto flex h-10 flex-row items-center justify-between overflow-x-scroll px-6 py-1'>
+		<div className='overflow-x-invisible z-40 mx-auto flex h-10 flex-row items-center justify-between overflow-x-scroll px-6'>
 			{tabs.map((tab: string, i: number) => (
 				<button
 					key={`tab-${i}`}
 					type='button'
-					className='cursor-pointer px-3 py-2 text-sm bg-transparent transition ease-in-out hover:bg-neutral-900'
+					className='cursor-pointer bg-transparent px-3 py-2 text-sm transition ease-in-out hover:bg-neutral-900'
 					onMouseDown={() => handleTabClick(tab)}
 				>
 					{tab.charAt(0).toUpperCase() + tab.slice(1)}

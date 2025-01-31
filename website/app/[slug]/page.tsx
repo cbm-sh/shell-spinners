@@ -42,16 +42,21 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 	return (
 		<>
 			<section>
-				<Hero title={slug} description={`The ${category.toLocaleLowerCase()} collection`} />
-				<div className='z-50 p-6 flex flex-row items-center justify-between'>
+				<Hero
+					title={slug}
+					description={`The ${category.toLocaleLowerCase()} collection`}
+				/>
+				<div className='z-50 flex flex-row items-center justify-between p-6'>
 					<BackButton />
-					<Link href={`/${nextLoader}`}>
-						<Button
-							variant='quinary'
-							icon={<HiArrowRight size={16} />}
-							aria-label='Next Loader'
-						/>
-					</Link>
+					{nextLoader && (
+						<Link href={`/${nextLoader}`}>
+							<Button
+								variant='tertiary'
+								icon={<HiArrowRight size={16} />}
+								aria-label='Next Loader'
+							/>
+						</Link>
+					)}
 				</div>
 			</section>
 			<section className='w-full border border-x-0 border-b-0 border-t-neutral-800 p-6'>
@@ -79,9 +84,7 @@ bun add cli-loaders`}
 						</CodeBlock>
 					</div>
 
-					<h1 className='mt-6 text-lg font-light text-neutral-50'>
-						Importing
-					</h1>
+					<h1 className='mt-6 text-lg font-light text-neutral-50'>Importing</h1>
 					<div className='pt-6'>
 						<CodeBlock lang='ts' title='example.ts'>
 							{`import { initCliLoader } from 'cli-loaders'; // for initializing`}

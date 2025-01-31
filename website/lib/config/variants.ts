@@ -7,7 +7,7 @@ export const BUTTON_VARIANTS = {
 		className: 'absolute top-0 right-0 border border-t-0 border-b-neutral-800 border-l-neutral-800 border-r-0 p-2',
 	},
 	tertiary: {
-		className: 'relative top-0 right-0 border border-y-0 border-l-neutral-800 border-r-0 p-2',
+		className: 'relative top-0 left-0 border border-neutral-800 p-2',
 	},
 	quaternary: {
 		className: 'relative top-0 right-0 border-l border-l-neutral-800 p-2',
