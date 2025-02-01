@@ -1,3 +1,5 @@
+"use client"
+
 import { memo } from 'react';
 import { FaEnvelope, FaFacebook, FaLinkedin, FaReddit } from 'react-icons/fa';
 import {
@@ -26,7 +28,6 @@ export const Share = memo(
 			<div className={className}>
 				<EmailShareButton
 					url={url}
-					className='ml-3'
 					subject={`Check out this cli ${title.toLocaleLowerCase()} loader I found on cliloaders!`}
 					aria-label='Share loader by email button'
 				>

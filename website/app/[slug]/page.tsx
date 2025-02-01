@@ -1,3 +1,4 @@
+import { Share } from '@/components/Share';
 import LOADERS from '@/lib/config/loaders';
 import type { LoaderProps } from '@/types';
 import dynamic from 'next/dynamic';
@@ -122,7 +123,7 @@ initCliLoader(myAwesomeLoader); // custom loader object`}
 						<CodeBlock lang='tsx' title='example.ts'>
 							{`import { initCliLoader } from 'cli-loaders';
 
-const intervalId = initCliLoader('dots_1');
+const intervalId = initCliLoader('${slug}');
 
 // Stop the loader after some time
 setTimeout(() => {
@@ -139,6 +140,8 @@ setTimeout(() => {
 						<div className='pt-6'>
 							<ZeroDependencyExample speed={speed} keyframes={keyframes} />
 						</div>
+						<h1 className='mt-6 text-center text-lg font-light text-neutral-50'>Share</h1>
+						<Share className='pt-6 flex flex-row justify-center items-center' title={slug} description={`${slug} loader on cliloaders.com`} url={`https://cliloaders.com/${slug}`} />
 					</div>
 				</div>
 			</section>
