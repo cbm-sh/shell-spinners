@@ -13,3 +13,5 @@ export const BackButton = () => (
 		/>
 	</Link>
 );
+
+BackButton.displayName = 'BackButton';

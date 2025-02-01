@@ -1,6 +1,6 @@
-import { Hero } from '@/components/Hero';
 import dynamic from 'next/dynamic';
 
+const Hero = dynamic(() => import('@/components/Hero').then((mod) => mod.Hero));
 const TopBar = dynamic(() => import('@/components/TopBar').then((mod) => mod.TopBar));
 const Filter = dynamic(() => import('@/components/Filter').then((mod) => mod.Filter));
 

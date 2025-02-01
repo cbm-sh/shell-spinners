@@ -1,13 +1,22 @@
-import { Hero } from '@/components/Hero';
-import { Renderer } from '@/components/Renderer';
 import LOADERS from '@/lib/config/loaders';
 import type { LoaderProps } from '@/types';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import { HiArrowRight } from 'react-icons/hi';
 
+const Hero = dynamic(() => import('@/components/Hero').then((mod) => mod.Hero));
+const Renderer = dynamic(() =>
+	import('@/components/Renderer').then((mod) => mod.Renderer),
+);
 const CodeBlock = dynamic(() =>
 	import('@/components/CodeBlock').then((mod) => mod.CodeBlock),
+);
+const BackButton = dynamic(() =>
+	import('@/components/BackButton').then((mod) => mod.BackButton),
+);
+const CopyKeyframes = dynamic(() =>
+	import('@/components/CopyKeyframes').then((mod) => mod.CopyKeyframes),
+);
+const ForwardButton = dynamic(() =>
+	import('@/components/ForwardButton').then((mod) => mod.ForwardButton),
 );
 const NextJsComponentExample = dynamic(() =>
 	import('@/components/Examples').then((mod) => mod.NextJsComponentExample),
@@ -18,14 +27,6 @@ const OhMyZshExample = dynamic(() =>
 const ZeroDependencyExample = dynamic(() =>
 	import('@/components/Examples').then((mod) => mod.ZeroDependencyExample),
 );
-const BackButton = dynamic(() =>
-	import('@/components/BackButton').then((mod) => mod.BackButton),
-);
-const CopyKeyframes = dynamic(() =>
-	import('@/components/CopyKeyframes').then((mod) => mod.CopyKeyframes),
-);
-const Button = dynamic(() => import('@/components/ui/Button').then((mod) => mod.Button));
-
 export const generateStaticParams = async () =>
 	Object.keys(LOADERS).map((key) => ({
 		slug: key,
@@ -48,15 +49,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 				/>
 				<div className='z-50 flex flex-row items-center justify-between p-6'>
 					<BackButton />
-					{nextLoader && (
-						<Link href={`/${nextLoader}`}>
-							<Button
-								variant='quinary'
-								icon={<HiArrowRight size={16} />}
-								aria-label='Next Loader'
-							/>
-						</Link>
-					)}
+					<ForwardButton href={nextLoader} />
 				</div>
 			</section>
 			<section className='w-full border border-x-0 border-b-0 border-t-neutral-800 p-6'>

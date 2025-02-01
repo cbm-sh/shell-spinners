@@ -35,3 +35,5 @@ export const CopyButton = ({ variant, className, code, copyText }: CopyButtonPro
 		/>
 	);
 };
+
+CopyButton.displayName = 'CopyButton';
